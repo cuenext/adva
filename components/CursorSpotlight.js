@@ -13,7 +13,8 @@ export default function CursorSpotlight(){
   const fine=window.matchMedia("(hover: hover) and (pointer: fine)");
   const reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
   const root=document.documentElement;
-  if(!fine.matches||reduce.matches)return;
+  if(reduce.matches)return;
+  const allowLight=fine.matches;
   const el=light.current;
   if(!el)return;
   let frame=0,inside=false,visible=false;
@@ -69,11 +70,13 @@ export default function CursorSpotlight(){
     el.style.transform="translate3d("+position.x+"px,"+position.y+"px,0) translate(-50%,-50%)";
     frame=requestAnimationFrame(move);
   };
-  window.addEventListener("pointermove",onMove,{passive:true});
-  window.addEventListener("blur",onLeave);
-  document.addEventListener("mouseleave",onLeave);
   root.classList.add("adva-enhanced-motion");
-  move();
+  if(allowLight){
+    window.addEventListener("pointermove",onMove,{passive:true});
+    window.addEventListener("blur",onLeave);
+    document.addEventListener("mouseleave",onLeave);
+    move();
+  }
   return()=>{
     cancelAnimationFrame(frame);
     observer?.disconnect();
