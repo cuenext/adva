@@ -44,7 +44,7 @@
  .adva-mobile-toggle span{width:18px;height:1px;background:#ebf6ff;transition:transform .2s}
  .adva-mobile-toggle.on span:first-child{transform:translateY(3.5px) rotate(45deg)}
  .adva-mobile-toggle.on span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
- .adva-mobile-panel{display:block;position:absolute;left:0;right:0;top:100%;height:calc(100svh - 71px);overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(150deg,#101827,#070a0f);border-top:1px solid #ffffff22;z-index:110;opacity:0;pointer-events:none;visibility:hidden;transform:translateY(-10px);transition:opacity .25s,transform .25s,visibility .25s}
+ .adva-mobile-panel{display:block;position:absolute;left:0;right:0;top:100%;height:calc(100svh - 82px);overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(150deg,#101827,#070a0f);border-top:1px solid #ffffff22;z-index:110;opacity:0;pointer-events:none;visibility:hidden;transform:translateY(-10px);transition:opacity .25s,transform .25s,visibility .25s}
  .adva-mobile-panel.visible{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible}
  .adva-mobile-scroll{width:min(100% - 36px,700px);margin:auto;padding:28px 0 45px}
  .adva-mobile-intro{display:flex;justify-content:space-between;font:800 10px Manrope,Arial,sans-serif;color:#7694ba;letter-spacing:.19em;border-bottom:1px solid #ffffff20;padding-bottom:21px}

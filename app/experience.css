@@ -6,7 +6,7 @@
 .adva-home-ticker b{display:inline-block;color:#67bbfb;padding:0 32px;font-size:19px;font-weight:400}
 
 .adva-creative-output{background:#0b1018;padding:120px 0 140px}
-.adva-output-heading{display:flex;justify-content:space-between;gap:55px;align-items:end;margin-bottom:52px}
+.adva-output-heading{display:flex;justify-content:space-between;gap:55px;align-items:flex-end;margin-bottom:52px}
 .adva-output-heading h2{font:800 clamp(45px,6.2vw,82px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.077em;margin:27px 0 0;color:#f1f6fc}
 .adva-output-heading h2 em{color:#8abdf0;font-style:normal}
 .adva-output-heading>p{max-width:390px;color:#98a9be;font-size:15px;line-height:1.9;margin:0 0 10px}
@@ -29,7 +29,7 @@
 .adva-live-art-rings i{position:absolute;border:1px solid #bceae750;border-radius:50%;width:270px;height:270px;animation:advaFilmRotate 20s linear infinite}
 .adva-live-art-rings i:nth-child(2){height:190px;width:190px;animation-direction:reverse}
 .adva-live-art-rings i:nth-child(3){height:110px;width:110px;background:radial-gradient(circle,#67ddc6bb,#14968a34);box-shadow:0 0 40px #55e6c755}
-.adva-output-tile-info{flex:1;padding:29px 29px 32px;display:flex;justify-content:space-between;gap:20px;align-items:end}
+.adva-output-tile-info{flex:1;padding:29px 29px 32px;display:flex;justify-content:space-between;gap:20px;align-items:flex-end}
 .adva-output-tile-info>div>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.17em;color:#87b5e4}
 .adva-output-tile-info h3{font:800 clamp(27px,3vw,46px) Manrope,Arial,sans-serif;letter-spacing:-.06em;margin:13px 0;color:#f3f7fd}
 .adva-output-tile-info p{font-size:13px;line-height:1.8;color:#9badc1;margin:0;max-width:350px}

@@ -2,11 +2,11 @@
 import {useEffect,useRef,useState,useMemo} from "react";
 
 const suggestions=[
-{title:"Brand & digital transformation",keys:["brand","rebrand","logo","website","web","identity","clinic","dental","refresh"],work:"silwadi",project:"Silwadi",desc:"Identity, digital experiences and content systems that bring everything together."},
-{title:"Events & exhibition production",keys:["exhibition","event","conference","booth","expo","exhibit","fair","adihex","launch"],work:"bluetti",project:"BLUETTI",desc:"Photography, films, interviews and social coverage for live brand moments."},
-{title:"Content & social",keys:["social","tiktok","reels","instagram","content","campaign","creator","marketing"],work:"doctors",project:"Doctor-led stories",desc:"Thoughtful, audience-first content from strategy to the final edit."},
-{title:"Film & photography",keys:["film","video","photo","shoot","interview","edit","production"],work:"bluetti",project:"BLUETTI",desc:"Brand films and visual storytelling for the moments worth capturing."},
-{title:"Technology & on-ground stories",keys:["technology","tech","industry","manufacturer","umex","industrial"],work:"infinity",project:"Infinity Glory",desc:"Complex ideas transformed into clear, compelling exhibition content."}
+{title:"Brand & digital transformation",keys:["brand","rebrand","logo","website","web","identity","clinic","dental","refresh"],service:"branding",project:"Branding & Design",desc:"Identity, digital experiences and content systems that bring everything together."},
+{title:"Events & exhibition production",keys:["exhibition","event","conference","booth","expo","exhibit","fair","adihex","launch"],service:"event-coverage",project:"Event Coverage",desc:"Photography, films, interviews and social coverage for live brand moments."},
+{title:"Content & social",keys:["social","tiktok","reels","instagram","content","campaign","creator","marketing"],service:"social-media-management",project:"Social Media Management",desc:"Thoughtful, audience-first content from strategy to the final edit."},
+{title:"Film & photography",keys:["film","video","photo","shoot","interview","edit","production"],service:"event-coverage",project:"Event Coverage",desc:"Brand films and visual storytelling for the moments worth capturing."},
+{title:"Technology & on-ground stories",keys:["technology","tech","industry","manufacturer","umex","industrial"],service:"event-coverage",project:"Event Coverage",desc:"Complex ideas transformed into clear, compelling exhibition content."}
 ];
 const prompts=["I need creative coverage for a three-day exhibition","We need to rebrand and launch a new website","We want to make content people actually watch","I'm planning a brand campaign in Abu Dhabi"];
 function match(q){const t=q.toLowerCase();const items=suggestions.map((s,i)=>({...s,score:s.keys.reduce((n,k)=>n+(t.includes(k)?1:0),0)-i*.001})).sort((a,b)=>b.score-a.score);return items[0].score>0?items.slice(0,2):[suggestions[0],suggestions[1]]}
@@ -27,7 +27,7 @@ export default function CinematicHero(){
  useEffect(()=>{if(!open)return;const onKey=e=>{if(e.key==="Escape")setOpen(false)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[open]);
  useEffect(()=>{if(open&&chatBox.current)chatBox.current.scrollTop=chatBox.current.scrollHeight},[messages,open]);
  function submit(e){e.preventDefault();const v=query.trim();if(!v){input.current?.focus();return}setSubmitted(v)}
- function send(e){e.preventDefault();const q=question.trim();if(!q)return;const results=match(q);setMessages(m=>[...m,{role:"you",text:q},{role:"adva",text:"I'd start by looking at "+results[0].title.toLowerCase()+". For a comparable ADVA project, see "+results[0].project+". Share your goals and timing with the team, and we'll shape a real proposal."}]);setQuestion("")}
+ function send(e){e.preventDefault();const q=question.trim();if(!q)return;const results=match(q);setMessages(m=>[...m,{role:"you",text:q},{role:"adva",text:"I'd start by looking at "+results[0].title.toLowerCase()+". A useful service to explore is "+results[0].project+". Share your goals and timing with the team, and we'll shape a real proposal."}]);setQuestion("")}
  const encoded=encodeURIComponent("Hello ADVA,\n\nI'd like to discuss a new project:\n"+(submitted||query)+"\n\nCompany:\nTimeline:\n");
  return <>
   <section className="cinema" ref={root} aria-labelledby="cinema-title">
@@ -52,7 +52,7 @@ export default function CinematicHero(){
         </div>
         <div className="cinema-scene" aria-hidden="true"><span className="cinema-outline">A</span><span className="cinema-ring outer"/><span className="cinema-ring inner"/><div ref={orb} className="cinema-orb"><div className="cinema-orb-inner"><b>ADVA<span>.</span></b><small>IDEAS IN MOTION</small></div></div><div className="cinema-sticker s1">✦&nbsp; MADE TO MOVE</div><div className="cinema-sticker s2">STRATEGY / STORY / EXECUTION ↗</div><div className="cinema-cross-h"/><div className="cinema-cross-v"/></div>
       </div>
-      {submitted&&<div className="cinema-results" role="status" aria-live="polite"><div className="cinema-results-title"><div><span>YOUR IDEA, EXPLORED</span><h2>Here's where we'd begin.</h2></div><button onClick={()=>setSubmitted("")}>Start over ×</button></div><div className="cinema-result-list">{matches.map((m,i)=><a href={"/work/"+m.work} key={m.title}><small>{"0"+(i+1)}</small><strong>{m.title}</strong><p>{m.desc}</p><span>See {m.project} <Up/></span></a>)}</div><div className="cinema-results-actions"><a href={"mailto:inquiries@advaae.com?subject="+encodeURIComponent("ADVA project inquiry")+"&body="+encoded}>Send your brief <Up/></a><button type="button" onClick={()=>setOpen(true)}>Need more help? Talk to ADVA AI <Up/></button></div></div>}
+      {submitted&&<div className="cinema-results" role="status" aria-live="polite"><div className="cinema-results-title"><div><span>YOUR IDEA, EXPLORED</span><h2>Here's where we'd begin.</h2></div><button onClick={()=>setSubmitted("")}>Start over ×</button></div><div className="cinema-result-list">{matches.map((m,i)=><a href={"/services/"+m.service} key={m.title}><small>{"0"+(i+1)}</small><strong>{m.title}</strong><p>{m.desc}</p><span>Explore {m.project} <Up/></span></a>)}</div><div className="cinema-results-actions"><a href={"mailto:inquiries@advaae.com?subject="+encodeURIComponent("ADVA project inquiry")+"&body="+encoded}>Send your brief <Up/></a><button type="button" onClick={()=>setOpen(true)}>Need more help? Talk to ADVA AI <Up/></button></div></div>}
       <div className="cinema-foot"><a href="#work">SCROLL TO EXPLORE <span className="cinema-foot-rule"/></a><span>MADE TO BE SEEN. BUILT TO BE REMEMBERED.</span><span>01 — 05</span></div>
     </div>
   </section>
