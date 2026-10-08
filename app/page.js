@@ -1,4 +1,5 @@
 "use client";
+import CinematicHero from "../components/CinematicHero";
 import { useEffect, useRef, useState } from "react";
 
 const SERVICES = [
@@ -82,33 +83,7 @@ export default function Home() {
      <div className="container header-inner"><Brand/><nav aria-label="Main navigation" className={"navigation"+(navOpen?" navigation-open":"")}><a href="#services" onClick={closeNav}>What we do</a><a href="#work" onClick={closeNav}>Selected work</a><a href="#about" onClick={closeNav}>About us</a><a href="#contact" onClick={closeNav}>Contact</a></nav><a className="header-contact" href="#contact">Let's talk <span><Icon type="up" size={18}/></span></a><button className="hamburger" aria-label={navOpen?"Close menu":"Open menu"} aria-expanded={navOpen} onClick={()=>setNavOpen(!navOpen)}><Icon type={navOpen?"close":"menu"} size={25}/></button></div>
    </header>
    <main>
-     <section className="hero">
-       <div className="hero-background hero-bg-a"/><div className="hero-background hero-bg-b"/><div className="hero-dot-grid" aria-hidden="true"/>
-       <div className="hero-illustration" aria-hidden="true">
-         <div className="orbital orbital-outer"/><div className="orbital orbital-inner"/><div className="orbital orbital-deep"/><div className="core-disc"><span>ADVA</span><strong>✳</strong></div>
-         <div className="orbital-asterisk">*</div><div className="orbital-tile tile-a"><span className="tile-tick"/> THINK BIG.</div><div className="orbital-tile tile-b">MAKE IT REAL <span>↗</span></div>
-         <div className="floating-four">✦</div><div className="floating-gradient-disc"/>
-       </div>
-       <div className="container hero-container">
-         <div className="hero-content">
-           <div className="eyebrow"><span className="eyebrow-star">✳</span> WE'RE ADVA <span className="eyebrow-divider"/> IDEAS INTO IMPACT</div>
-           <h1>How can we <span className="accent-word">help you<span className="accent-question">?</span></span></h1>
-           <p className="hero-subtitle">A creative partner for the things you want to make happen. From standout brands to unforgettable events, let's make it something special.</p>
-           <div className="brief-wrapper">
-             <form className="brief-search" onSubmit={submit}>
-               <Icon type="search" size={22}/>
-               <label className="sr-only" htmlFor="idea-input">Tell ADVA about your project</label>
-               <input id="idea-input" ref={inputRef} value={brief} onChange={e=>{setBrief(e.target.value);if(result)setResult("");}} maxLength={550} placeholder="Tell us what you're thinking..." autoComplete="off"/>
-               <button type="submit" aria-label="Explore your project idea"><Icon type="arrow" size={23}/></button>
-             </form>
-             <div className="brief-description"><span>✦</span> Not sure where to start? Just tell us what you have in mind.</div>
-             <div className="quick-ideas"><span>OR TRY:</span><button type="button" onClick={()=>preset("I need photo and video coverage for an exhibition in Abu Dhabi")}>Exhibition coverage ↗</button><button type="button" onClick={()=>preset("We need a new identity and website for our brand")}>Brand refresh ↗</button><button type="button" onClick={()=>preset("We want creative content for our social channels")}>Social content ↗</button></div>
-             {result&&<BriefResult brief={result} reset={()=>{setBrief("");setResult("");inputRef.current?.focus();}}/>}
-           </div>
-         </div>
-         <div className="hero-foot"><a className="discover" href="#services"><span className="down-arrow">↓</span> SCROLL TO EXPLORE</a><span>GOOD IDEAS DESERVE<br/>GREAT EXECUTION.</span></div>
-       </div>
-     </section>
+     <CinematicHero/>
      <div className="marquee" aria-hidden="true"><div className="marquee-track">{[0,1].map(i=><div className="marquee-chunk" key={i}><span>CREATIVE PRODUCTION</span><b>✳</b><span>BRAND & DIGITAL</span><b>✳</b><span>EVENT EXPERIENCES</span><b>✳</b><span>IDEAS THAT MOVE</span><b>✳</b></div>)}</div></div>
      <section className="services-section section-space" id="services">
        <div className="container"><div className="section-heading heading-split" data-reveal><div><SectionLabel>01 / WHAT WE DO</SectionLabel><h2>All the right ideas.<br/><em>One creative team.</em></h2></div><p>We connect the thinking, the making and the doing. So your project feels cohesive from the first conversation to the final delivery.</p></div>
