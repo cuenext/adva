@@ -40,7 +40,7 @@ function Icon({type="arrow",size=20}) {
  };
  return <svg {...props}>{shapes[type]||shapes.arrow}</svg>;
 }
-function Brand({inverse=false}) {return <a className={"brand"+(inverse?" brand-inverse":"")} href="#top" aria-label="ADVA, back to top"><img className="brand-logo" src="/adva-logo.svg" alt="ADVA" onError={(e)=>{e.currentTarget.style.display="none";e.currentTarget.nextElementSibling.style.display="inline-block";}}/><span className="brand-fallback">ADVA<span className="brand-fallback-dot">.</span></span></a>;}
+function Brand({inverse=false}) {return <a className={"brand"+(inverse?" brand-inverse":"")} href="#top" aria-label="ADVA, back to top"><img className="brand-logo" src="/adva-logo.webp" alt="ADVA" onError={(e)=>{e.currentTarget.style.display="none";e.currentTarget.nextElementSibling.style.display="inline-block";}}/><span className="brand-fallback">ADVA<span className="brand-fallback-dot">.</span></span></a>;}
 function SectionLabel({children,light=false}) {return <div className={"section-label"+(light?" section-label-light":"")}><span className="section-label-bullet"/> {children}</div>;}
 function ProjectArt({item}) {
  return <div className={"project-art project-art-"+item.visual} aria-hidden="true">
