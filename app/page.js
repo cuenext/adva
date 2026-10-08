@@ -53,7 +53,7 @@ function ProjectArt({item}) {
 }
 function ProjectCard({item}) {return <article className={"project-card"+(item.featured?" project-card-featured":"")} data-reveal>
  <ProjectArt item={item}/>
- <div className="project-info"><div className="project-meta"><span>{item.type}</span><span>{item.sector}</span></div><h3>{item.name}</h3><p>{item.desc}</p><div className="project-scope">{item.services.map(x=><span key={x}>{x}</span>)}</div><div className="project-impact"><strong>{item.detail}</strong><span>{item.note}</span></div></div>
+ <div className="project-info"><div className="project-meta"><span>{item.type}</span><span>{item.sector}</span></div><h3>{item.name}</h3><p>{item.desc}</p><div className="project-scope">{item.services.map(x=><span key={x}>{x}</span>)}</div><div className="project-impact"><strong>{item.detail}</strong><span>{item.note}</span></div><a className="project-open" href={"/work/"+item.id}>Explore the project <Icon type="up" size={17}/></a></div>
  </article>;}
 function BriefResult({brief,reset}) {
  const ranked=SERVICES.map(s=>({...s,score:s.triggers.reduce((a,t)=>a+(brief.toLowerCase().includes(t)?1:0),0)})).sort((a,b)=>b.score-a.score);
