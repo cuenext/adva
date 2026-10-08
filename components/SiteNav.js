@@ -47,7 +47,7 @@ export default function SiteNav(){
         </div>
         <a href="/#work" className="adva-top-link" onClick={close}>Explore</a>
         <a href="/#approach" className="adva-top-link" onClick={close}>Approach</a>
-        <a href="/#about" className="adva-top-link" onClick={close}>About ADVA</a>
+        <a href="/#about" className="adva-top-link" onClick={close}>About ADVA</a><a href="/join" className="adva-top-link" onClick={close}>Join our team</a>
       </nav>
       <a className="adva-nav-cta" href="/brief">Start a project <Arrow/></a>
       <button className={"adva-mobile-toggle"+(mobile?" on":"")} type="button" aria-label={mobile?"Close menu":"Open menu"} aria-expanded={mobile} aria-controls="adva-mobile-panel" onClick={()=>{setMobile(v=>!v);setOpen(false)}}><span/><span/></button>
@@ -59,7 +59,7 @@ export default function SiteNav(){
         {mobileServices&&<div className="adva-mobile-services">{SERVICE_GROUPS.map(g=><div key={g.id}><span className="adva-mobile-group-title">{g.label}</span>{servicesInGroup(g.id).map(s=><a href={"/services/"+s.slug} onClick={close} key={s.slug}>{s.name}<Arrow/></a>)}</div>)}<a href="/services" onClick={close} className="adva-mobile-all">View all capabilities <Arrow/></a></div>}
         <a href="/#work" onClick={close} className="adva-mobile-main-link">Explore <Arrow/></a>
         <a href="/#approach" onClick={close} className="adva-mobile-main-link">Approach <Arrow/></a>
-        <a href="/#about" onClick={close} className="adva-mobile-main-link">About ADVA <Arrow/></a>
+        <a href="/#about" onClick={close} className="adva-mobile-main-link">About ADVA <Arrow/></a><a href="/join" onClick={close} className="adva-mobile-main-link">Join our team <Arrow/></a>
         <a href="/brief" onClick={close} className="adva-mobile-project">Start a project <Arrow/></a>
         <span className="adva-mobile-foot">CREATIVE / MEDIA / EXPERIENCES — ABU DHABI</span>
       </div>

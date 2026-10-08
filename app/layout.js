@@ -6,6 +6,9 @@ import "./experience.css";
 import "./spotlight.css";
 import "./hq.css";
 import "./activation.css";
+import "./workspace.css";
+import "./workspace-extras.css";
+import "./posting-times/planner.css";
 import CursorSpotlight from "../components/CursorSpotlight";
 export const metadata = {
  title: "ADVA | Creative, Media & Events in Abu Dhabi",
