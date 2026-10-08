@@ -3,10 +3,12 @@ import {useEffect,useMemo,useState} from "react";
 import {useAdvaWorkspace} from "../lib/use-adva-workspace";
 import WorkspaceLogin from "./WorkspaceLogin";
 import WorkspaceCalendar from "./WorkspaceCalendar";
+import WorkspaceStrategy from "./WorkspaceStrategy";
 import WorkspaceFinance from "./WorkspaceFinance";
 import WorkspaceProjects from "./WorkspaceProjects";
 import WorkspaceClient from "./WorkspaceClient";
 import WorkspaceNetwork,{FreelancerOnboarding} from "./WorkspaceNetwork";
+import PortfolioMedia from "./PortfolioMedia";
 
 const menu={
  ceo:[["overview","Overview","◫"],["calendar","Content calendar","◷"],["projects","Projects & assignments","▥"],["finance","Finance","◈"],["network","Freelancer network","✳"],["team","Team & approvals","◎"]],
@@ -33,7 +35,7 @@ function Overview({ws,go}){
 
 function TeamControl({ws}){
  const {db,data,refresh}=ws;
- const [notice,setNotice]=useState(""),[jobId,setJobId]=useState(""),[ndaTitle,setNdaTitle]=useState(""),[ndaURL,setNdaURL]=useState(""),[reviewed,setReviewed]=useState(false),[busy,setBusy]=useState(false);
+ const [notice,setNotice]=useState(""),[jobId,setJobId]=useState(""),[ndaTitle,setNdaTitle]=useState(""),[ndaURL,setNdaURL]=useState(""),[reviewed,setReviewed]=useState(false),[busy,setBusy]=useState(false),[creator,setCreator]=useState(null);
  const jobs=data.jobs||[],requests=data.jobRequests||[],activeNda=data.ndas?.find(d=>d.active);
  async function action(fn,label){setBusy(true);setNotice("");try{const res=await fn();if(res.error)throw res.error;setNotice(label);refresh()}catch(e){setNotice(e.message||"Could not complete the change.")}finally{setBusy(false)}}
  async function saveNda(e){
@@ -44,6 +46,7 @@ function TeamControl({ws}){
   await action(()=>db.from("adva_nda_documents").insert({title:ndaTitle,version:"adva-"+new Date().toISOString().slice(0,10)+"-"+Math.floor(Date.now()/1000),document_url:ndaURL,legal_reviewed:true,active:true}),"Legal agreement activated. Verified freelancers can now read and accept it.");
  }
  async function changeRequest(row,status){await action(()=>db.from("adva_job_requests").update({status}).eq("id",row.id),"Application updated.")}
+ async function toggleCreator(f){await action(()=>db.from("adva_freelancers").update({approved_network_visible:!f.approved_network_visible}).eq("user_id",f.user_id),f.approved_network_visible?"Removed from network discovery.":"Creator approved for the NDA-protected network.")}
  return <div className="aws-module">
   <div className="aws-page-heading"><div><span className="aws-eyebrow"><i/> CEO / TEAM GOVERNANCE</span><h1>Build a great circle.</h1><p>Manage trusted creatives, review job requests and control the confidentiality gate.</p></div></div>
   {notice&&<div className="aws-feedback">{notice}<button onClick={()=>setNotice("")}>×</button></div>}
@@ -52,7 +55,8 @@ function TeamControl({ws}){
    <section className="aws-panel"><div className="aws-panel-title"><div><span>RECRUITMENT PIPELINE</span><h2>Freelancer requests</h2></div></div>{requests.length?<div className="aws-upcoming-list">{requests.map(r=><article key={r.id}><div><strong>{jobs.find(j=>j.id===r.job_id)?.title||"Opportunity"}</strong><small>Applicant: {data.freelancers.find(f=>f.user_id===r.applicant_user_id)?.display_name||"Verified account"} — {r.message||"No note"}</small></div><select value={r.status} disabled={busy} onChange={e=>changeRequest(r,e.target.value)}><option value="requested">Requested</option><option value="reviewing">Reviewing</option><option value="accepted">Accepted</option><option value="declined">Declined</option></select></article>)}</div>:<div className="aws-empty"><p>Verified freelancers' job applications will appear here.</p></div>}</section>
    <section className="aws-panel"><div className="aws-panel-title"><div><span>LEGAL REVIEW</span><h2>Confidentiality agreement</h2></div></div>{activeNda?<div className="aws-contract-read"><p><strong>{activeNda.title}</strong></p><a target="_blank" rel="noopener noreferrer" href={activeNda.document_url}>View the active NDA ↗</a><small>Version: {activeNda.version}</small></div>:<form className="aws-project-inline" onSubmit={saveNda}><p className="aws-small-note">We will not invent or publish a legal NDA. Have a UAE-qualified lawyer review your own agreement before activating access. This is an acknowledgment system, not a substitute for a reviewed e-signature workflow.</p><label>Reviewed document name<input required value={ndaTitle} onChange={e=>setNdaTitle(e.target.value)} placeholder="ADVA Freelancer Confidentiality Agreement"/></label><label>Secure link to reviewed NDA<input required type="url" value={ndaURL} onChange={e=>setNdaURL(e.target.value)} placeholder="https://...approved-agreement.pdf"/></label><label className="aws-check"><input type="checkbox" checked={reviewed} onChange={e=>setReviewed(e.target.checked)}/> I confirm a qualified legal professional has reviewed this NDA and it is ready to publish to candidates.</label><button type="submit" className="aws-primary aws-compact" disabled={busy||!reviewed}>Activate reviewed NDA ↗</button></form>}</section>
   </div>
-  <section className="aws-panel"><div className="aws-panel-title"><div><span>TALENT / VERIFIED PROFILES</span><h2>The ADVA network</h2></div></div><div className="aws-talent-board">{data.freelancers.map(f=><article key={f.user_id}><span className="aws-avatar">{f.display_name.slice(0,1).toUpperCase()}</span><h3>{f.display_name}</h3><p>{f.specialty.replaceAll("_"," ")} · {f.location}</p><small>{f.availability}</small><div>{(f.portfolio_links||[]).map((u,i)=><a key={i} href={u} target="_blank" rel="noopener noreferrer">Portfolio {i+1} ↗</a>)}</div></article>)}{data.freelancers.length===0&&<div className="aws-empty"><strong>No talent profiles yet.</strong><p>Send candidates to /join to verify their email and create a profile.</p></div>}</div></section>
+  <section className="aws-panel"><div className="aws-panel-title"><div><span>TALENT / VERIFIED PROFILES</span><h2>The ADVA network</h2></div></div><div className="aws-talent-board">{data.freelancers.map(f=><article key={f.user_id}><span className="aws-avatar">{f.display_name.slice(0,1).toUpperCase()}</span><h3>{f.display_name}</h3><p>{f.specialty.replaceAll("_"," ")} · {f.location}</p><small>{f.availability}</small><div className="aws-creator-approval-controls"><button className="aws-outline" type="button" disabled={busy} onClick={()=>toggleCreator(f)}>{f.approved_network_visible?"Hide from discovery":"Approve discovery"}</button><button type="button" className="aws-outline" onClick={()=>setCreator(f)}>Review media</button></div><div>{(f.portfolio_links||[]).map((u,i)=><a key={i} href={u} target="_blank" rel="noopener noreferrer">Portfolio {i+1} ↗</a>)}</div></article>)}{data.freelancers.length===0&&<div className="aws-empty"><strong>No talent profiles yet.</strong><p>Send candidates to /join to verify their email and create a profile.</p></div>}</div></section>
+  {creator&&<div className="aws-modal"><button className="aws-backdrop" aria-label="Close portfolio review" onClick={()=>setCreator(null)}/><div className="aws-modal-card aws-creator-profile-modal"><header><div><span>CEO / PORTFOLIO REVIEW</span><h2>{creator.display_name}</h2></div><button type="button" onClick={()=>setCreator(null)}>×</button></header><PortfolioMedia db={db} ownerId={creator.user_id} title="Selected work"/></div></div>}
  </div>;
 }
 export default function WorkspaceApp({mode="hq"}){
@@ -60,7 +64,7 @@ export default function WorkspaceApp({mode="hq"}){
  const {db,user,role,data,loading,error,refresh}=ws;
  const [section,setSection]=useState("overview"),[menuOpen,setMenuOpen]=useState(false);
  const viewRole=role==="ceo"?"ceo":role==="client"?"client":role==="freelancer"?"freelancer":null;
- const nav=viewRole==="ceo"?[["overview","Overview","▣"],["calendar","Content","◷"],["projects","Projects","◇"],["finance","Finance","◈"],["network","Job board","✳"],["team","Team & NDA","⊕"]]:viewRole==="client"?[["overview","My dashboard","▣"],["calendar","Content plan","◷"],["performance","Performance","◈"]]:[["overview","My dashboard","▣"],["calendar","Assigned content","◷"],["projects","Projects","◇"],["network","Creative network","✳"]];
+ const nav=viewRole==="ceo"?[["overview","Overview","▣"],["calendar","Content","◷"],["strategy","Strategy","✦"],["projects","Projects","◇"],["finance","Finance","◈"],["network","Job board","✳"],["team","Team & NDA","⊕"]]:viewRole==="client"?[["overview","My dashboard","▣"],["calendar","Content plan","◷"],["strategy","Monthly direction","✦"],["performance","Performance","◈"]]:[["overview","My dashboard","▣"],["calendar","Assigned content","◷"],["strategy","Creative direction","✦"],["projects","Projects","◇"],["network","Creative network","✳"]];
  const paths={hq:"/hq",portal:"/portal",join:"/join",network:"/network"};
  const greeting=role==="ceo"?"CEO / ADVA HQ":role==="client"?"CLIENT / ADVA":role==="freelancer"?"FREELANCER / ADVA":"ADVA";
  useEffect(()=>{if(mode==="network"&&role==="freelancer")setSection("network");if(mode==="portal"&&role==="client")setSection("overview");if(mode==="hq"&&role==="ceo")setSection("overview")},[mode,role]);
@@ -75,8 +79,9 @@ export default function WorkspaceApp({mode="hq"}){
  if(mode==="network"&&role==="client")return <div className="adva-hq-shell aws-waiting"><div className="aws-waiting-mark">A.</div><h1>Welcome to ADVA.</h1><p>Your client experience is in the project portal.</p><a href="/portal" className="aws-primary">Go to client portal ↗</a></div>;
  if(mode==="join"&&role==="ceo")return <div className="adva-hq-shell aws-waiting"><div className="aws-waiting-mark">A.</div><h1>ADVA team, ready.</h1><p>You're already the CEO. Manage freelancer profiles and recruitment from your workspace.</p><a className="aws-primary" href="/hq">Open HQ ↗</a></div>;
  const content=(tab)=>{
-  if(role==="client"){if(tab==="calendar")return <WorkspaceCalendar ws={ws} isClient/>;return <WorkspaceClient ws={ws}/>}
+  if(role==="client"){if(tab==="calendar")return <WorkspaceCalendar ws={ws} isClient/>;if(tab==="strategy")return <WorkspaceStrategy ws={ws}/>;return <WorkspaceClient ws={ws}/>}
   if(tab==="calendar")return <WorkspaceCalendar ws={ws}/>;
+  if(tab==="strategy")return <WorkspaceStrategy ws={ws}/>;
   if(tab==="projects")return <WorkspaceProjects ws={ws}/>;
   if(tab==="finance"&&role==="ceo")return <WorkspaceFinance ws={ws}/>;
   if(tab==="network")return <WorkspaceNetwork ws={ws}/>;

@@ -1,0 +1,42 @@
+"use client";
+import {useEffect,useMemo,useState} from "react";
+function monthNow(){return new Date(Date.now()+4*3600000).toISOString().slice(0,7)}
+const blank={title:"",objective:"",pillars:"",recommended_cadence:"",notes:"",client_visible:false};
+const silwadiSeeds=[
+ {n:"01",title:"An answer worth saving",desc:"One honest question, one clear answer. Short educational reels from a clinician."},
+ {n:"02",title:"The human side of expertise",desc:"Introduce the people behind the practice and their care philosophy."},
+ {n:"03",title:"Everyday prevention",desc:"Simple, professionally reviewed prevention ideas with accessible visuals."}
+];
+export default function WorkspaceStrategy({ws}){
+ const {db,role,data,refresh}=ws,ceo=role==="ceo";
+ const [projectId,setProjectId]=useState(""),[month,setMonth]=useState(monthNow()),[editing,setEditing]=useState(false);
+ const [inputs,setInputs]=useState({...blank}),[busy,setBusy]=useState(false),[notice,setNotice]=useState("");
+ const projects=data.projects||[];
+ useEffect(()=>{if(projects.length&&(!projectId||!projects.some(p=>p.id===projectId)))setProjectId((projects.find(p=>p.slug==="silwadi")||projects[0]).id)},[projects,projectId]);
+ const plan=useMemo(()=>data.plans?.find(p=>p.project_id===projectId&&p.month?.slice(0,7)===month),[data.plans,projectId,month]);
+ const project=projects.find(p=>p.id===projectId);
+ useEffect(()=>{setInputs(plan?{title:plan.title||"",objective:plan.objective||"",pillars:(plan.content_pillars||[]).join("\n"),recommended_cadence:plan.recommended_cadence||"",notes:plan.notes||"",client_visible:!!plan.client_visible}:{...blank})},[plan?.id,plan?.updated_at,projectId,month]);
+ async function save(e){
+  e.preventDefault();if(!ceo||!projectId)return;
+  const pillars=inputs.pillars.split(/\n/).map(s=>s.trim()).filter(Boolean).slice(0,8);
+  const payload={project_id:projectId,month:month+"-01",title:inputs.title.trim(),objective:inputs.objective.trim(),content_pillars:pillars,recommended_cadence:inputs.recommended_cadence.trim(),notes:inputs.notes.trim(),client_visible:inputs.client_visible,updated_at:new Date().toISOString()};
+  setBusy(true);setNotice("");
+  try{
+    const {error}=await db.from("adva_content_plans").upsert(payload,{onConflict:"project_id,month"});
+    if(error)throw error;
+    setNotice("The monthly creative plan has been saved.");setEditing(false);refresh();
+  }catch(err){setNotice(err.message||"Couldn't save creative plan.")}finally{setBusy(false)}
+ }
+ return <div className="aws-module aws-strategy-page">
+  <div className="aws-page-heading"><div><span className="aws-eyebrow"><i/> ADVA / CREATIVE PLANNING</span><h1>Make the month count.</h1><p>One clear strategy per project. Everyone knows what we're making — and why.</p></div>{ceo&&<button className="aws-primary aws-compact" onClick={()=>setEditing(true)}>{plan?"Edit monthly direction":"+ Build a monthly plan"} ↗</button>}</div>
+  {notice&&<div role="status" className="aws-feedback">{notice}<button onClick={()=>setNotice("")}>×</button></div>}
+  {projects.length===0?<div className="aws-empty"><strong>Nothing assigned yet.</strong><p>Creative direction appears here after the CEO creates a project and assigns your verified account.</p></div>:<>
+   <div className="aws-toolbar"><label>PROJECT<select value={projectId} onChange={e=>setProjectId(e.target.value)}>{projects.map(p=><option key={p.id} value={p.id}>{p.name}</option>)}</select></label><label>PLANNING MONTH<input type="month" value={month} onChange={e=>setMonth(e.target.value)}/></label>{plan&&<span className={"aws-pill"+(plan.client_visible?" aws-pill-posted":"")}>{plan.client_visible?"Shared with client":"Internal plan"}</span>}</div>
+   <div className="aws-strategy-cover"><div><span className="aws-strategy-cover-label">ADVA / STRATEGY FILE</span><h2>{plan?.title||"One direction. Many possibilities."}</h2><p>{plan?.objective||"Define the month's focus. Give every idea a reason to exist and every creator the context they need."}</p></div><div className="aws-strategy-cover-mark" aria-hidden="true">A<span>.</span></div><span className="aws-strategy-cover-bottom">{project?.name.toUpperCase()} / {month.replace("-",".")}</span></div>
+   {plan?<><div className="aws-strategy-pillars"><div className="aws-strategy-section-head"><span>01 / CONTENT PILLARS</span><h3>What we're building around.</h3></div><div className="aws-strategy-pillars-list">{(plan.content_pillars||[]).length?(plan.content_pillars||[]).map((p,i)=><article key={i}><span>{String(i+1).padStart(2,"0")}</span><strong>{p}</strong><b>✳</b></article>):<p>No pillars defined yet.</p>}</div></div>
+     <div className="aws-strategy-details"><article><span>02 / CONTENT CADENCE</span><h3>The intended rhythm.</h3><p>{plan.recommended_cadence||"Cadence not specified."}</p></article><article><span>03 / INTERNAL CONTEXT</span><h3>Production notes.</h3><p>{plan.notes||"No internal production notes."}</p></article></div></>:<div className="aws-empty"><strong>Not defined for this month yet.</strong><p>{ceo?"Use the monthly plan editor to set objectives and content pillars for everyone assigned.":"ADVA hasn't published a strategy for this period yet."}</p>{ceo&&<button className="aws-outline" onClick={()=>setEditing(true)}>Set this month's direction ↗</button>}</div>}
+   {project?.slug==="silwadi"&&<section className="aws-strategy-inspiration"><div className="aws-strategy-section-head"><span>OPTIONAL / STARTING POINTS</span><h3>Three creative angles to explore.</h3></div><div className="aws-strategy-inspiration-grid">{silwadiSeeds.map(s=><article key={s.n}><span>{s.n}</span><h4>{s.title}</h4><p>{s.desc}</p></article>)}</div><p className="aws-small-note">These are editorial ideas, not proven reach predictions or medical advice. Clinical content should be professionally reviewed and follow UAE advertising rules.</p></section>}
+  </>}
+  {editing&&<div className="aws-modal"><button className="aws-backdrop" aria-label="Close monthly plan" onClick={()=>setEditing(false)}/><form className="aws-modal-card" onSubmit={save}><header><div><span>ADVA / MONTHLY DIRECTION</span><h2>Make the plan.</h2></div><button type="button" onClick={()=>setEditing(false)}>×</button></header><label>Theme or plan title<input required minLength={3} maxLength={180} value={inputs.title} onChange={e=>setInputs({...inputs,title:e.target.value})} placeholder="Better patient education, one answer at a time"/></label><label>Monthly objective<textarea rows={3} maxLength={1500} value={inputs.objective} onChange={e=>setInputs({...inputs,objective:e.target.value})} placeholder="What are we trying to achieve with content this month?"/></label><label>Content pillars — one per line<textarea rows={5} value={inputs.pillars} onChange={e=>setInputs({...inputs,pillars:e.target.value})} placeholder={"Educational reels\nClinician introductions\nPreventive care tips"}/></label><label>Publishing cadence<input maxLength={600} value={inputs.recommended_cadence} onChange={e=>setInputs({...inputs,recommended_cadence:e.target.value})} placeholder="2 reels/week · 1 carousel/week"/></label><label>Production notes<textarea rows={3} maxLength={3000} value={inputs.notes} onChange={e=>setInputs({...inputs,notes:e.target.value})} placeholder="Filming priorities, approvals and anything the team should know"/></label><label className="aws-check"><input type="checkbox" checked={inputs.client_visible} onChange={e=>setInputs({...inputs,client_visible:e.target.checked})}/> Include this strategy in the client's portal</label><button className="aws-primary" disabled={busy} type="submit">{busy?"Saving…":"Save monthly creative plan"} ↗</button></form></div>}
+ </div>;
+}

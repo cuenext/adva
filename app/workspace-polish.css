@@ -1,0 +1,74 @@
+
+/* The ADVA editorial layer: strategy and private portfolio */
+.aws-strategy-cover{position:relative;overflow:hidden;isolation:isolate;border:1px solid #6b96d14a;border-radius:15px;background:linear-gradient(115deg,#12203a,#142c4f 60%,#0c162b);padding:clamp(31px,4vw,60px);min-height:365px;display:flex;align-items:center;justify-content:space-between;gap:30px;margin:19px 0 30px}
+.aws-strategy-cover:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#ffffff0e 1px,transparent 1px);background-size:88px 100%;opacity:.24;z-index:-1}
+.aws-strategy-cover:after{content:"";width:440px;height:440px;position:absolute;right:-155px;top:-170px;border:1px solid #c4e3ff29;border-radius:50%;z-index:-1;box-shadow:0 0 0 80px #ffffff03,0 0 0 160px #ffffff02}
+.aws-strategy-cover>div:first-child{position:relative;max-width:660px}
+.aws-strategy-cover-label{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#98caff}
+.aws-strategy-cover h2{font:800 clamp(37px,5vw,68px)/1.08 Manrope,Arial,sans-serif;letter-spacing:-.075em;color:#eef8ff;margin:29px 0 22px}
+.aws-strategy-cover p{color:#b4cce3;font-size:14px;line-height:1.85;max-width:540px}
+.aws-strategy-cover-mark{font:800 clamp(95px,13vw,185px)/1 Manrope,Arial,sans-serif;letter-spacing:-.17em;color:#b8e4ff;opacity:.72;transform:rotate(-12deg);text-shadow:0 0 90px #3475d699}
+.aws-strategy-cover-mark span{color:#4dbfff}
+.aws-strategy-cover-bottom{position:absolute;right:29px;bottom:23px;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.14em;color:#7192ba}
+.aws-strategy-section-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin:10px 0 24px}
+.aws-strategy-section-head>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.16em;color:#85a9d1}
+.aws-strategy-section-head h3{font:800 clamp(24px,2.6vw,35px) Manrope,Arial,sans-serif;letter-spacing:-.05em;color:#eff6ff;margin:0}
+.aws-strategy-pillars{padding:17px 0 25px}
+.aws-strategy-pillars-list{border-top:1px solid #ffffff23}
+.aws-strategy-pillars-list article{display:flex;align-items:center;gap:24px;padding:22px 8px;border-bottom:1px solid #ffffff1e}
+.aws-strategy-pillars-list article>span{font:800 10px Manrope,Arial,sans-serif;color:#6fa0d7;letter-spacing:.12em}
+.aws-strategy-pillars-list article strong{font:800 clamp(16px,2.1vw,23px) Manrope,Arial,sans-serif;letter-spacing:-.05em;color:#e9f3ff;flex:1}
+.aws-strategy-pillars-list article b{font-size:18px;color:#8dbfe9;font-weight:400}
+.aws-strategy-details{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:23px 0 45px}
+.aws-strategy-details article{min-height:180px;background:#101c2c;border:1px solid #ffffff23;border-radius:12px;padding:29px}
+.aws-strategy-details article>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.15em;color:#7ba6d5}
+.aws-strategy-details h3{font:800 21px Manrope,Arial,sans-serif;letter-spacing:-.05em;margin:23px 0 9px}
+.aws-strategy-details p{color:#9db4cc;font-size:12px;line-height:1.9;white-space:pre-wrap;margin:0}
+.aws-strategy-inspiration{border-top:1px solid #ffffff27;padding-top:32px}
+.aws-strategy-inspiration-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.aws-strategy-inspiration-grid article{padding:26px;background:#13233a;border:1px solid #ffffff1d;border-radius:12px}
+.aws-strategy-inspiration-grid article>span{font-size:10px;font-weight:800;color:#7aaae2}
+.aws-strategy-inspiration-grid h4{font:800 17px Manrope,Arial,sans-serif;letter-spacing:-.05em;margin:35px 0 12px}
+.aws-strategy-inspiration-grid p{font-size:11px;line-height:1.9;color:#8ca8c3}
+.aws-client-plan{border:1px solid #ffffff2a;border-radius:14px;padding:28px;background:linear-gradient(110deg,#0c1d33,#163a65);margin:23px 0}
+.aws-client-plan-header{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.aws-client-plan-header span,.aws-client-plan-header b{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.16em;color:#8fb6db}
+.aws-client-plan-header b{color:#bde8ff}
+.aws-client-plan h2{font:800 clamp(24px,3vw,41px) Manrope,Arial,sans-serif;letter-spacing:-.06em;margin:24px 0 12px;color:#f2f9ff}
+.aws-client-plan p{font-size:13px;line-height:1.8;color:#a9c4dd;margin:0 0 22px;max-width:700px}
+.aws-client-pillar-list{display:flex;gap:9px;flex-wrap:wrap}
+.aws-client-pillar-list span{border:1px solid #adcefa4d;border-radius:50px;color:#c3e7ff;font-size:11px;padding:8px 12px}
+.aws-client-plan>small{display:block;color:#89b2d8;margin-top:19px}
+.aws-portfolio-media{border:1px solid #ffffff24;border-radius:15px;background:#0f1a29;padding:25px;margin:26px 0}
+.aws-portfolio-heading{display:flex;justify-content:space-between;align-items:start;gap:24px;margin-bottom:25px}
+.aws-portfolio-heading h3{font:800 clamp(24px,3vw,38px) Manrope,Arial,sans-serif;letter-spacing:-.06em;color:#ecf6ff;margin:13px 0 12px}
+.aws-portfolio-heading p{font-size:12px;line-height:1.8;color:#8ba7c5;max-width:600px;margin:0}
+.aws-portfolio-heading>div{flex:1}
+.aws-media-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.aws-media-item{border:1px solid #ffffff19;border-radius:8px;overflow:hidden;background:#152538}
+.aws-media-preview{display:grid;place-items:center;position:relative;overflow:hidden;width:100%;height:160px;padding:0;border:0;background:linear-gradient(135deg,#19365a,#0b1d38)}
+.aws-media-preview img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.aws-media-preview:hover img{transform:scale(1.05)}
+.aws-media-video-icon{color:#e6faff;font-size:29px;display:grid;place-items:center;width:60px;height:60px;border:1px solid #ffffff7b;border-radius:50%;background:#2679cd55}
+.aws-media-pdf-icon{color:#c8e8ff;font-size:20px;font-weight:800;letter-spacing:.14em}
+.aws-media-hover{position:absolute;inset:auto 0 0;background:#0b1c2adf;color:#ccecff;font-size:10px;font-weight:800;letter-spacing:.16em;padding:13px 10px;opacity:0;transform:translateY(9px);transition:opacity .25s,transform .25s}
+.aws-media-preview:hover .aws-media-hover{opacity:1;transform:translateY(0)}
+.aws-media-meta{display:flex;justify-content:space-between;align-items:center;gap:7px;padding:12px}
+.aws-media-meta span{font-size:9px;font-weight:800;color:#829fbe}
+.aws-media-meta button{border:0;background:none;font-size:10px;color:#e3b0b6}
+.aws-portfolio-empty{border:1px dashed #648ab04f;border-radius:10px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px;text-align:center}
+.aws-portfolio-empty>span{font-size:35px;color:#8fbceb}
+.aws-portfolio-empty strong{font-size:14px;color:#dceaff;margin:13px 0}
+.aws-portfolio-empty p{font-size:11px;color:#8ba5c0;line-height:1.7;max-width:420px}
+.aws-media-modal{max-width:min(900px,100%);width:min(900px,100%)}
+.aws-media-modal>img,.aws-media-modal>video{width:100%;height:auto;max-height:68svh;object-fit:contain;background:#06111e;border-radius:8px}
+.aws-creator-profile-modal{width:min(930px,100%);max-width:min(930px,100%);max-height:calc(100svh - 32px)}
+.aws-creator-profile-modal>.aws-portfolio-media{margin:7px 0 0}
+.aws-creator-approval-controls{display:grid;gap:7px;margin-top:17px}
+.aws-creator-approval-controls button{font-size:10px;padding:9px}
+.aws-creator-discovery{margin:35px 0 0}
+.aws-creator-discovery .aws-talent-board{grid-template-columns:repeat(3,1fr)}
+.aws-creator-discovery .aws-talent-board button{margin-top:19px;font-size:10px}
+@media(max-width:1100px){.aws-media-grid{grid-template-columns:repeat(3,1fr)}.aws-creator-discovery .aws-talent-board{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:780px){.aws-strategy-details{grid-template-columns:1fr}.aws-strategy-inspiration-grid{grid-template-columns:1fr}.aws-strategy-cover-mark{font-size:110px}.aws-media-grid{grid-template-columns:repeat(2,1fr)}.aws-portfolio-heading{flex-direction:column}}
+@media(max-width:560px){.aws-strategy-cover{padding:27px;min-height:320px}.aws-strategy-cover h2{font-size:39px}.aws-strategy-cover-mark{display:none}.aws-strategy-section-head{align-items:start;flex-direction:column;gap:15px}.aws-media-grid{gap:7px}.aws-media-preview{height:135px}.aws-media-meta{padding:9px 6px}.aws-media-meta span{font-size:8px}.aws-portfolio-media{padding:15px}.aws-creator-discovery .aws-talent-board{grid-template-columns:1fr}}
