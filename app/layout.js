@@ -1,5 +1,8 @@
 import "./globals.css";
 import "./reframe.css";
+import "./navigation.css";
+import "./capabilities.css";
+import "./experience.css";
 export const metadata = {
  title: "ADVA | Creative, Media & Events in Abu Dhabi",
  description: "ADVA is an Abu Dhabi-based creative, media and events agency. Brand transformation, videography, photography, exhibitions, social media, websites and production.",

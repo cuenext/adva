@@ -1,0 +1,62 @@
+/* ADVA site-wide navigation — navigation elements stay out of the public portfolio experience. */
+.website .adva-site-nav,.website .adva-site-nav.scrolled{position:sticky;top:0;z-index:120;height:82px;background:#0a0e15ee;border-bottom:1px solid #ffffff1b;box-shadow:0 12px 38px #0002;backdrop-filter:blur(22px)}
+.website .adva-site-nav .header-inner{height:100%;max-width:1350px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.adva-site-nav .adva-brand{gap:10px;min-width:auto;flex-shrink:0;display:flex;align-items:center}
+.adva-site-nav .adva-brand .brand-logo{width:116px;height:65px;object-fit:contain}
+.adva-brand-caption{font:700 8px/1.7 Manrope,Arial,sans-serif;letter-spacing:.16em;color:#7592b6;max-width:98px}
+.adva-desktop-nav{display:flex;gap:34px;align-items:center;justify-content:center;margin-left:auto}
+.adva-site-nav .adva-top-link,.adva-site-nav .adva-nav-trigger{font:700 12px Manrope,Arial,sans-serif;letter-spacing:.02em;color:#c4d0df;transition:color .2s;background:none;border:0;padding:12px 0}
+.adva-site-nav .adva-top-link:hover,.adva-site-nav .adva-nav-trigger:hover,.adva-nav-trigger.active{color:#fff}
+.adva-menu-holder{position:static}
+.adva-nav-trigger{display:inline-flex;align-items:center;gap:10px;cursor:pointer}
+.adva-chevron{display:inline-flex;align-items:center;justify-content:center;color:#7c9fc7;transition:transform .25s}
+.adva-nav-trigger.active .adva-chevron{transform:rotate(180deg)}
+.adva-nav-cta{display:flex;gap:18px;align-items:center;white-space:nowrap;border:1px solid #7198c652;border-radius:50px;padding:12px 19px;color:#e8f3ff;background:#182a43;font:800 12px Manrope,Arial,sans-serif;transition:background .2s,border-color .2s}
+.adva-nav-cta:hover{background:#1c4273;border-color:#8fc1ff}
+.adva-nav-cta svg{color:#8fd0ff}
+.adva-mega-menu{position:absolute;top:calc(100% - 1px);left:0;right:0;max-height:calc(100vh - 84px);overflow-y:auto;background:linear-gradient(115deg,#101726,#0b0f17 65%,#111827);border-top:1px solid #ffffff1b;border-bottom:1px solid #ffffff26;box-shadow:0 28px 80px #000a;z-index:130;visibility:hidden;pointer-events:none;opacity:0;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s}
+.adva-mega-menu.expanded{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0)}
+.adva-mega-inner{width:min(100% - 72px,1240px);margin:auto;display:grid;grid-template-columns:310px minmax(0,1fr);gap:50px;padding:36px 0 38px}
+.adva-mega-feature{background:radial-gradient(circle at 100% 0%,#3486ff35,transparent 70%),#122039;padding:28px;border:1px solid #ffffff22;border-radius:18px;min-height:305px;display:flex;flex-direction:column}
+.adva-menu-eyebrow{font-size:9px;color:#8fbef7;letter-spacing:.18em;font-weight:800}
+.adva-mega-feature strong{font:800 27px/1.2 Manrope,Arial,sans-serif;letter-spacing:-.05em;color:#f5f8ff;margin:28px 0 12px}
+.adva-mega-feature p{color:#adbbce;font-size:12px;line-height:1.8;margin:0}
+.adva-mega-feature a{display:flex;align-items:center;gap:11px;color:#cae8ff;font-size:12px;font-weight:800;margin-top:22px;width:max-content}
+.adva-menu-index{font:800 9px Manrope,Arial,sans-serif;color:#6988b0;letter-spacing:.12em;margin-top:auto;padding-top:25px}
+.adva-mega-groups{display:grid;grid-template-columns:1.05fr 1.2fr .85fr;gap:27px}
+.adva-mega-group-label{display:flex;align-items:center;gap:9px;color:#84a6cd;font:800 10px Manrope,Arial,sans-serif;text-transform:uppercase;letter-spacing:.14em;padding:8px 0 16px;border-bottom:1px solid #ffffff24;margin-bottom:8px}
+.adva-mega-group-label>span{width:7px;height:7px;border-radius:50%;box-shadow:0 0 12px #75acff66}
+.adva-mega-link{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 6px 11px 0;border-bottom:1px solid #ffffff0e;color:#d7e2f1;font:700 12px Manrope,Arial,sans-serif;transition:color .2s,padding .2s}
+.adva-mega-link svg{flex:none;color:#6497d9;opacity:0;transform:translate(-5px,5px);transition:all .2s}
+.adva-mega-link:hover,.adva-mega-link:focus-visible{color:#86cbff;padding-left:5px}
+.adva-mega-link:hover svg,.adva-mega-link:focus-visible svg{opacity:1;transform:translate(0)}
+.adva-mega-bottom{border-top:1px solid #ffffff1b;background:#101927;padding:18px max(36px,calc((100% - 1240px)/2));display:flex;align-items:center;gap:20px;justify-content:space-between}
+.adva-mega-bottom>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#7795b5}
+.adva-mega-bottom a{font:800 12px Manrope,Arial,sans-serif;color:#a7d9ff;display:flex;align-items:center;gap:13px}
+.adva-mobile-toggle,.adva-mobile-panel{display:none}
+.adva-site-nav a:focus-visible,.adva-site-nav button:focus-visible,.adva-subsite a:focus-visible,.adva-subsite button:focus-visible,.adva-subsite input:focus-visible,.adva-subsite textarea:focus-visible,.adva-subsite select:focus-visible{outline:2px solid #76c4ff;outline-offset:4px}
+@media(max-width:1060px){.adva-desktop-nav{gap:20px}.adva-mega-inner{gap:30px;grid-template-columns:260px minmax(0,1fr)}.adva-mega-groups{gap:15px}.adva-mega-feature{padding:22px}.adva-brand-caption{display:none}}
+@media(max-width:920px){
+ .adva-site-nav .adva-desktop-nav{display:none}
+ .adva-site-nav .adva-nav-cta{margin-left:auto}
+ .adva-mobile-toggle{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:42px;height:42px;flex-shrink:0;border:1px solid #ffffff33;background:#ffffff0b;border-radius:50%;color:#fff;position:relative;z-index:2}
+ .adva-mobile-toggle span{width:18px;height:1px;background:#ebf6ff;transition:transform .2s}
+ .adva-mobile-toggle.on span:first-child{transform:translateY(3.5px) rotate(45deg)}
+ .adva-mobile-toggle.on span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+ .adva-mobile-panel{display:block;position:absolute;left:0;right:0;top:100%;height:calc(100svh - 71px);overflow-y:auto;overscroll-behavior:contain;background:linear-gradient(150deg,#101827,#070a0f);border-top:1px solid #ffffff22;z-index:110;opacity:0;pointer-events:none;visibility:hidden;transform:translateY(-10px);transition:opacity .25s,transform .25s,visibility .25s}
+ .adva-mobile-panel.visible{opacity:1;transform:translateY(0);pointer-events:auto;visibility:visible}
+ .adva-mobile-scroll{width:min(100% - 36px,700px);margin:auto;padding:28px 0 45px}
+ .adva-mobile-intro{display:flex;justify-content:space-between;font:800 10px Manrope,Arial,sans-serif;color:#7694ba;letter-spacing:.19em;border-bottom:1px solid #ffffff20;padding-bottom:21px}
+ .adva-mobile-services-toggle,.adva-mobile-main-link{width:100%;display:flex;align-items:center;justify-content:space-between;border:0;border-bottom:1px solid #ffffff20;background:transparent;color:#e6f1ff;font:800 25px Manrope,Arial,sans-serif;padding:21px 0;text-align:left}
+ .adva-mobile-services-toggle svg{width:16px;transition:transform .3s}
+ .adva-mobile-services-toggle[aria-expanded=true] svg{transform:rotate(180deg)}
+ .adva-mobile-services{padding:12px 0 27px;display:grid;gap:25px}
+ .adva-mobile-group-title{display:block;color:#6fa9ef;font:800 10px Manrope,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin:16px 0 10px}
+ .adva-mobile-services a{display:flex;align-items:center;justify-content:space-between;color:#c8d9ea;font-size:15px;padding:10px 0;border-bottom:1px solid #ffffff0d}
+ .adva-mobile-services svg,.adva-mobile-main-link svg{width:17px;height:17px;color:#89bdeb}
+ .adva-mobile-all{font-weight:800!important;color:#9bd4ff!important}
+ .adva-mobile-project{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:20px 24px;border-radius:14px;background:#1b72d6;color:#fff;font-size:16px;font-weight:800;margin-top:24px}
+ .adva-mobile-foot{display:block;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.14em;color:#657e9c;margin-top:45px}
+}
+@media(max-width:610px){.website .adva-site-nav,.website .adva-site-nav.scrolled{height:71px}.adva-site-nav .adva-nav-cta{display:none}.adva-site-nav .adva-brand .brand-logo{width:112px;height:54px}.adva-mobile-panel{height:calc(100svh - 71px)}}
+@media(prefers-reduced-motion:reduce){.adva-site-nav *{transition-duration:.01ms!important}}
