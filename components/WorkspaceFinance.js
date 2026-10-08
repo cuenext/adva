@@ -15,6 +15,20 @@ export default function WorkspaceFinance({ws}){
  const rows=useMemo(()=>finance.filter(x=>x.month?.slice(0,7)===month&&x.currency===currency).sort((a,b)=>projectName(a.project_id).localeCompare(projectName(b.project_id))),[finance,month,currency,data.projects]);
  const spent=useMemo(()=>expenses.filter(x=>x.spent_on?.slice(0,7)===month&&x.currency===currency),[expenses,month,currency]);
  const due=rows.reduce((a,r)=>a+Number(r.amount_due),0),received=rows.reduce((a,r)=>a+Number(r.amount_paid),0),costs=spent.reduce((a,r)=>a+Number(r.amount),0);
+ const history=useMemo(()=>{
+   const result=[];
+   const anchor=new Date(month+"-01T00:00:00Z");
+   for(let offset=5;offset>=0;offset--){
+     const d=new Date(anchor);d.setUTCMonth(d.getUTCMonth()-offset);
+     const key=d.toISOString().slice(0,7);
+     const list=finance.filter(r=>r.month?.slice(0,7)===key&&r.currency===currency);
+     const expensesForMonth=expenses.filter(r=>r.spent_on?.slice(0,7)===key&&r.currency===currency);
+     result.push({key,label:d.toLocaleDateString("en-AE",{timeZone:"UTC",month:"short"}),due:list.reduce((a,r)=>a+Number(r.amount_due),0),paid:list.reduce((a,r)=>a+Number(r.amount_paid),0),expenses:expensesForMonth.reduce((a,r)=>a+Number(r.amount),0)});
+   }
+   return result;
+ },[month,finance,expenses,currency]);
+ const chartMaximum=Math.max(1,...history.flatMap(x=>[x.due,x.paid]));
+ const chartActive=history.some(x=>x.due||x.paid);
  function edit(row){setFields({project_id:row.project_id,service_plan:row.service_plan,month:row.month?.slice(0,7),amount_due:String(row.amount_due),amount_paid:String(row.amount_paid),currency:row.currency,payment_note:row.payment_note||""});setCurrentId(row.id);setFormOpen(true)}
  async function save(e){
   e.preventDefault();if(role!=="ceo")return;
@@ -43,6 +57,11 @@ export default function WorkspaceFinance({ws}){
   <div className="aws-toolbar"><label>BILLING MONTH<input type="month" value={month} onChange={e=>setMonth(e.target.value)}/></label><label>CURRENCY<select value={currency} onChange={e=>setCurrency(e.target.value)}>{["AED","USD","OMR","EUR","GBP"].map(c=><option key={c} value={c}>{c}</option>)}</select></label><div className="aws-inline-info">Amounts reflect manually entered records, not bank reconciliation.</div></div>
   {feedback&&<div role="status" className="aws-feedback">{feedback}<button onClick={()=>setFeedback("")}>×</button></div>}
   <div className="aws-finance-kpis"><article><span>AMOUNT TO RECEIVE</span><strong>{money(due,currency)}</strong><small>Planned client services</small></article><article><span>PAYMENTS RECORDED</span><strong>{money(received,currency)}</strong><small>CEO-entered receipts</small></article><article><span>OUTSTANDING</span><strong>{money(Math.max(0,due-received),currency)}</strong><small>{received>due?money(received-due,currency)+" recorded in credits":"Due minus received"}</small></article><article><span>EXPENSES RECORDED</span><strong>{money(costs,currency)}</strong><small>Monthly spend</small></article></div>
+  <section className="aws-finance-history"><div className="aws-finance-history-head"><div><span>FINANCIAL OVERVIEW / SIX MONTHS</span><h2>Money in motion.</h2></div><div className="aws-finance-legend"><span><i/> Expected</span><span><i/> Received</span></div></div>
+   {chartActive?<div className="aws-finance-chart" role="img" aria-label={"Six-month chart of expected and received "+currency+" client payments"}>
+    {history.map(x=><div className="aws-finance-chart-month" key={x.key}><div className="aws-finance-bars"><div className="aws-finance-bar expected" title={"Expected: "+money(x.due,currency)} style={{height:(x.due/chartMaximum*100)+"%"}}/><div className="aws-finance-bar paid" title={"Received: "+money(x.paid,currency)} style={{height:(x.paid/chartMaximum*100)+"%"}}/></div><span>{x.label}</span></div>)}
+   </div>:<div className="aws-finance-history-empty">Your six-month payment history will appear here as soon as you record the first monthly plan.</div>}
+  </section>
   <div className="aws-finance-sections"><button className={type==="billing"?"active":""} onClick={()=>setType("billing")}>Client plans & payments</button><button className={type==="expenses"?"active":""} onClick={()=>setType("expenses")}>Expenses</button></div>
   <div className="aws-panel"><div className="aws-panel-title"><div><span>ADVA / PRIVATE LEDGER</span><h2>{type==="billing"?"Monthly plans":"Recorded expenses"}</h2></div><span>{type==="billing"?rows.length:spent.length} ENTRIES</span></div>
   {type==="billing"?(rows.length?<div className="aws-scroll-table"><table><thead><tr><th>Client / project</th><th>Service plan</th><th>Due</th><th>Paid</th><th>Outstanding</th><th/></tr></thead><tbody>{rows.map(r=><tr key={r.id}><td><strong>{projectName(r.project_id)}</strong></td><td>{r.service_plan}</td><td>{money(r.amount_due,r.currency)}</td><td>{money(r.amount_paid,r.currency)}</td><td className={Number(r.amount_due)>Number(r.amount_paid)?"aws-outstanding":""}>{money(Number(r.amount_due)-Number(r.amount_paid),r.currency)}</td><td><button type="button" onClick={()=>edit(r)}>Edit ↗</button></td></tr>)}</tbody></table></div>:<div className="aws-empty"><strong>No payment records for this month.</strong><p>Add a service plan with its amount due and amount received to start tracking.</p><button className="aws-outline" onClick={()=>{setCurrentId(null);setFields({...initial,project_id:data.projects[0]?.id||"",month});setFormOpen(true)}}>Add first plan ↗</button></div>):(spent.length?<div className="aws-scroll-table"><table><thead><tr><th>Date</th><th>Project</th><th>Description</th><th>Amount</th></tr></thead><tbody>{spent.map(r=><tr key={r.id}><td>{r.spent_on}</td><td>{r.project_id?projectName(r.project_id):"ADVA / General"}</td><td>{r.description}</td><td>{money(r.amount,r.currency)}</td></tr>)}</tbody></table></div>:<div className="aws-empty"><strong>Nothing recorded yet.</strong><p>Expenses you enter will stay private to the CEO.</p></div>)}
