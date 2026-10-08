@@ -1,3 +1,4 @@
+.website{overflow-x:clip;overflow-y:visible}
 /* ADVA site-wide navigation — navigation elements stay out of the public portfolio experience. */
 .website .adva-site-nav,.website .adva-site-nav.scrolled{position:sticky;top:0;z-index:120;height:82px;background:#0a0e15ee;border-bottom:1px solid #ffffff1b;box-shadow:0 12px 38px #0002;backdrop-filter:blur(22px)}
 .website .adva-site-nav .header-inner{height:100%;max-width:1350px;display:flex;align-items:center;justify-content:space-between;gap:24px}

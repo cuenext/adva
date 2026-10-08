@@ -4,8 +4,8 @@ import {SERVICES,SERVICE_GROUPS,servicesInGroup} from "../lib/services";
 const TIMEFRAMES=["As soon as possible","This month","Within 1–3 months","Still exploring"];
 const LOCATIONS=["Abu Dhabi","Dubai","Other UAE emirate","International / remote"];
 function Up(){return <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
-export default function BriefForm({initialService}){
- const [selected,setSelected]=useState(SERVICES.some(s=>s.slug===initialService)?[initialService]:[]);
+export default function BriefForm({initialService,initialServices=[]}){
+ const [selected,setSelected]=useState(()=>[...new Set([...initialServices,initialService].filter(slug=>SERVICES.some(s=>s.slug===slug)))]);
  const [step,setStep]=useState(0);
  const [overview,setOverview]=useState("");
  const [timeline,setTimeline]=useState("Still exploring");

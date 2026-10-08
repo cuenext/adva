@@ -180,3 +180,22 @@
  .adva-brief-send-options>*{justify-content:space-between}
 }
 @media(prefers-reduced-motion:reduce){.adva-film-orb,.adva-live-art-rings i,.adva-home-about-star,.adva-home-ticker>div{animation:none!important}}
+
+/* Goal-led starting points: combinations without invented pricing or fixed packages. */
+.adva-pathways{background:linear-gradient(145deg,#0c1521,#101726 62%,#09121e);padding:112px 0 125px}
+.adva-pathways-heading{margin-bottom:42px}
+.adva-pathways-heading h2{font:800 clamp(45px,5.7vw,78px)/1.1 Manrope,Arial,sans-serif;letter-spacing:-.078em;color:#f4f8ff;margin:25px 0 19px}
+.adva-pathways-heading h2 em{font-style:normal;color:#91bdf1}
+.adva-pathways-heading>p{color:#9bacbf;font-size:14px;line-height:1.8;max-width:600px}
+.adva-pathways-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.adva-pathway{display:flex;flex-direction:column;padding:30px;border:1px solid #ffffff26;border-radius:18px;min-height:250px;background:radial-gradient(circle at 100% 0%,#267beb20,transparent 65%),#121b2a;transition:transform .25s,border-color .25s}
+.adva-pathway:nth-child(2){background:radial-gradient(circle at 100% 0%,#6869c333,transparent 65%),#121a29}
+.adva-pathway:nth-child(3){background:radial-gradient(circle at 100% 0%,#18ae9e31,transparent 65%),#112329}
+.adva-pathway:nth-child(4){background:radial-gradient(circle at 100% 0%,#3276d630,transparent 65%),#111b2c}
+.adva-pathway:hover{transform:translateY(-5px);border-color:#84c5f980}
+.adva-pathway-top{display:flex;justify-content:space-between;align-items:center;color:#80a3cb;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.16em}
+.adva-pathway-top strong{font:500 23px Arial,sans-serif;color:#9dcfff}
+.adva-pathway h3{font:800 clamp(25px,3vw,37px)/1.15 Manrope,Arial,sans-serif;letter-spacing:-.06em;color:#f2f7ff;max-width:360px;margin:36px 0 10px}
+.adva-pathway p{font-size:13px;line-height:1.8;color:#9aadc3;margin:0;max-width:390px}
+.adva-pathway-next{display:flex;align-items:center;gap:15px;margin-top:auto;padding-top:23px;color:#b5dbff;font:800 12px Manrope,Arial,sans-serif}
+@media(max-width:650px){.adva-pathways{padding:77px 0}.adva-pathways-heading h2{font-size:clamp(41px,10vw,59px)}.adva-pathways-grid{grid-template-columns:1fr}.adva-pathway{min-height:240px;padding:24px}}
