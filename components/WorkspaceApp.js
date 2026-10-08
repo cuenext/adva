@@ -9,6 +9,7 @@ import WorkspaceProjects from "./WorkspaceProjects";
 import WorkspaceClient from "./WorkspaceClient";
 import WorkspaceNetwork,{FreelancerOnboarding} from "./WorkspaceNetwork";
 import PortfolioMedia from "./PortfolioMedia";
+import WorkspaceInquiries from "./WorkspaceInquiries";
 
 const menu={
  ceo:[["overview","Overview","◫"],["calendar","Content calendar","◷"],["projects","Projects & assignments","▥"],["finance","Finance","◈"],["network","Freelancer network","✳"],["team","Team & approvals","◎"]],
@@ -23,7 +24,7 @@ function Overview({ws,go}){
  const activeProjects=projects.filter(p=>p.status==="active");
  const assigned=data.members.filter(x=>x.user_id===ws.user?.id);
  return <div className="aws-module aws-overview">
-  <div className="aws-page-heading"><div><span className="aws-eyebrow"><i/> ADVA / OPERATIONS</span><h1>{ceo?"Good morning, ADVA.":"Your next creative move."}</h1><p>{ceo?"Every project, every detail. A clearer view of what comes next.":"Your assigned projects and upcoming content, without the noise."}</p></div><a className="aws-primary aws-compact" href="/posting-times">Posting intelligence ↗</a></div>
+  <div className="aws-page-heading"><div><span className="aws-eyebrow"><i/> ADVA / OPERATIONS</span><h1>{ceo?"Good morning, ADVA.":"Your next creative move."}</h1><p>{ceo?"Every project, every detail. A clearer view of what comes next.":"Your assigned projects and upcoming content, without the noise."}</p></div><div className="aws-page-heading-actions">{ceo&&<button className="aws-outline" onClick={()=>go("inquiries")}>{data.leads?.filter(l=>l.status==="new").length||0} new inquiries ↗</button>}<a className="aws-primary aws-compact" href="/posting-times">Posting intelligence ↗</a></div></div>
   <div className="aws-overview-stats"><article><span>{ceo?"ACTIVE PROJECTS":"ASSIGNED PROJECTS"}</span><strong>{activeProjects.length}</strong><small>Current ADVA workspace</small></article><article><span>UPCOMING POSTS</span><strong>{upcoming.length}</strong><small>Scheduled publishing tasks</small></article><article><span>POSTED CONTENT</span><strong>{posted.length}</strong><small>Confirmed in ADVA</small></article><article><span>VIDEOS DELIVERED</span><strong>{posted.filter(x=>["reel","video","short"].includes(x.kind)).length}</strong><small>Automatically counted on posting</small></article></div>
   <div className="aws-overview-layout">
    <section className="aws-panel"><div className="aws-panel-title"><div><span>WHAT'S COMING</span><h2>Next on the calendar</h2></div><button className="aws-panel-text-button" onClick={()=>go("calendar")}>Open calendar ↗</button></div>{upcoming.length?<div className="aws-upcoming-list">{upcoming.slice(0,7).map(p=><article key={p.id}><span className="aws-when">{niceTime(p.scheduled_at)}</span><div><strong>{p.title}</strong><small>{projects.find(x=>x.id===p.project_id)?.name} · {p.platform}</small></div><span className="aws-pill">{p.status}</span></article>)}</div>:<div className="aws-empty"><strong>The calendar's yours to build.</strong><p>{ceo?"Start with Silwadi, choose a platform and turn a content idea into a scheduled task.":"ADVA hasn't scheduled content on your assigned projects yet."}</p><button className="aws-outline" onClick={()=>go("calendar")}>Open content planning ↗</button></div>}</section>
@@ -64,7 +65,7 @@ export default function WorkspaceApp({mode="hq"}){
  const {db,user,role,data,loading,error,refresh}=ws;
  const [section,setSection]=useState("overview"),[menuOpen,setMenuOpen]=useState(false);
  const viewRole=role==="ceo"?"ceo":role==="client"?"client":role==="freelancer"?"freelancer":null;
- const nav=viewRole==="ceo"?[["overview","Overview","▣"],["calendar","Content","◷"],["strategy","Strategy","✦"],["projects","Projects","◇"],["finance","Finance","◈"],["network","Job board","✳"],["team","Team & NDA","⊕"]]:viewRole==="client"?[["overview","My dashboard","▣"],["calendar","Content plan","◷"],["strategy","Monthly direction","✦"],["performance","Performance","◈"]]:[["overview","My dashboard","▣"],["calendar","Assigned content","◷"],["strategy","Creative direction","✦"],["projects","Projects","◇"],["network","Creative network","✳"]];
+ const nav=viewRole==="ceo"?[["overview","Overview","▣"],["inquiries","Client enquiries","↗"],["calendar","Content","◷"],["strategy","Strategy","✦"],["projects","Projects","◇"],["finance","Finance","◈"],["network","Job board","✳"],["team","Team & NDA","⊕"]]:viewRole==="client"?[["overview","My dashboard","▣"],["calendar","Content plan","◷"],["strategy","Monthly direction","✦"],["performance","Performance","◈"]]:[["overview","My dashboard","▣"],["calendar","Assigned content","◷"],["strategy","Creative direction","✦"],["projects","Projects","◇"],["network","Creative network","✳"]];
  const paths={hq:"/hq",portal:"/portal",join:"/join",network:"/network"};
  const greeting=role==="ceo"?"CEO / ADVA HQ":role==="client"?"CLIENT / ADVA":role==="freelancer"?"FREELANCER / ADVA":"ADVA";
  useEffect(()=>{if(mode==="network"&&role==="freelancer")setSection("network");if(mode==="portal"&&role==="client")setSection("overview");if(mode==="hq"&&role==="ceo")setSection("overview")},[mode,role]);
@@ -80,6 +81,7 @@ export default function WorkspaceApp({mode="hq"}){
  if(mode==="join"&&role==="ceo")return <div className="adva-hq-shell aws-waiting"><div className="aws-waiting-mark">A.</div><h1>ADVA team, ready.</h1><p>You're already the CEO. Manage freelancer profiles and recruitment from your workspace.</p><a className="aws-primary" href="/hq">Open HQ ↗</a></div>;
  const content=(tab)=>{
   if(role==="client"){if(tab==="calendar")return <WorkspaceCalendar ws={ws} isClient/>;if(tab==="strategy")return <WorkspaceStrategy ws={ws}/>;return <WorkspaceClient ws={ws}/>}
+  if(tab==="inquiries"&&role==="ceo")return <WorkspaceInquiries ws={ws}/>;
   if(tab==="calendar")return <WorkspaceCalendar ws={ws}/>;
   if(tab==="strategy")return <WorkspaceStrategy ws={ws}/>;
   if(tab==="projects")return <WorkspaceProjects ws={ws}/>;

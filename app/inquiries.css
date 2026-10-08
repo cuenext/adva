@@ -1,0 +1,45 @@
+
+/* ADVA client inquiries — quiet, editorial inbox rather than another generic CRM. */
+.aws-inquiry-totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid #ffffff27;border-bottom:1px solid #ffffff22;padding:20px 0;margin:13px 0 25px}
+.aws-inquiry-totals>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.12em;color:#829dbb;padding:8px 20px;border-right:1px solid #ffffff18}
+.aws-inquiry-totals>span:first-child{padding-left:0}
+.aws-inquiry-totals>span:last-child{border:0}
+.aws-inquiry-totals strong{font:800 28px Manrope,Arial,sans-serif;letter-spacing:-.07em;color:#e8f5ff;display:block;margin-bottom:9px}
+.aws-inquiry-toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.aws-inquiry-toolbar input,.aws-inquiry-toolbar select{border:1px solid #ffffff28;background:#15263a;color:#e1f1ff;padding:13px 15px;border-radius:8px;font-size:11px}
+.aws-inquiry-toolbar input{min-width:230px;flex:1}
+.aws-inquiry-toolbar select{color-scheme:dark}
+.aws-inquiry-toolbar>button{color:#aacff3;border:1px solid #ffffff27;border-radius:8px;padding:12px 14px;background:#ffffff0c;font-size:11px;font-weight:800}
+.aws-inquiry-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.76fr);gap:17px;align-items:start}
+.aws-inquiry-stream{display:grid;gap:10px}
+.aws-inquiry-item{background:#111b2a;border:1px solid #ffffff20;border-radius:12px;display:block;text-align:left;color:#e5f1ff;padding:23px 24px;transition:border-color .25s,transform .25s,background .25s}
+.aws-inquiry-item:hover,.aws-inquiry-item.selected{border-color:#83b9ef77;background:#142b45;transform:translateX(3px)}
+.aws-inquiry-top,.aws-inquiry-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.aws-inquiry-top{font:800 9px Manrope,Arial,sans-serif;color:#7397bf;letter-spacing:.12em}
+.aws-inquiry-item h3{font:800 23px Manrope,Arial,sans-serif;letter-spacing:-.05em;margin:20px 0 8px}
+.aws-inquiry-item p{color:#9baec5;font-size:11px;line-height:1.75;margin:0 0 22px;max-height:41px;overflow:hidden}
+.aws-inquiry-bottom small{margin-left:auto;color:#86a4c5;font-size:10px}
+.aws-inquiry-bottom b{color:#a7d6ff;font-size:19px;font-weight:500}
+.aws-inquiry-detail{position:sticky;top:99px;background:linear-gradient(145deg,#13233a,#0c1522);border:1px solid #ffffff28;border-radius:13px;padding:26px;min-height:420px}
+.aws-inquiry-detail-head{display:flex;align-items:center;justify-content:space-between;gap:17px;color:#7699be;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.14em}
+.aws-inquiry-detail-head button{border:1px solid #ffffff28;border-radius:50%;height:31px;width:31px;background:#ffffff0e;color:#f1f8ff;font-size:19px}
+.aws-inquiry-detail h2{font:800 29px Manrope,Arial,sans-serif;letter-spacing:-.06em;margin:23px 0 8px}
+.aws-inquiry-contact{display:flex;flex-direction:column;gap:6px;font-size:11px;color:#afc5dc;padding-bottom:24px;border-bottom:1px solid #ffffff20}
+.aws-inquiry-contact a{color:#97cdff;text-decoration:none}
+.aws-inquiry-description{padding:20px 0;border-bottom:1px solid #ffffff20}
+.aws-inquiry-description>span,.aws-inquiry-fields span,.aws-inquiry-status,.aws-inquiry-detail form>label{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.14em;color:#82a8d0}
+.aws-inquiry-description p{font-size:13px;color:#b7cbe0;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}
+.aws-inquiry-fields{display:grid;gap:14px;padding:18px 0;border-bottom:1px solid #ffffff1a}
+.aws-inquiry-fields>div{display:grid;gap:7px}
+.aws-inquiry-fields strong{font-size:11px;color:#e4f0ff;font-weight:700;line-height:1.6}
+.aws-inquiry-status,.aws-inquiry-detail form>label{display:grid;gap:9px;margin:19px 0}
+.aws-inquiry-detail select,.aws-inquiry-detail textarea{background:#0c192b;color:#f0f8ff;border:1px solid #ffffff2d;border-radius:7px;padding:12px;font-size:11px;outline:none;width:100%}
+.aws-inquiry-detail select:focus,.aws-inquiry-detail textarea:focus{border-color:#91d2ff}
+.aws-inquiry-detail .aws-outline{font-size:11px}
+.aws-inquiry-convert{width:100%;margin-top:22px}
+.aws-inquiry-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:365px}
+.aws-inquiry-placeholder>span{height:74px;width:74px;border-radius:50%;display:grid;place-items:center;border:1px solid #89caf84f;background:#16599d36;color:#afe0ff;font-size:34px;margin-bottom:25px}
+.aws-inquiry-placeholder strong{font:800 20px Manrope,Arial,sans-serif;color:#e6f6ff}
+.aws-inquiry-placeholder p{font-size:12px;line-height:1.85;max-width:280px;color:#809dba}
+@media(max-width:1050px){.aws-inquiry-stage{grid-template-columns:1fr}.aws-inquiry-detail{position:relative;top:auto}.aws-inquiry-totals{grid-template-columns:repeat(2,1fr)}.aws-inquiry-totals>span:nth-child(2){border-right:0}.aws-inquiry-totals>span:nth-child(-n+2){border-bottom:1px solid #ffffff18}}
+@media(max-width:600px){.aws-inquiry-totals>span{padding:10px;font-size:8px}.aws-inquiry-item{padding:18px}.aws-inquiry-item h3{font-size:21px}.aws-inquiry-detail{padding:19px}.aws-inquiry-toolbar input{flex-basis:100%}}

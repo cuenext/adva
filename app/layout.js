@@ -10,6 +10,7 @@ import "./activation.css";
 import "./workspace.css";
 import "./workspace-extras.css";
 import "./workspace-polish.css";
+import "./inquiries.css";
 import "./posting-times/planner.css";
 import CursorSpotlight from "../components/CursorSpotlight";
 export const metadata = {

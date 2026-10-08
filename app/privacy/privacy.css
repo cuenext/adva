@@ -1,0 +1,17 @@
+
+.adva-privacy-v2{min-height:100svh;background:radial-gradient(ellipse at 85% 8%,#1e52943d,transparent 36%),#090d14;color:#e7f1fc;padding:55px 0 112px}
+.adva-privacy-v2 h1{font:800 clamp(50px,7vw,94px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.08em;margin:25px 0 37px}
+.adva-privacy-v2 h1 em{font-style:normal;color:#9cc9f1}
+.adva-privacy-v2-intro{display:flex;justify-content:space-between;align-items:end;gap:40px;padding-bottom:34px;border-bottom:1px solid #ffffff32}
+.adva-privacy-v2-intro p{max-width:660px;font-size:17px;line-height:1.85;color:#a6b9ce;margin:0}
+.adva-privacy-v2-intro>span{font:800 9px/1.9 Manrope,Arial,sans-serif;letter-spacing:.14em;color:#749bc3;text-align:right;white-space:nowrap}
+.adva-privacy-v2-sections section{display:grid;grid-template-columns:70px 1fr;gap:30px;padding:31px 0;border-bottom:1px solid #ffffff1a}
+.adva-privacy-v2-sections section>span{font:800 11px Manrope,Arial,sans-serif;color:#75b7f0}
+.adva-privacy-v2-sections h2{color:#eaf4ff;font:800 clamp(20px,2.5vw,29px) Manrope,Arial,sans-serif;letter-spacing:-.05em;margin:0 0 14px}
+.adva-privacy-v2-sections p{font-size:13px;line-height:1.95;color:#9db1c7;max-width:870px;margin:0}
+.adva-privacy-v2-contact{padding:70px 0 0}
+.adva-privacy-v2-contact>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#7baddd}
+.adva-privacy-v2-contact h2{font:800 54px Manrope,Arial,sans-serif;letter-spacing:-.07em;margin:19px 0}
+.adva-privacy-v2-contact a{color:#b9e4ff;font-weight:800;font-size:18px}
+.adva-privacy-v2-contact p{margin-top:35px;max-width:810px;color:#7691ac;font-size:11px;line-height:1.9}
+@media(max-width:600px){.adva-privacy-v2{padding:38px 0 70px}.adva-privacy-v2 h1{font-size:51px}.adva-privacy-v2-intro{display:block}.adva-privacy-v2-intro p{font-size:14px}.adva-privacy-v2-intro>span{display:block;text-align:left;margin-top:28px}.adva-privacy-v2-sections section{grid-template-columns:28px 1fr;gap:13px;padding:26px 0}.adva-privacy-v2-contact h2{font-size:43px}}
