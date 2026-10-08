@@ -14,8 +14,9 @@ function Arrow(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColo
 function Up(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
 export default function CinematicHero(){
  const root=useRef(null),orb=useRef(null),input=useRef(null),chatBox=useRef(null);
- const [query,setQuery]=useState(""),[prompt,setPrompt]=useState(0),[submitted,setSubmitted]=useState(""),[open,setOpen]=useState(false),[question,setQuestion]=useState(""),[messages,setMessages]=useState([]);
+ const [query,setQuery]=useState(""),[prompt,setPrompt]=useState(0),[submitted,setSubmitted]=useState(""),[open,setOpen]=useState(false),[question,setQuestion]=useState(""),[messages,setMessages]=useState([]),[aiLive,setAiLive]=useState(false),[sending,setSending]=useState(false);
  const matches=useMemo(()=>match(submitted),[submitted]);
+ useEffect(()=>{let active=true;fetch("/api/assistant",{cache:"no-store"}).then(r=>r.json()).then(d=>{if(active)setAiLive(Boolean(d.available))}).catch(()=>{if(active)setAiLive(false)});return()=>{active=false}},[]);
  useEffect(()=>{const id=setInterval(()=>setPrompt(p=>(p+1)%prompts.length),4800);return()=>clearInterval(id)},[]);
  useEffect(()=>{
    if(!root.current||!orb.current||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
@@ -27,7 +28,27 @@ export default function CinematicHero(){
  useEffect(()=>{if(!open)return;const onKey=e=>{if(e.key==="Escape")setOpen(false)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[open]);
  useEffect(()=>{if(open&&chatBox.current)chatBox.current.scrollTop=chatBox.current.scrollHeight},[messages,open]);
  function submit(e){e.preventDefault();const v=query.trim();if(!v){input.current?.focus();return}setSubmitted(v)}
- function send(e){e.preventDefault();const q=question.trim();if(!q)return;const results=match(q);setMessages(m=>[...m,{role:"you",text:q},{role:"adva",text:"I'd start by looking at "+results[0].title.toLowerCase()+". A useful service to explore is "+results[0].project+". Share your goals and timing with the team, and we'll shape a real proposal."}]);setQuestion("")}
+ async function send(e){
+  e.preventDefault();
+  const q=question.trim();
+  if(!q||sending)return;
+  setQuestion("");setMessages(prev=>[...prev,{role:"you",text:q}]);
+  if(!aiLive){
+   const results=match(q);
+   setMessages(prev=>[...prev,{role:"adva",text:"I'd start with "+results[0].title.toLowerCase()+". Explore "+results[0].project+" for a useful starting point. Tell us your goals and timing in the project brief, and the ADVA team can shape a real scope."}]);
+   return;
+  }
+  setSending(true);
+  try{
+   const history=messages.slice(-9).map(m=>({role:m.role==="you"?"user":"assistant",text:m.text})).concat([{role:"user",text:q}]);
+   const response=await fetch("/api/assistant",{method:"POST",headers:{"Content-Type":"application/json"},cache:"no-store",body:JSON.stringify({messages:history,brief:submitted||query})});
+   const data=await response.json();
+   if(!response.ok||!data?.reply)throw Error(data?.error||"Service unavailable");
+   setMessages(prev=>[...prev,{role:"adva",text:data.reply}]);
+  }catch{
+   setMessages(prev=>[...prev,{role:"adva",text:"I'm having trouble connecting right now. You can still choose a service, prepare a project brief, or message the ADVA team directly."}]);
+  }finally{setSending(false)}
+ }
  const encoded=encodeURIComponent("Hello ADVA,\n\nI'd like to discuss a new project:\n"+(submitted||query)+"\n\nCompany:\nTimeline:\n");
  return <>
   <section className="cinema" ref={root} aria-labelledby="cinema-title">
@@ -57,6 +78,6 @@ export default function CinematicHero(){
     </div>
   </section>
   <button className="ai-orb-button" type="button" onClick={()=>setOpen(true)} aria-label="Open ADVA AI guided assistant"><span className="ai-orb-mini"/> ADVA AI <Up/></button>
-  {open&&<div className="ai-overlay"><button type="button" className="ai-scrim" aria-label="Close assistant" onClick={()=>setOpen(false)}/><aside className="ai-window" role="dialog" aria-modal="true" aria-label="ADVA AI guided assistant"><div className="ai-window-top"><div className="ai-window-icon">✳</div><div><small>ADVA AI / GUIDED PREVIEW</small><h2>Let's work this out.</h2></div><button className="ai-window-close" aria-label="Close assistant" onClick={()=>setOpen(false)} type="button">×</button></div><div className="ai-history" ref={chatBox} role="log" aria-live="polite"><p className="ai-bubble">Tell me your idea. I'll point you toward relevant ADVA services and projects, then help you contact our team.</p>{messages.map((m,i)=><p className={"ai-bubble "+(m.role==="you"?"user":"")} key={i}>{m.text}</p>)}<p className="ai-disclosure">Guided preview, not a connected generative AI service. The ADVA team confirms all proposals and pricing.</p></div><form className="ai-entry" onSubmit={send}><label className="sr-only" htmlFor="ai-input">Message</label><input id="ai-input" value={question} onChange={e=>setQuestion(e.target.value)} placeholder="What are you planning?" maxLength={480}/><button aria-label="Send" type="submit"><Arrow/></button></form><div className="ai-links"><a href={"https://wa.me/971585876114?text="+encoded} target="_blank" rel="noopener noreferrer">WhatsApp ADVA <Up/></a><a href={"mailto:inquiries@advaae.com?subject=ADVA%20Project&body="+encoded}>Email your brief <Up/></a></div></aside></div>}
+  {open&&<div className="ai-overlay"><button type="button" className="ai-scrim" aria-label="Close assistant" onClick={()=>setOpen(false)}/><aside className="ai-window" role="dialog" aria-modal="true" aria-label="ADVA AI guided assistant"><div className="ai-window-top"><div className="ai-window-icon">✳</div><div><small>{"ADVA AI / "+(aiLive?"LIVE CONCIERGE":"GUIDED PREVIEW")}</small><h2>Let's work this out.</h2></div><button className="ai-window-close" aria-label="Close assistant" onClick={()=>setOpen(false)} type="button">×</button></div><div className="ai-history" ref={chatBox} role="log" aria-live="polite"><p className="ai-bubble">Tell me your idea. I'll point you toward relevant ADVA services and projects, then help you contact our team.</p>{messages.map((m,i)=><p className={"ai-bubble "+(m.role==="you"?"user":"")} key={i}>{m.text}</p>)}{sending&&<div className="ai-typing" aria-label="ADVA AI is composing a response"><i/><i/><i/></div>}<p className="ai-disclosure">{aiLive?"AI messages are processed by OpenAI when you press Send. Avoid sharing sensitive personal information.":"Guided preview; live AI activates after secure integration. ADVA confirms all proposals and pricing."}</p></div><form className="ai-entry" onSubmit={send}><label className="sr-only" htmlFor="ai-input">Message</label><input id="ai-input" value={question} onChange={e=>setQuestion(e.target.value)} placeholder="What are you planning?" maxLength={480}/><button aria-label="Send" type="submit" disabled={sending}><Arrow/></button></form><div className="ai-links"><a href={"https://wa.me/971585876114?text="+encoded} target="_blank" rel="noopener noreferrer">WhatsApp ADVA <Up/></a><a href={"mailto:inquiries@advaae.com?subject=ADVA%20Project&body="+encoded}>Email your brief <Up/></a></div></aside></div>}
  </>;
 }

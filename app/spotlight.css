@@ -1,0 +1,97 @@
+/* ADVA signature motion and cursor lighting — presentation only */
+.adva-flashlight{
+  position:fixed;left:0;top:0;width:630px;height:630px;
+  pointer-events:none;z-index:18;opacity:0;transform:translate3d(-1000px,-1000px,0);
+  will-change:transform;transition:opacity .35s ease;
+  contain:layout paint style;mix-blend-mode:screen;
+}
+.adva-spotlight-live .adva-flashlight{opacity:1}
+.adva-flashlight-ambient{
+  position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(52,151,249,.105) 0%,rgba(30,103,202,.09) 24%,rgba(25,73,136,.052) 43%,transparent 70%);
+  filter:blur(2px);
+}
+.adva-flashlight-core{
+  position:absolute;left:50%;top:50%;width:235px;height:235px;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(196,233,255,.09),rgba(78,181,255,.08) 20%,rgba(47,128,244,.035) 48%,transparent 76%);
+  filter:blur(8px);
+}
+.cinema{isolation:isolate}
+.cinema:after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(circle 310px at var(--hover-x,55%) var(--hover-y,45%),rgba(112,182,255,.095) 0%,rgba(37,109,215,.058) 24%,transparent 73%);
+  mix-blend-mode:screen;
+}
+.cinema .cinema-inner{position:relative;z-index:2}
+.cinema .cinema-orb{filter:drop-shadow(0 0 14px #2e8ff028)}
+.cinema .cinema-orb:after{animation:adva-surface-light 11s ease-in-out infinite}
+.cinema .cinema-sticker{transition:background .35s,border-color .35s}
+.cinema .cinema-sticker.s1{animation:adva-sticker-float 6.2s ease-in-out infinite alternate}
+.cinema .cinema-sticker.s2{animation:adva-sticker-float 8.3s ease-in-out infinite alternate-reverse}
+.cinema .cinema-search{transition:border-color .25s,transform .4s cubic-bezier(.2,1,.3,1),box-shadow .3s}
+.cinema .cinema-search:hover{border-color:#8dcbff93;box-shadow:0 23px 70px #0009,0 0 28px #176dde28}
+.cinema .cinema-search:focus-within{transform:translateY(-2px)}
+/* Hierarchical mega-menu reveals — capable and fast without video/GPU-heavy shaders */
+.adva-mega-menu.expanded .adva-mega-feature{animation:adva-menu-entry .43s cubic-bezier(.2,1,.3,1) both}
+.adva-mega-menu.expanded .adva-mega-group{animation:adva-menu-entry .5s cubic-bezier(.2,1,.3,1) both}
+.adva-mega-menu.expanded .adva-mega-group:nth-child(2){animation-delay:.045s}
+.adva-mega-menu.expanded .adva-mega-group:nth-child(3){animation-delay:.095s}
+.adva-mega-menu.expanded .adva-mega-bottom{animation:adva-menu-entry .5s .08s both}
+.adva-mega-menu .adva-mega-link{transition:color .2s,padding .28s cubic-bezier(.2,1,.3,1),background .2s}
+.adva-mega-menu .adva-mega-link:hover{background:linear-gradient(90deg,#1f78de18,transparent)}
+.adva-mega-menu.expanded{box-shadow:0 28px 80px #000c,0 0 55px #147de517}
+.adva-nav-trigger.active .adva-chevron{color:#9fd7ff}
+.adva-nav-trigger:before{content:"";height:5px;width:5px;border-radius:50%;background:#58aeff;box-shadow:0 0 12px #3b9dfb;opacity:0;transform:scale(.45);transition:opacity .2s,transform .2s}
+.adva-nav-trigger.active:before,.adva-nav-trigger:hover:before{opacity:1;transform:scale(1)}
+/* Mouse-position lighting on card surfaces */
+.adva-output-tile,.adva-pathway,.adva-exp-row,.adva-brief-service,.adva-related-grid>a{
+  position:relative;isolation:isolate;
+}
+.adva-output-tile:before,.adva-pathway:before,.adva-exp-row:before,.adva-brief-service:before,.adva-related-grid>a:before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle 250px at var(--local-x,50%) var(--local-y,50%),rgba(58,145,246,.12),transparent 66%);
+  opacity:0;transition:opacity .35s;
+}
+.adva-output-tile:hover:before,.adva-pathway:hover:before,.adva-exp-row:hover:before,.adva-brief-service:hover:before,.adva-related-grid>a:hover:before{opacity:1}
+.adva-output-tile{transition:transform .45s cubic-bezier(.2,1,.3,1),box-shadow .35s,border-color .3s}
+.adva-output-tile:hover{transform:translateY(-7px)}
+.adva-output-art{overflow:hidden}
+.adva-output-tile .adva-output-art:before{transition:opacity .4s}
+.adva-output-tile:hover .adva-output-art:before{opacity:.45}
+.adva-output-tile .adva-film-trace{transition:transform 1.2s cubic-bezier(.2,1,.3,1)}
+.adva-output-tile:hover .adva-film-trace{transform:translate(-50%,-50%) rotate(-18deg) scale(1.12)}
+.adva-output-tile .adva-brand-art-letter{transition:transform 1.3s cubic-bezier(.2,1,.3,1)}
+.adva-output-tile:hover .adva-brand-art-letter{transform:translate(-50%,-50%) rotate(-9deg) scale(1.08)}
+.adva-pathway h3{transition:transform .45s cubic-bezier(.2,1,.3,1)}
+.adva-pathway:hover h3{transform:translateX(5px)}
+.adva-exp-row svg{transition:transform .3s cubic-bezier(.2,1,.3,1),color .2s}
+.adva-exp-preview .adva-exp-art-glyph{animation:adva-drift 11s ease-in-out infinite alternate}
+.adva-exp-preview .adva-exp-art-orbit{border-color:#a7d9ff38}
+/* Scroll reveals are opt-in and only activated after the component mounts. */
+html.adva-enhanced-motion .adva-await-reveal{
+  opacity:0;transform:translate3d(0,24px,0);
+  transition:opacity .8s cubic-bezier(.2,1,.3,1),transform .85s cubic-bezier(.2,1,.3,1);
+}
+html.adva-enhanced-motion .adva-await-reveal.adva-seen{opacity:1;transform:translate3d(0,0,0)}
+html.adva-enhanced-motion .adva-home-process article:nth-child(2),
+html.adva-enhanced-motion .adva-pathway:nth-child(2){transition-delay:.07s}
+html.adva-enhanced-motion .adva-home-process article:nth-child(3),
+html.adva-enhanced-motion .adva-pathway:nth-child(3){transition-delay:.14s}
+html.adva-enhanced-motion .adva-pathway:nth-child(4){transition-delay:.21s}
+@keyframes adva-menu-entry{from{opacity:0;transform:translateY(14px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes adva-surface-light{0%,100%{opacity:.3;transform:rotate(-28deg) translateX(-3%)}50%{opacity:.75;transform:rotate(-20deg) translateX(9%)}}
+@keyframes adva-sticker-float{from{translate:0 0}to{translate:0 -12px}}
+@keyframes adva-drift{from{translate:0 -7px;rotate:-6deg}to{translate:0 7px;rotate:5deg}}
+@media (hover:none),(pointer:coarse){
+ .adva-flashlight{display:none!important}
+ .adva-output-tile:before,.adva-pathway:before,.adva-exp-row:before,.adva-brief-service:before,.adva-related-grid>a:before{display:none}
+ .cinema:after{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+ .adva-flashlight{display:none!important}
+ .cinema:after{display:none}
+ html.adva-enhanced-motion .adva-await-reveal{opacity:1!important;transform:none!important}
+ .adva-mega-menu.expanded .adva-mega-feature,.adva-mega-menu.expanded .adva-mega-group,.adva-mega-menu.expanded .adva-mega-bottom{animation:none!important}
+ .adva-exp-preview .adva-exp-art-glyph,.cinema .cinema-sticker{animation:none!important}
+}
