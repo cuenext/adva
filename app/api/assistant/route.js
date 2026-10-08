@@ -4,7 +4,7 @@ import {applyRateLimit,rateLimitConfigured} from "../../../lib/server/rateLimit"
 
 export const runtime="nodejs";
 export const maxDuration=30;
-const model=process.env.OPENAI_MODEL||"gpt-5.6-terra";
+const model=process.env.OPENAI_MODEL||"gpt-4.1-mini";
 const headers={"Cache-Control":"no-store"};
 const isReady=()=>Boolean(process.env.OPENAI_API_KEY && rateLimitConfigured());
 
@@ -69,7 +69,6 @@ export async function POST(request){
        instructions,
        input:brief?[{role:"user",content:"Original project idea: "+brief},...history]:history,
        max_output_tokens:420,
-       reasoning:{effort:"low"},
        store:false
      }),
      cache:"no-store",signal:AbortSignal.timeout(21000)

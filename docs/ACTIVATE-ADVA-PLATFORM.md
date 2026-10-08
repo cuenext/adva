@@ -9,15 +9,15 @@ The website safely deploys without secrets. The public Services menu, animation 
 - /api/assistant and /api/leads report available: false.
 
 ## Connect the existing Supabase project
-1. Review and execute supabase/migrations/20261009_adva_leads.sql in Supabase SQL Editor.
+1. The ADVA lead and admin tables have been created in the connected Supabase project. Do not reapply the same migration manually.
 2. Create a CEO account in Supabase Authentication, using a strong password and MFA where offered.
 3. Manually insert the Auth user UUID into public.adva_admins with role ceo. There is no open registration.
-4. Add SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY and NEXT_PUBLIC_SUPABASE_ANON_KEY to the Vercel project settings.
+4. SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are connected. Add only SUPABASE_SERVICE_ROLE_KEY to Vercel as a sensitive server-side environment variable.
 5. The service-role key must stay server-side; never share it in chat, frontend code or public GitHub.
 
 ## Connect OpenAI
 Create a project-scoped API key with a sensible spending limit. Add OPENAI_API_KEY to Vercel Settings.
-The default model is gpt-5.6-terra, overridable with OPENAI_MODEL. Responses API calls are server-side with store: false.
+The default model is gpt-4.1-mini, overridable with OPENAI_MODEL. Responses API calls are server-side with store: false.
 
 ## Required Redis rate limiting
 Provision Upstash Redis and configure UPSTASH_REDIS_REST_URL, UPSTASH_REDIS_REST_TOKEN and ADVA_RATE_LIMIT_SALT.
