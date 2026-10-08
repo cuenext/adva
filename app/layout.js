@@ -3,6 +3,7 @@ import "./reframe.css";
 import "./navigation.css";
 import "./capabilities.css";
 import "./experience.css";
+import "./access.css";
 import "./spotlight.css";
 import "./hq.css";
 import "./activation.css";

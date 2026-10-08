@@ -1,0 +1,28 @@
+
+/* ADVA: private-facing entry points share the main studio language. */
+.adva-access-holder{position:relative;flex:none;z-index:130}
+.adva-access-trigger{display:flex;align-items:center;gap:11px;border:1px solid #98c6ee4f;border-radius:999px;padding:8px 13px 8px 8px;background:#edf6fd;color:#0b284b;min-height:43px;font:800 11px Manrope,Arial,sans-serif;letter-spacing:-.01em;transition:background .2s,border-color .2s,transform .2s;white-space:nowrap}
+.adva-access-trigger:hover,.adva-access-trigger.open{background:#b7e5ff;border-color:#9cdaff;transform:translateY(-1px)}
+.adva-access-trigger-orb{width:26px;height:26px;display:grid;place-items:center;background:#113e79;color:#d5f3ff;border-radius:50%;box-shadow:inset 0 1px #ffffff65;font-size:14px;font-weight:400}
+.adva-access-chevron{margin-left:8px;font-size:18px;font-weight:500;color:#316197;line-height:1}
+.adva-access-panel{position:absolute;z-index:135;right:0;top:calc(100% + 17px);width:min(428px,calc(100vw - 30px));background:#0d131d;border:1px solid #9ac8ff3c;border-radius:17px;box-shadow:0 26px 90px #000b;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-9px) scale(.98);transition:opacity .22s,transform .22s,visibility .22s}
+.adva-access-panel.expanded{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0) scale(1)}
+.adva-access-panel:before{content:'';display:block;height:2px;background:linear-gradient(90deg,#1673d0,#7fcfff 55%,#132b4f)}
+.adva-access-panel-head{display:flex;align-items:start;justify-content:space-between;padding:27px 27px 21px;gap:20px}
+.adva-access-panel-head span{color:#7c98b8;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.17em}
+.adva-access-panel-head h2{color:#edf6ff;font:800 25px Manrope,Arial,sans-serif;letter-spacing:-.06em;line-height:1.2;margin:11px 0 0}
+.adva-access-panel-head small{color:#5c799e;font:800 10px Manrope,Arial,sans-serif;letter-spacing:.11em}
+.adva-access-options{display:grid;gap:0;padding:0 13px}
+.adva-access-options>a{display:flex;align-items:center;gap:14px;padding:15px 14px;position:relative;border-top:1px solid #ffffff17;transition:background .2s}
+.adva-access-options>a:hover,.adva-access-options>a:focus-visible{background:#1d36534f}
+.adva-access-option-rail{align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;gap:6px;flex:none;color:#7b9cc4;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.12em;min-width:30px}
+.adva-access-option-rail b{font-size:20px;color:#83c6f6;font-weight:400}
+.adva-access-option-copy{flex:1;min-width:0}
+.adva-access-option-copy small{font:800 8px Manrope,Arial,sans-serif;color:#688caf;letter-spacing:.12em}
+.adva-access-option-copy strong{font:800 18px Manrope,Arial,sans-serif;color:#f3f9ff;display:block;margin:5px 0 5px;letter-spacing:-.055em}
+.adva-access-option-copy p{color:#93a9c1;font:500 11px/1.7 Manrope,Arial,sans-serif;margin:0}
+.adva-access-option-arrow{align-self:center;color:#7eafdf;font:500 17px Manrope,Arial,sans-serif;transition:transform .25s}
+.adva-access-options>a:hover .adva-access-option-arrow{transform:translate(3px,-3px);color:#c2ebff}
+.adva-access-panel-foot{display:flex;align-items:center;justify-content:space-between;padding:18px 26px;margin-top:5px;background:#14243a;border-top:1px solid #ffffff17;color:#c2e4fb;font-size:11px;font-weight:800}
+.adva-access-panel-foot>span{font-size:17px;color:#89c6ec}
+

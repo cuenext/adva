@@ -2,6 +2,7 @@
 
 import {useEffect,useRef,useState} from "react";
 import {SERVICES,SERVICE_GROUPS,servicesInGroup} from "../lib/services";
+import AccessDropdown from "./AccessDropdown";
 
 function Arrow(){return <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
 function Chevron(){return <svg width="13" height="13" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m4 7 6 6 6-6"/></svg>}
@@ -47,9 +48,10 @@ export default function SiteNav(){
         </div>
         <a href="/#work" className="adva-top-link" onClick={close}>Explore</a>
         <a href="/#approach" className="adva-top-link" onClick={close}>Approach</a>
-        <a href="/#about" className="adva-top-link" onClick={close}>About ADVA</a><a href="/join" className="adva-top-link" onClick={close}>Join our team</a>
+        <a href="/#about" className="adva-top-link" onClick={close}>About ADVA</a>
       </nav>
       <a className="adva-nav-cta" href="/brief">Start a project <Arrow/></a>
+      <AccessDropdown/>
       <button className={"adva-mobile-toggle"+(mobile?" on":"")} type="button" aria-label={mobile?"Close menu":"Open menu"} aria-expanded={mobile} aria-controls="adva-mobile-panel" onClick={()=>{setMobile(v=>!v);setOpen(false)}}><span/><span/></button>
     </div>
     <div id="adva-mobile-panel" className={"adva-mobile-panel"+(mobile?" visible":"")} aria-hidden={!mobile}>
@@ -60,6 +62,7 @@ export default function SiteNav(){
         <a href="/#work" onClick={close} className="adva-mobile-main-link">Explore <Arrow/></a>
         <a href="/#approach" onClick={close} className="adva-mobile-main-link">Approach <Arrow/></a>
         <a href="/#about" onClick={close} className="adva-mobile-main-link">About ADVA <Arrow/></a><a href="/join" onClick={close} className="adva-mobile-main-link">Join our team <Arrow/></a>
+        <a href="/enter" onClick={close} className="adva-mobile-main-link">Enter ADVA <Arrow/></a>
         <a href="/brief" onClick={close} className="adva-mobile-project">Start a project <Arrow/></a>
         <span className="adva-mobile-foot">CREATIVE / MEDIA / EXPERIENCES — ABU DHABI</span>
       </div>
