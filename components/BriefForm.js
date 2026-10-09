@@ -8,6 +8,7 @@ export default function BriefForm({initialService,initialServices=[]}){
  const [selected,setSelected]=useState(()=>[...new Set([...initialServices,initialService].filter(slug=>SERVICES.some(s=>s.slug===slug)))]);
  const [step,setStep]=useState(0);
  const [overview,setOverview]=useState("");
+ const [handoffLoaded,setHandoffLoaded]=useState(false);
  const [timeline,setTimeline]=useState("Still exploring");
  const [location,setLocation]=useState("Abu Dhabi");
  const [budget,setBudget]=useState("");
@@ -20,6 +21,18 @@ export default function BriefForm({initialService,initialServices=[]}){
  const [consent,setConsent]=useState(false);
  const [sending,setSending]=useState(false);
  const [submittedReference,setSubmittedReference]=useState("");
+ useEffect(()=>{
+  try{
+   const stored=window.sessionStorage.getItem("adva_brief_seed_v1");
+   if(!stored)return;
+   const data=JSON.parse(stored);
+   if(!data||typeof data.idea!=="string"||Date.now()-data.at>20*60*1000){window.sessionStorage.removeItem("adva_brief_seed_v1");return}
+   setOverview(data.idea.slice(0,1800));
+   if(Array.isArray(data.services))setSelected(cur=>[...new Set([...cur,...data.services.filter(slug=>SERVICES.some(s=>s.slug===slug))])]);
+   setHandoffLoaded(true);
+   window.sessionStorage.removeItem("adva_brief_seed_v1");
+  }catch{}
+ },[]);
  useEffect(()=>{let active=true;fetch("/api/leads",{cache:"no-store"}).then(r=>r.json()).then(d=>{if(active)setCaptureReady(Boolean(d.available))}).catch(()=>{});return()=>{active=false}},[]);
  function toggle(slug){setSelected(s=>s.includes(slug)?s.filter(x=>x!==slug):[...s,slug]);setError("")}
  function next(){
@@ -51,11 +64,11 @@ export default function BriefForm({initialService,initialServices=[]}){
  return <div className="adva-brief-interface">
   <div className="adva-brief-progress" aria-label={"Step "+(step+1)+" of 4"}>{["Services","Your idea","About you","Review"].map((x,i)=><div className={"adva-brief-progress-segment"+(i<=step?" current":"")} key={x}><span>{String(i+1).padStart(2,"0")} / {x}</span><i/></div>)}</div>
   {step===0&&<section className="adva-brief-step" aria-labelledby="brief-step-one">
-   <span className="adva-small-eyebrow"><i/> STEP 01 / WHAT YOU NEED</span><h2 id="brief-step-one">What are we creating?</h2><p>Select as many services as you need. Or leave everything unselected if you're still figuring it out.</p>
+   <span className="adva-small-eyebrow"><i/> STEP 01 / WHAT YOU NEED</span><h2 id="brief-step-one">What do you need?</h2><p>Choose one or several. Not sure yet? Continue without selecting anything.</p>{handoffLoaded&&<p className="adva-brief-handoff-note" role="status">Your idea is saved for the next step.</p>}
    <div className="adva-brief-service-groups">{SERVICE_GROUPS.map(group=><div key={group.id}><h3>{group.label}</h3><div className="adva-brief-services">{servicesInGroup(group.id).map(s=><button type="button" key={s.slug} aria-pressed={selected.includes(s.slug)} className={"adva-brief-service"+(selected.includes(s.slug)?" is-selected":"")} onClick={()=>toggle(s.slug)}><span><strong>{s.name}</strong><small>{s.short}</small></span><b aria-hidden="true">{selected.includes(s.slug)?<AdvaIcon name="check" size={16}/>:<AdvaIcon name="plus" size={16}/>}</b></button>)}</div></div>)}</div>
   </section>}
   {step===1&&<section className="adva-brief-step" aria-labelledby="brief-step-two">
-   <span className="adva-small-eyebrow"><i/> STEP 02 / THE IDEA</span><h2 id="brief-step-two">Tell us a little more.</h2><p>No polished pitch needed. Tell us what you're trying to do, and what's important to you.</p>
+   <span className="adva-small-eyebrow"><i/> STEP 02 / THE IDEA</span><h2 id="brief-step-two">Tell us about it.</h2><p>What are you making, and when do you need it?</p>
    <label className="adva-field-label" htmlFor="brief-overview">What do you have in mind? <span>Required</span></label>
    <textarea id="brief-overview" rows="6" maxLength={1800} placeholder="We're launching a new brand, and need a website and content that feel different from the usual..." value={overview} onChange={e=>setOverview(e.target.value)}/>
    <div className="adva-field-row"><div><label className="adva-field-label" htmlFor="brief-timeline">Timeline</label><select id="brief-timeline" value={timeline} onChange={e=>setTimeline(e.target.value)}>{TIMEFRAMES.map(x=><option key={x}>{x}</option>)}</select></div><div><label className="adva-field-label" htmlFor="brief-location">Where's the project?</label><select id="brief-location" value={location} onChange={e=>setLocation(e.target.value)}>{LOCATIONS.map(x=><option key={x}>{x}</option>)}</select></div></div>
@@ -65,10 +78,10 @@ export default function BriefForm({initialService,initialServices=[]}){
    <span className="adva-small-eyebrow"><i/> STEP 03 / YOUR DETAILS</span><h2 id="brief-step-three">Who are we speaking to?</h2><p>Just the essentials so we know who the brief is coming from.</p>
    <div className="adva-field-row"><div><label className="adva-field-label" htmlFor="brief-name">Your name <span>Required</span></label><input id="brief-name" autoComplete="name" maxLength={100} value={name} onChange={e=>setName(e.target.value)} placeholder="Full name" required/></div><div><label className="adva-field-label" htmlFor="brief-email">Work email <span>Required</span></label><input id="brief-email" autoComplete="email" type="email" maxLength={160} value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@company.com" required/></div></div>
    <label className="adva-field-label" htmlFor="brief-company">Company or brand <span>Optional</span></label><input id="brief-company" autoComplete="organization" maxLength={120} value={company} onChange={e=>setCompany(e.target.value)} placeholder="Company / brand name"/>
-   <p className="adva-form-help">This form prepares an email or WhatsApp message on your device. Nothing is sent automatically or saved on our server.</p>
+   <p className="adva-form-help">Your brief is not sent until you confirm the last step.</p>
   </section>}
   {step===3&&<section className="adva-brief-step" aria-labelledby="brief-step-four">
-   <span className="adva-small-eyebrow"><i/> STEP 04 / READY TO SHARE</span><h2 id="brief-step-four">Looks like a plan.</h2><p>Here's your brief. Choose how you'd like to send it to ADVA.</p>
+   <span className="adva-small-eyebrow"><i/> STEP 04 / READY TO SHARE</span><h2 id="brief-step-four">Ready to send.</h2><p>Here's your brief. Choose how you'd like to send it to ADVA.</p>
    <div className="adva-brief-review">
     <div><span>SERVICES</span><strong>{names.join(" · ")}</strong></div><div><span>PROJECT</span><p>{overview||"Need help shaping the project"}</p></div><div><span>WHEN & WHERE</span><strong>{timeline} · {location}</strong></div><div><span>CONTACT</span><strong>{name} · {email}</strong>{company&&<small>{company}</small>}</div>
    </div>

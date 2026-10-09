@@ -6,9 +6,9 @@ import SiteFooter from "./SiteFooter";
 
 
 const options=[
- {id:"brief",n:"01",eyebrow:"FOR CLIENTS & FUTURE PARTNERS",title:"Bring an idea.",copy:"Starting fresh or changing direction? Tell us what you need and we'll shape the right brief together.",tag:"PROJECT INQUIRIES",href:"/brief",glyph:"arrow"},
- {id:"client",n:"02",eyebrow:"FOR OUR CLIENTS",title:"See what's next.",copy:"Your calendar, project timeline and the work behind every published moment. One place, no email chains.",tag:"CLIENT PORTAL",href:"/portal",glyph:"grid"},
- {id:"network",n:"03",eyebrow:"FOR CREATIVE PEOPLE",title:"Join the people.",copy:"Introduce your work, build your ADVA profile and discover opportunities once you're verified and onboarded.",tag:"ADVA CREATIVE NETWORK",href:"/join",glyph:"users"}
+ {id:"brief",n:"01",eyebrow:"FOR CLIENTS & FUTURE PARTNERS",title:"Start a project",copy:"Select services, describe your project and send an enquiry.",tag:"PROJECT INQUIRIES",href:"/brief",glyph:"arrow"},
+ {id:"client",n:"02",eyebrow:"FOR OUR CLIENTS",title:"Client portal",copy:"Check scheduled content, contract dates and performance reports.",tag:"CLIENT PORTAL",href:"/portal",glyph:"grid"},
+ {id:"network",n:"03",eyebrow:"FOR CREATIVE PEOPLE",title:"Join ADVA",copy:"Create a creator profile and apply to available projects after NDA onboarding.",tag:"ADVA CREATIVE NETWORK",href:"/join",glyph:"users"}
 ];
 function EntryCard({item}){
  const root=useRef(null);
@@ -27,8 +27,8 @@ function EntryCard({item}){
 export default function EnterADVA(){return <div className="website adva-entry-page"><SiteNav/><main>
  <section className="adva-entry-hero"><div className="container">
   <div className="adva-entry-eyebrow"><span className="adva-entry-light"/> WELCOME TO ADVA <span>ABU DHABI · EVERYWHERE</span></div>
-  <h1>Choose your<br/><em>way in.</em></h1>
-  <div className="adva-entry-hero-lower"><p>Let's make the next step simple. Start a project, check in on your work or join the creative network.</p><span><AdvaIcon name="down" size={18}/></span></div>
+  <h1>Where would<br/><em>you like to go?</em></h1>
+  <div className="adva-entry-hero-lower"><p>Start a project, check your account or apply to work with us.</p><span><AdvaIcon name="down" size={18}/></span></div>
  </div></section>
  <section className="adva-entry-options"><div className="container"><div className="adva-entry-options-header"><span>CHOOSE YOUR PATH</span><span></span></div><div className="adva-entry-grid">{options.map(x=><EntryCard key={x.id} item={x}/>)}</div><div className="adva-entry-end"><span>ALREADY WORKING WITH ADVA?</span><a href="/portal">Access your client portal →</a></div></div></section>
  </main><SiteFooter/></div>;}

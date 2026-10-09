@@ -1,0 +1,94 @@
+/* ADVA V5 / workspaces: cleaner hierarchy and usable density */
+.adva-hq-shell{background:#0a0e15;color:#eaf2fa}
+.aws-console{grid-template-columns:236px minmax(0,1fr)}
+.aws-sidebar{padding:23px 11px;background:#0c1118}
+.aws-sidebar nav button{min-height:45px;border-radius:8px;padding:11px 13px;font-weight:650;font-size:12px;letter-spacing:-.01em}
+.aws-sidebar nav button.active{background:#183047;border-color:#639ac243}
+.aws-sidebar nav button.active .aws-nav-icon{color:#93cbef}
+.aws-sidebar-eyebrow{font-size:9px;color:#7286a0}
+.aws-topbar{background:#0d131a;height:69px;border-color:#ffffff17}
+.aws-topbar-path{font-size:12px}
+.aws-body{padding:36px clamp(24px,3.5vw,53px) 90px}
+.aws-body>.aws-module{max-width:1430px}
+.aws-page-heading{margin-bottom:31px}
+.aws-page-heading h1{font-size:clamp(33px,3.6vw,51px);margin:14px 0 11px}
+.aws-page-heading p{max-width:600px;font-size:13px;color:#9aadc1}
+.aws-eyebrow{font-size:9px;letter-spacing:.09em;color:#7aabd0}
+.aws-mini-stats,.aws-overview-stats,.aws-finance-kpis,.aws-client-stats{gap:0;margin:19px 0 27px}
+.aws-overview-stats article,.aws-mini-stats article,.aws-finance-kpis article,.aws-client-stats article{padding:19px 17px;min-height:108px}
+.aws-overview-stats article strong,.aws-mini-stats article strong,.aws-client-stats article strong{font-size:clamp(31px,3.4vw,46px);margin:10px 0 5px;font-variant-numeric:tabular-nums}
+.aws-finance-kpis article strong{font-variant-numeric:tabular-nums;letter-spacing:-.055em}
+.aws-panel{background:#111922;border-color:#ffffff1d;border-radius:11px;margin-bottom:18px}
+.aws-panel-title{padding:22px 22px 19px}
+.aws-panel-title h2{font-size:19px;margin:5px 0 0}
+.aws-panel-title>div>span{font-size:9px;letter-spacing:.08em}
+.aws-overview-layout,.aws-project-grid{gap:16px}
+.aws-overview-project{min-height:73px}
+.aws-upcoming-list article{min-height:73px}
+.aws-toolbar{margin:0 0 6px}
+.aws-toolbar select,.aws-toolbar input{background:#141e2b;border-radius:7px;padding:11px 12px;color:#e7f1fc}
+.aws-subtabs{border-color:#ffffff24;border-radius:8px}
+.aws-subtabs button.active{background:#e2f2ff;color:#15314f}
+.aws-post-row{grid-template-columns:110px minmax(0,1fr) auto;align-items:center;gap:16px}
+.aws-post-description strong{font-size:13px}
+.aws-post-description p{line-height:1.6;margin:6px 0}
+.aws-post-row>.aws-pill{grid-column:3;grid-row:1}
+.aws-post-actions{grid-column:2/4;grid-row:2;display:flex;justify-content:flex-end;margin:0}
+.aws-post-actions button{font-size:11px;min-height:33px}
+.aws-finance-history{background:#111a26;border-radius:11px}
+.aws-finance-chart-month{font-variant-numeric:tabular-nums}
+.aws-finance-kpis article strong{font-size:clamp(19px,2.3vw,32px)}
+.aws-brief-copy{white-space:pre-wrap}
+.aws-modal-card{border-radius:12px;padding:29px}
+.aws-modal-card label{font-size:11px}
+.aws-modal-card input,.aws-modal-card select,.aws-modal-card textarea{border-radius:8px;background:#0e1927}
+.aws-client .aws-client-plan{border-radius:10px;background:linear-gradient(115deg,#12243c,#10243a);border-color:#729ac642}
+.aws-client .aws-project-hero{background:linear-gradient(110deg,#122239,#0e1927);border-color:#ffffff24}
+.aws-client .aws-client-list article{padding:16px 22px}
+.aws-client-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.aws-client .aws-panel-title{border-bottom-color:#ffffff1e}
+.aws-client .aws-panel .aws-empty{padding:37px 24px}
+.aws-network .aws-network-profile{background:#111e2d}
+.aws-network .aws-job-post{border-radius:10px}
+.aws-network-profile h2{font-size:25px}
+.aws-inquiry-stage{grid-template-columns:minmax(0,1fr) minmax(300px,.83fr)}
+.aws-inquiry-detail{top:86px}
+.aws-inquiry-item{border-radius:10px}
+.aws-inquiry-item h3{font-size:21px}
+.aws-join-fields input,.aws-join-fields textarea,.aws-join-fields select{border-radius:8px}
+.aws-join-choice-grid button{border-radius:9px}
+.aws-join-ambient{opacity:.85}
+.aws-portfolio-media,.aws-network-lock{border-radius:10px}
+@media(max-width:1170px){
+ .aws-inquiry-stage{grid-template-columns:1fr}
+ .aws-inquiry-detail{position:relative;top:0}
+ .aws-overview-layout,.aws-project-grid{grid-template-columns:1fr}
+}
+@media(max-width:960px){
+ .aws-console{display:block}
+ .aws-sidebar{position:fixed;width:min(268px,82vw)}
+ .aws-body{padding:32px 24px}
+}
+@media(max-width:680px){
+ .aws-body{padding:25px 15px 70px}
+ .aws-page-heading{gap:17px;margin-bottom:23px}
+ .aws-page-heading h1{font-size:clamp(33px,8vw,44px);margin:12px 0 9px}
+ .aws-page-heading p{font-size:12px}
+ .aws-overview-stats,.aws-mini-stats,.aws-finance-kpis,.aws-client-stats{grid-template-columns:repeat(2,minmax(0,1fr));margin:17px 0 24px}
+ .aws-overview-stats article,.aws-mini-stats article,.aws-finance-kpis article,.aws-client-stats article{padding:16px 12px;min-height:105px}
+ .aws-overview-stats article:first-child,.aws-mini-stats article:first-child,.aws-finance-kpis article:first-child,.aws-client-stats article:first-child{padding-left:0}
+ .aws-overview-stats article:nth-child(2n),.aws-mini-stats article:nth-child(2n),.aws-finance-kpis article:nth-child(2n),.aws-client-stats article:nth-child(2n){padding-left:13px}
+ .aws-overview-stats article strong,.aws-mini-stats article strong,.aws-client-stats article strong{font-size:34px}
+ .aws-finance-kpis article strong{font-size:18px}
+ .aws-post-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:17px}
+ .aws-post-platform{grid-column:1;grid-row:1}
+ .aws-post-row>.aws-pill{grid-column:2;grid-row:1}
+ .aws-post-description{grid-column:1/3;grid-row:2}
+ .aws-post-actions{grid-column:1/3;grid-row:3;justify-content:flex-start;margin-top:7px}
+ .aws-panel-title{padding:19px 16px}
+ .aws-panel-title h2{font-size:18px}
+ .aws-client .aws-client-list article{padding:15px}
+ .aws-form-pair{grid-template-columns:1fr}
+ .aws-modal-card{padding:22px 18px}
+}
+@media(prefers-reduced-motion:reduce){.aws-sidebar,.aws-modal-card{transition:none!important}}

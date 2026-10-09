@@ -1,0 +1,96 @@
+/* ADVA V5 / service-specific interactive studies */
+.adva-v5-service-experience{border:1px solid #ffffff26;border-radius:14px;background:#101822;overflow:hidden;isolation:isolate;box-shadow:0 22px 65px #0004}
+.adva-v5-svc-intro{padding:19px 21px 16px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.adva-v5-svc-intro>span{font:800 9px Manrope,Arial,sans-serif;letter-spacing:.13em;color:#8db4d8}
+.adva-v5-svc-intro>p{margin:0;color:#819bb6;font-size:10px;line-height:1.55;text-align:right}
+.adva-v5-svc-stage{height:285px;position:relative;isolation:isolate;overflow:hidden;background:#101f33}
+.adva-v5-svc-buttons,.adva-v5-svc-role-select{padding:17px 19px 13px;display:flex;flex-wrap:wrap;gap:7px}
+.adva-v5-svc-buttons button,.adva-v5-svc-role-select button{border:1px solid #a0c8ee32;border-radius:999px;background:#ffffff08;color:#b4cadc;font:700 10px Manrope,Arial,sans-serif;padding:10px 13px;transition:background .25s,color .25s,border-color .25s}
+.adva-v5-svc-buttons button:hover,.adva-v5-svc-role-select button:hover{color:#f2f8ff;border-color:#8dbef18c}
+.adva-v5-svc-buttons button.selected,.adva-v5-svc-role-select button.selected{background:#e5f3ff;color:#142f4e;border-color:#e5f3ff}
+.adva-v5-svc-disclaimer{font:500 9px/1.6 Manrope,Arial,sans-serif;color:#708ca8;margin:1px 20px 17px}
+.adva-v5-svc-film,.adva-v5-svc-edit,.adva-v5-svc-brand,.adva-v5-svc-photo,.adva-v5-svc-social,.adva-v5-svc-web,.adva-v5-svc-marketing,.adva-v5-svc-events,.adva-v5-svc-staff{position:absolute;inset:0;overflow:hidden;display:grid;place-items:center}
+.adva-v5-svc-film{background:radial-gradient(circle at 50% 45%,#367dc059,transparent 54%),#08162b}
+.adva-v5-svc-film-window{position:relative;overflow:hidden;aspect-ratio:16/9;width:74%;max-height:232px;border:1px solid #bedbff66;background:radial-gradient(circle at 51% 42%,#8dc3e848,transparent 58%),linear-gradient(130deg,#1b3352,#0b1830);box-shadow:0 30px 70px #0009;transition:width .5s,aspect-ratio .5s}
+.adva-v5-svc-film-window.vertical{width:34%;aspect-ratio:9/16}
+.adva-v5-svc-film-window.square{width:50%;aspect-ratio:1}
+.adva-v5-svc-film-window:before,.adva-v5-svc-film-window:after{content:"";position:absolute;top:0;bottom:0;width:21%;background:#070d1c73}
+.adva-v5-svc-film-window:before{left:0;clip-path:polygon(0 0,100% 0,55% 100%,0 100%)}
+.adva-v5-svc-film-window:after{right:0;clip-path:polygon(30% 0,100% 0,100% 100%,0 100%)}
+.adva-v5-svc-film-halo{width:62%;aspect-ratio:1;border-radius:50%;position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);border:1px solid #a1d2fba8;box-shadow:0 0 75px #3e8bd675}
+.adva-v5-svc-film-object{width:26%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 31% 27%,#e4f9ff,#83b7f0 31%,#123d87 73%,#081328 95%);position:absolute;left:50%;top:48%;transform:translate(-50%,-50%)}
+.adva-v5-svc-film-window strong{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:31px;letter-spacing:-.1em;color:#e9f8ff}
+.adva-v5-svc-film-window>span{position:absolute;top:12px;left:12px;font-size:7px;letter-spacing:.12em;color:#a7c9e8}
+.adva-v5-svc-stage-note{position:absolute;bottom:15px;left:20px;color:#7196ba;font:800 8px Manrope,Arial,sans-serif;letter-spacing:.17em}
+.adva-v5-svc-photo{background:radial-gradient(ellipse at 62% 27%,#8facc07a,transparent 49%),#172333;transition:filter .2s}
+.adva-v5-svc-photo-light{position:absolute;top:-58%;left:19%;width:300px;height:300px;border-radius:50%;background:#cbdfee68;filter:blur(53px)}
+.adva-v5-svc-photo-object{position:absolute;top:27%;left:42%;height:175px;width:125px;border-radius:75px 75px 24px 24px;transform:rotate(-12deg);background:linear-gradient(118deg,#6a8195,#d7e0e7 25%,#4d6d8a 58%,#122f4b);box-shadow:22px 22px 50px #0008}
+.adva-v5-svc-photo-base{position:absolute;bottom:15%;left:28%;height:17px;width:290px;border-radius:50%;filter:blur(9px);background:#0009}
+.adva-v5-svc-photo>span{position:absolute;bottom:17px;left:20px;color:#c2dae9;font:800 8px Manrope,Arial,sans-serif;letter-spacing:.12em}
+.adva-v5-svc-bottom{display:flex;align-items:center;gap:15px;padding:20px}
+.adva-v5-svc-bottom label{font:800 9px Manrope,Arial,sans-serif;color:#89a9c8;letter-spacing:.12em;white-space:nowrap}
+.adva-v5-svc-bottom input{accent-color:#83bdf1;flex:1;max-width:260px}
+.adva-v5-svc-bottom span{font-size:10px;color:#9dc2e5;font-weight:800}
+.adva-v5-svc-edit{background:radial-gradient(ellipse at 50% 49%,#2a77ba65,transparent 58%),#111d33;transition:filter .3s}
+.adva-v5-svc-edit.warm{filter:sepia(.4) hue-rotate(-19deg)}
+.adva-v5-svc-edit.mono{filter:grayscale(1) contrast(1.18)}
+.adva-v5-svc-edit-ring{height:238px;width:238px;border:1px solid #a7daff80;border-radius:50%;position:absolute;left:50%;top:51%;transform:translate(-50%,-50%) scaleX(.72);box-shadow:0 0 0 30px #7faeea10}
+.adva-v5-svc-edit>strong{position:relative;font:800 34px/1.06 Manrope,Arial,sans-serif;letter-spacing:-.067em;color:#e6f7ff;text-align:center;text-shadow:0 5px 30px #0008}
+.adva-v5-svc-edit>span{position:absolute;bottom:18px;left:20px;color:#a1c4e4;font:800 8px Manrope,Arial,sans-serif;letter-spacing:.13em}
+.adva-v5-svc-brand{background:linear-gradient(130deg,#142e54,#070f22);transition:background .3s}
+.adva-v5-svc-brand.graphite{background:linear-gradient(135deg,#2b3036,#0c0f15)}
+.adva-v5-svc-brand.coral{background:linear-gradient(130deg,#5c2534,#211222)}
+.adva-v5-svc-brand>span{position:absolute;top:17px;left:19px;color:#c9dbec;font-size:8px;font-weight:800;letter-spacing:.13em}
+.adva-v5-svc-brand>strong{font:800 clamp(70px,10vw,125px) Manrope,Arial,sans-serif;color:#e4f0ff;letter-spacing:-.14em;transform:rotate(-6deg);transition:transform .45s}
+.adva-v5-svc-brand>strong>span{color:#7dc5ff}
+.adva-v5-svc-brand.coral>strong>span{color:#ef9ba6}
+.adva-v5-svc-brand.graphite>strong>span{color:#9ba7b7}
+.adva-v5-svc-brand-line{position:absolute;bottom:35px;left:20px;right:20px;height:1px;background:#ffffff45}
+.adva-v5-svc-web{background:#132b4a}
+.adva-v5-svc-web-shell{height:79%;width:83%;background:#ebf2f8;color:#132946;border:1px solid #c9e8ffba;border-radius:9px;padding:17px 21px;box-shadow:0 25px 60px #0009;display:flex;flex-direction:column;transition:width .5s,height .5s}
+.adva-v5-svc-web.mobile .adva-v5-svc-web-shell{width:45%;height:95%}
+.adva-v5-svc-web-nav{display:flex;justify-content:space-between;align-items:center}
+.adva-v5-svc-web-nav>b{font-size:15px;letter-spacing:-.08em}
+.adva-v5-svc-web-nav>i{width:40px;height:2px;background:#284c73}
+.adva-v5-svc-web-hero{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.adva-v5-svc-web-hero>span{font-size:7px;font-weight:800;letter-spacing:.08em;color:#6c8aac}
+.adva-v5-svc-web-hero h3{font:800 clamp(19px,3vw,38px)/1.07 Manrope,Arial,sans-serif;letter-spacing:-.078em;margin:8px 0;color:#18375a}
+.adva-v5-svc-web.mobile .adva-v5-svc-web-hero h3{font-size:21px}
+.adva-v5-svc-web-bars{display:flex;gap:5px}
+.adva-v5-svc-web-bars>i{height:4px;flex:1;background:#aac0d9}
+.adva-v5-svc-social{background:radial-gradient(circle at 70% 23%,#2b65a563,transparent 55%),linear-gradient(110deg,#102642,#0b1426)}
+.adva-v5-svc-social-content{height:87%;aspect-ratio:9/16;background:linear-gradient(160deg,#376da3,#0a1c36 70%);border:1px solid #aacdfc8a;border-radius:13px;display:flex;flex-direction:column;justify-content:space-between;padding:20px;box-shadow:0 21px 57px #0006;transition:aspect-ratio .35s}
+.adva-v5-svc-social.linkedin .adva-v5-svc-social-content{aspect-ratio:1}
+.adva-v5-svc-social.tiktok .adva-v5-svc-social-content{background:linear-gradient(160deg,#1e5a64,#0b152d 80%)}
+.adva-v5-svc-social-content>small{font-size:8px;letter-spacing:.1em;color:#c5e4fc}
+.adva-v5-svc-social-content>strong{font:800 clamp(24px,3.3vw,43px)/.97 Manrope,Arial,sans-serif;letter-spacing:-.07em;color:#edf9ff}
+.adva-v5-svc-social-content>i{height:1px;background:#b6eaff86}
+.adva-v5-svc-social-outline{position:absolute;inset:27px;border:1px solid #7aafdc32;pointer-events:none}
+.adva-v5-svc-marketing{padding:31px 36px;background:linear-gradient(140deg,#0e3059,#0e182a);display:flex;align-items:flex-start;flex-direction:column;justify-content:center}
+.adva-v5-svc-marketing>span{font-size:9px;letter-spacing:.14em;color:#a5cbe8;font-weight:800}
+.adva-v5-svc-marketing h3{font:800 clamp(32px,4.4vw,56px)/1.08 Manrope,Arial,sans-serif;letter-spacing:-.06em;margin:23px 0 12px}
+.adva-v5-svc-marketing p{max-width:380px;color:#a8c0d9;font-size:12px;line-height:1.8;position:relative;z-index:2}
+.adva-v5-svc-marketing-marks{position:absolute;right:-35px;top:0;display:grid;gap:14px;transform:rotate(-25deg)}
+.adva-v5-svc-marketing-marks i{height:36px;width:260px;background:#4d97df22}
+.adva-v5-svc-events{background:radial-gradient(ellipse at 53% 38%,#3579b87c,transparent 60%),#09162b;padding:33px 34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end}
+.adva-v5-svc-events>span{position:absolute;top:18px;left:20px;font-size:9px;color:#b1d3ea;letter-spacing:.12em;font-weight:800}
+.adva-v5-svc-event-circle{position:absolute;width:240px;height:240px;border:1px solid #aad8fa7f;left:50%;top:43%;transform:translate(-50%,-50%) scaleX(.7);border-radius:50%;box-shadow:0 0 0 27px #86c7f71a}
+.adva-v5-svc-events h3{position:relative;font:800 clamp(27px,3.5vw,45px) Manrope,Arial,sans-serif;letter-spacing:-.066em;margin:0 0 9px}
+.adva-v5-svc-events p{position:relative;font-size:11px;line-height:1.7;color:#c4d6e6;max-width:350px;margin:0}
+.adva-v5-svc-staff{background:radial-gradient(circle at 51% 36%,#2a87a84d,transparent 52%),#0c202a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:11px}
+.adva-v5-svc-staff-number{font:800 113px/1 Manrope,Arial,sans-serif;letter-spacing:-.1em;color:#dcf9ff}
+.adva-v5-svc-staff>span{font:800 10px Manrope,Arial,sans-serif;letter-spacing:.18em;color:#9fcbd4}
+.adva-v5-svc-staff p{font-size:11px;color:#8eb2bf;margin:6px 0 0}
+.adva-v5-svc-role-select button{display:flex;align-items:center;gap:8px}
+.adva-v5-svc-role-select button svg{width:13px;height:13px}
+@media(max-width:730px){
+ .adva-v5-svc-stage{height:265px}
+ .adva-v5-svc-intro{padding:14px}
+ .adva-v5-svc-intro>p{max-width:180px}
+ .adva-v5-svc-buttons,.adva-v5-svc-role-select{padding:14px}
+ .adva-v5-svc-scope{padding:14px}
+ .adva-v5-svc-film-window.vertical{width:37%}
+}
+@media(prefers-reduced-motion:reduce){
+ .adva-v5-service-experience *{transition:none!important}
+}

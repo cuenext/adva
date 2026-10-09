@@ -14,7 +14,7 @@ const suggestions=[
  {title:"Event staffing",keys:["staff","staffing","hostess","promoter","ushers","event crew"],service:"event-staffing",project:"Event staffing",desc:"The right people to support the experience on site."}
 ];
 const prompts=["I need creative coverage for a three-day exhibition","We need to rebrand and launch a new website","We want to make content people actually watch","I'm planning a brand campaign in Abu Dhabi"];
-function match(q){const t=q.toLowerCase();const items=suggestions.map((s,i)=>({...s,score:s.keys.reduce((n,k)=>n+(t.includes(k)?k.length>8?4:3:0),0)-i*.00001})).sort((a,b)=>b.score-a.score);return items[0].score>0?items.slice(0,2):[suggestions[1],suggestions[5]]}
+function match(q){const t=q.toLowerCase().replace(/[^a-z0-9 ]/g," ");const items=suggestions.map((s,i)=>({...s,score:s.keys.reduce((n,k)=>n+(t.includes(k)?(k.length>8?4:3):0),0)-i*.00001})).sort((a,b)=>b.score-a.score);return items[0].score>0?items.filter(s=>s.score>0).slice(0,4):[suggestions[1],suggestions[5]]}
 function Arrow(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6"/></svg>}
 function Up(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
 export default function CinematicHero(){
@@ -32,6 +32,10 @@ export default function CinematicHero(){
  },[]);
  useEffect(()=>{if(!open)return;const onKey=e=>{if(e.key==="Escape")setOpen(false)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[open]);
  useEffect(()=>{if(open&&chatBox.current)chatBox.current.scrollTop=chatBox.current.scrollHeight},[messages,open]);
+ function saveBriefIdea(){
+  if(typeof window==="undefined"||!submitted)return;
+  try{window.sessionStorage.setItem("adva_brief_seed_v1",JSON.stringify({idea:submitted,services:matches.map(m=>m.service),at:Date.now()}))}catch{}
+ }
  function submit(e){e.preventDefault();const v=query.trim();if(!v){input.current?.focus();return}setSubmitted(v)}
  async function send(e){
   e.preventDefault();
@@ -73,13 +77,13 @@ export default function CinematicHero(){
               <button type="submit" aria-label="Explore your project"><span>Explore</span><Arrow/></button>
             </form>
             <div className="cinema-examples"><button type="button" onClick={()=>{setQuery("I need event coverage at an exhibition");input.current?.focus()}}>Exhibition coverage <Up/></button><button type="button" onClick={()=>{setQuery("I want to rebrand and build a website");input.current?.focus()}}>Brand & web <Up/></button><button type="button" onClick={()=>{setQuery("I need creative social content");input.current?.focus()}}>Social content <Up/></button></div>
-            <div className="cinema-ai-nudge"><span className="ai-live-dot"/>Need more help? <button type="button" onClick={()=>setOpen(true)}>Talk to ADVA AI <Up/></button></div>
+            <div className="cinema-ai-nudge"><span className="ai-live-dot"/>Questions? <button type="button" onClick={()=>setOpen(true)}>Talk to ADVA AI <Up/></button></div>
           </div>
         </div>
         <div className="cinema-scene" aria-hidden="true"><span className="cinema-outline">A</span><span className="cinema-ring outer"/><span className="cinema-ring inner"/><div ref={orb} className="cinema-orb"><div className="cinema-orb-inner"><b>ADVA<span>.</span></b></div></div><div className="cinema-cross-h"/><div className="cinema-cross-v"/></div>
       </div>
-      {submitted&&<div className="cinema-results" role="status" aria-live="polite"><div className="cinema-results-title"><div><span>YOUR IDEA, EXPLORED</span><h2>Here's where we'd begin.</h2></div><button onClick={()=>setSubmitted("")}>Reset</button></div><div className="cinema-result-list">{matches.map((m,i)=><a href={"/services/"+m.service} key={m.title}><small>{"0"+(i+1)}</small><strong>{m.title}</strong><p>{m.desc}</p><span>Explore {m.project} <Up/></span></a>)}</div><div className="cinema-results-actions"><a href={"mailto:inquiries@advaae.com?subject="+encodeURIComponent("ADVA project inquiry")+"&body="+encoded}>Send your brief <Up/></a><button type="button" onClick={()=>setOpen(true)}>Need more help? Talk to ADVA AI <Up/></button></div></div>}
-      <div className="cinema-foot"><a href="#services">Explore our work <span className="cinema-foot-rule"/></a></div>
+      {submitted&&<div className="cinema-results" role="status" aria-live="polite"><div className="cinema-results-title"><div><span>YOUR PROJECT</span><h2>Services that fit.</h2></div><button onClick={()=>setSubmitted("")}>Reset</button></div><div className="cinema-result-list">{matches.map((m,i)=><a href={"/services/"+m.service} key={m.title}><small>{"0"+(i+1)}</small><strong>{m.title}</strong><p>{m.desc}</p><span>Explore {m.project} <Up/></span></a>)}</div><div className="cinema-results-actions"><a className="cinema-results-primary" href={"/brief?services="+matches.map(m=>m.service).join(",")+"&from=search"} onClick={saveBriefIdea}>Continue with these services <Up/></a><button type="button" onClick={()=>setOpen(true)}>Ask ADVA AI <Up/></button></div></div>}
+      <div className="cinema-foot"><a href="#services">Scroll to services <span className="cinema-foot-rule"/></a></div>
     </div>
   </section>
   <button className="ai-orb-button" type="button" onClick={()=>setOpen(true)} aria-label="Open ADVA AI guided assistant"><span className="ai-orb-mini"/> ADVA AI <Up/></button>

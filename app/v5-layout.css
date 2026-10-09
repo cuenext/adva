@@ -1,0 +1,67 @@
+/* ADVA V5 — final editorial spacing, lab landing and enquiry handoff */
+.website .adva-v5-gallery .container,.website .adva-edit-room .container{max-width:1350px}
+.adva-v5-gallery .container{position:relative;z-index:1}
+.website .adva-expertise{padding:107px 0 96px}
+.website .adva-exp-intro{margin-bottom:36px}
+.website .adva-exp-intro h2{font:800 clamp(44px,5.6vw,72px)/1.07 Manrope,Arial,sans-serif;letter-spacing:-.074em;margin:18px 0 0}
+.website .adva-exp-row{min-height:72px}
+.website .adva-exp-name{font-size:clamp(20px,2.2vw,27px)}
+.website .adva-exp-preview{border-radius:12px}
+.website .adva-home-approach{padding:105px 0;background:#0e141d}
+.website .adva-home-approach-head h2{font-size:clamp(43px,5.6vw,70px)}
+.website .adva-home-about{padding:110px 0}
+.website .adva-home-about-art{border-radius:11px}
+.website .adva-home-about-copy h2{font-size:clamp(41px,4.8vw,64px)}
+.website .adva-home-contact{padding:112px 0 123px}
+.website .adva-home-contact h2{font-size:clamp(52px,8.6vw,108px)}
+.website .adva-home-contact p{font-size:15px}
+.website .adva-service-hero-grid{align-items:center}
+.website .adva-service-hero-copy h1{font-size:clamp(48px,6vw,91px)}
+.website .adva-service-statement{font-size:clamp(19px,2.4vw,29px);font-weight:730}
+.website .adva-service-hero{padding:43px 0 88px}
+.website .adva-service-lead{font-size:14px;line-height:1.85}
+.website .adva-service-process{background:#101721}
+.website .adva-service-steps article{border-radius:10px}
+.website .adva-service-sticky h2{font-size:clamp(35px,3.8vw,54px)}
+.website .adva-services-intro h1{font-size:clamp(50px,7vw,89px)}
+.website .adva-pathway{border-radius:11px}
+.adva-brief-handoff-note{color:#a3e3ff!important;font-size:11px!important;border-left:2px solid #6cbbed;padding:9px 12px;background:#2e6aa626;max-width:500px}
+.adva-lab-intro{padding:clamp(65px,8vw,110px) 0 90px;min-height:490px;background:radial-gradient(circle at 73% 35%,#225b9a3a,transparent 37%),linear-gradient(127deg,#090c12,#0f1724);position:relative;overflow:hidden;isolation:isolate}
+.adva-lab-intro:before{content:"A";font:800 min(60vw,670px) Manrope,Arial,sans-serif;letter-spacing:-.13em;position:absolute;right:-2%;top:-30%;color:transparent;-webkit-text-stroke:1px #74b6fb17;transform:rotate(-12deg);pointer-events:none;z-index:-1}
+.adva-lab-intro .container{display:flex;align-items:flex-start;flex-direction:column;position:relative}
+.adva-lab-intro h1{font:800 clamp(75px,13vw,169px)/.98 Manrope,Arial,sans-serif;letter-spacing:-.096em;margin:31px 0 24px;color:#f0f7ff}
+.adva-lab-intro h1 em{font-style:normal;color:#8cc3f0}
+.adva-lab-intro p{font:500 clamp(14px,1.5vw,17px)/1.8 Manrope,Arial,sans-serif;color:#a5b9cf;max-width:610px;margin:0 0 26px}
+.adva-lab-intro a{display:flex;gap:15px;align-items:center;color:#b1dafa;font-weight:750;font-size:12px}
+.adva-lab-intro a>span{font-size:17px}
+.adva-lab .adva-v5-gallery{padding-top:90px}
+.adva-lab-close{padding:95px 0 110px;background:radial-gradient(ellipse at 75% 15%,#3379b34d,transparent 49%),#10213d}
+.adva-lab-close h2{font:800 clamp(45px,7vw,91px)/1.04 Manrope,Arial,sans-serif;letter-spacing:-.08em;margin:22px 0 35px}
+.adva-lab-close h2 em{color:#95c8f2;font-style:normal}
+.adva-lab-close a{display:inline-flex;align-items:center;gap:22px;background:#e5f2ff;color:#0b2948;border-radius:45px;padding:15px 19px;font-size:12px;font-weight:800}
+@media(max-width:1050px){
+ .website .adva-exp-body{grid-template-columns:minmax(0,1fr) 350px;gap:24px}
+ .website .adva-service-hero-grid{gap:27px}
+}
+@media(max-width:800px){
+ .website .adva-exp-body{grid-template-columns:1fr;gap:23px}
+ .website .adva-home-about{padding:80px 0}
+ .website .adva-home-about-grid{grid-template-columns:1fr;gap:38px}
+ .website .adva-home-about-art{min-height:300px}
+ .website .adva-service-hero-grid{display:flex;flex-direction:column;align-items:stretch}
+ .adva-v5-service-experience{margin-top:19px}
+}
+@media(max-width:600px){
+ .website .adva-expertise{padding:76px 0 74px}
+ .website .adva-exp-name{font-size:20px}
+ .website .adva-exp-row{min-height:66px}
+ .website .adva-exp-preview{margin-top:11px}
+ .website .adva-service-hero{padding:37px 0 70px}
+ .website .adva-home-approach{padding:77px 0}
+ .website .adva-home-about{padding:77px 0}
+ .website .adva-home-contact{padding:88px 0 100px}
+ .adva-lab-intro{min-height:0;padding:66px 0 76px}
+ .adva-lab-intro h1{font-size:clamp(75px,15vw,108px)}
+ .adva-lab .adva-v5-gallery{padding-top:75px}
+ .adva-lab-close{padding:80px 0}
+}
