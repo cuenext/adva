@@ -22,7 +22,15 @@ export default function SiteNav(){
  const [services,setServices]=useState(false);
  const [menu,setMenu]=useState(false);
  const [showMenuServices,setShowMenuServices]=useState(false);
- const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null),menuBodyRef=useRef(null);
+ const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null),menuBodyRef=useRef(null),serviceCloseTimer=useRef(null);
+ const cancelServiceClose=()=>{
+  if(serviceCloseTimer.current!==null){clearTimeout(serviceCloseTimer.current);serviceCloseTimer.current=null}
+ };
+ const openServiceMenu=()=>{cancelServiceClose();setServices(true)};
+ const scheduleServiceClose=()=>{
+  cancelServiceClose();
+  serviceCloseTimer.current=setTimeout(()=>{serviceCloseTimer.current=null;setServices(false)},220);
+ };
  useEffect(()=>{
   const esc=e=>{
     if(e.key==="Escape"){setMenu(false);setServices(false);}
@@ -36,7 +44,7 @@ export default function SiteNav(){
   const outside=e=>{if(serviceRef.current&&!serviceRef.current.contains(e.target))setServices(false)};
   document.addEventListener("keydown",esc);
   document.addEventListener("pointerdown",outside);
-  return()=>{document.removeEventListener("keydown",esc);document.removeEventListener("pointerdown",outside)};
+  return()=>{document.removeEventListener("keydown",esc);document.removeEventListener("pointerdown",outside);if(serviceCloseTimer.current!==null)clearTimeout(serviceCloseTimer.current)};
  },[menu]);
  useEffect(()=>{
   if(!menu)return;
@@ -48,7 +56,7 @@ export default function SiteNav(){
   const focusFrame=requestAnimationFrame(()=>closeRef.current?.focus());
   return()=>{cancelAnimationFrame(focusFrame);document.body.style.overflow=before;triggerRef.current?.focus()};
  },[menu]);
- const shut=()=>{setMenu(false);setServices(false)};
+ const shut=()=>{cancelServiceClose();setMenu(false);setServices(false)};
  return <>
   <header className="main-header adva-site-nav adva-nav-v4">
     <div className="container header-inner">
@@ -56,9 +64,9 @@ export default function SiteNav(){
         <img className="brand-logo" src="/adva-logo.webp" alt="ADVA" width="116" height="65"/>
       </a>
       <nav className="adva-desktop-nav adva-v4-primary" aria-label="Main site navigation">
-        <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={()=>setServices(true)} onMouseLeave={()=>setServices(false)} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget))setServices(false)}}>
-          <button type="button" aria-expanded={services} aria-controls="adva-v4-services-dropdown" className="adva-v4-service-trigger" onClick={()=>setServices(v=>!v)}>Services <AdvaIcon name="chevron" size={14}/></button>
-          <div id="adva-v4-services-dropdown" className={"adva-v4-services-dropdown"+(services?" is-open":"")} aria-hidden={!services} inert={!services}>
+        <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={openServiceMenu} onMouseLeave={scheduleServiceClose} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget)){cancelServiceClose();setServices(false)}}}>
+          <button type="button" aria-expanded={services} aria-controls="adva-v4-services-dropdown" className="adva-v4-service-trigger" onClick={()=>{cancelServiceClose();setServices(v=>!v)}}>Services <AdvaIcon name="chevron" size={14}/></button>
+          <div id="adva-v4-services-dropdown" className={"adva-v4-services-dropdown"+(services?" is-open":"")} onMouseEnter={cancelServiceClose} aria-hidden={!services} inert={!services}>
             <div className="adva-v4-services-top"><span>What we do</span><a href="/services" onClick={shut} tabIndex={services?0:-1}>All services <AdvaIcon name="up" size={14}/></a></div>
             <ServiceLinks close={shut} expanded={services}/>
           </div>

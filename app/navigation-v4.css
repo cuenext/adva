@@ -10,6 +10,12 @@
 .adva-v4-service-trigger svg{color:#819fbe;transition:transform .2s}
 .adva-v4-service-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
 .adva-nav-v4 .adva-menu-holder{position:static}
+/* Keep the Services hit area continuous from the trigger through the bottom
+   of the sticky header. Otherwise the mouse exits before it reaches the mega-menu. */
+@media(min-width:921px){
+ .adva-nav-v4 .adva-v4-primary{height:100%}
+ .adva-nav-v4 .adva-menu-holder{display:flex;align-items:center;height:100%}
+}
 .adva-v4-services-dropdown{position:absolute;left:0;right:0;top:100%;background:#101720;border-top:1px solid #ffffff20;border-bottom:1px solid #739bcb45;box-shadow:0 30px 65px #000a;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-7px);transition:opacity .24s,visibility .24s,transform .24s}
 .adva-v4-services-dropdown.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:none}
 .adva-v4-services-top{width:min(100% - 70px,1300px);display:flex;align-items:center;justify-content:space-between;gap:20px;margin:auto;padding:24px 0 16px}
