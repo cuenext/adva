@@ -140,7 +140,7 @@
 @media(max-width:920px){
   /* Tablet and mobile keep public quick actions without revealing portal links. */
   .adva-nav-v4 .adva-v4-primary{display:none}
-  .adva-v4-actions .adva-v4-mobile-services{display:inline-flex}
+  .adva-v4-actions .adva-v4-mobile-services{display:inline-flex;align-items:center;min-height:44px}
   .adva-v4-actions .adva-v4-project-action{display:inline-flex}
   .adva-v4-actions{margin-left:auto;gap:16px}
 }
@@ -148,7 +148,7 @@
   .website .adva-nav-v4 .header-inner{gap:9px}
   .adva-v4-actions{gap:10px}
   .adva-v4-actions .adva-v4-project-action{
-    display:inline-flex;min-height:37px;border:1px solid #bbdbf6;
+    display:inline-flex;min-height:44px;border:1px solid #bbdbf6;
     background:#e5f3ff;color:#0e2a49!important;padding:0 11px;
     border-radius:100px;font-size:11px;gap:7px;
   }

@@ -5,10 +5,10 @@ import {SERVICE_GROUPS,servicesInGroup} from "../lib/services";
 import AdvaIcon from "./AdvaIcon";
 
 const destinations=[
- {href:"/brief",label:"Client inquiries",desc:"Tell us what you're building.",number:"01"},
- {href:"/portal",label:"Client portal",desc:"Your projects, plans and content.",number:"02"},
- {href:"/join",label:"Join our team",desc:"For creative people and collaborators.",number:"03"},
- {href:"/network",label:"Freelancer sign in",desc:"Already part of the team?",number:"04"}
+ {href:"/brief",label:"Client Inquiries",desc:"Tell us what you're building.",number:"01"},
+ {href:"/portal",label:"Client Portal",desc:"Your projects, plans and content.",number:"02"},
+ {href:"/join",label:"Join Our Team",desc:"For creative people and collaborators.",number:"03"},
+ {href:"/network",label:"Freelancer Sign In",desc:"Already part of the team?",number:"04"}
 ];
 function ServiceLinks({close,expanded}){
  return <div className="adva-v4-services-inner">
@@ -22,7 +22,7 @@ export default function SiteNav(){
  const [services,setServices]=useState(false);
  const [menu,setMenu]=useState(false);
  const [showMenuServices,setShowMenuServices]=useState(false);
- const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null);
+ const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null),menuBodyRef=useRef(null);
  useEffect(()=>{
   const esc=e=>{
     if(e.key==="Escape"){setMenu(false);setServices(false);}
@@ -43,8 +43,10 @@ export default function SiteNav(){
   const before=document.body.style.overflow;
   document.body.style.overflow="hidden";
   setServices(false);
-  requestAnimationFrame(()=>closeRef.current?.focus());
-  return()=>{document.body.style.overflow=before;triggerRef.current?.focus()};
+  setShowMenuServices(false);
+  if(menuBodyRef.current)menuBodyRef.current.scrollTop=0;
+  const focusFrame=requestAnimationFrame(()=>closeRef.current?.focus());
+  return()=>{cancelAnimationFrame(focusFrame);document.body.style.overflow=before;triggerRef.current?.focus()};
  },[menu]);
  const shut=()=>{setMenu(false);setServices(false)};
  return <>
@@ -61,13 +63,13 @@ export default function SiteNav(){
             <ServiceLinks close={shut} expanded={services}/>
           </div>
         </div>
-        <a href="/#approach" onClick={shut}>How we work</a>
+        <a href="/#approach" onClick={shut}>How We Work</a>
         <a href="/#about" onClick={shut}>About</a>
         <a href="/#contact" onClick={shut}>Contact</a>
       </nav>
       <div className="adva-v4-actions">
         <a className="adva-v4-mobile-services" href="/services">Services</a>
-        <a className="adva-v4-inquiry-link adva-v4-project-action" href="/brief" aria-label="Start a project with ADVA"><span className="adva-v4-action-long">Start a project</span><span className="adva-v4-action-short">Let's talk</span><AdvaIcon name="up" size={15}/></a>
+        <a className="adva-v4-inquiry-link adva-v4-project-action" href="/brief" aria-label="Start a project with ADVA"><span className="adva-v4-action-long">Start a Project</span><span className="adva-v4-action-short">Let's Talk</span><AdvaIcon name="up" size={15}/></a>
         <button ref={triggerRef} type="button" className="adva-v4-hamburger" aria-label="Open ADVA menu" aria-expanded={menu} aria-controls="adva-v4-menu" onClick={()=>setMenu(true)}>
           <span className="adva-v4-hamburger-lines" aria-hidden="true"><i/><i/><i/></span>
           <span className="adva-v4-hamburger-text">Menu</span>
@@ -82,7 +84,7 @@ export default function SiteNav(){
         <a href="/" onClick={shut} aria-label="ADVA home"><img src="/adva-logo.webp" alt="ADVA" width="113" height="65"/></a>
         <button className="adva-v4-dialog-close" ref={closeRef} type="button" onClick={shut}>Close <AdvaIcon name="close" size={18}/></button>
       </div>
-      <div className="adva-v4-dialog-body">
+      <div className="adva-v4-dialog-body" ref={menuBodyRef}>
         <section className="adva-v4-menu-main">
           <p className="adva-v4-menu-eyebrow">Work with ADVA</p>
           <h2>What brings<br/>you here<span>?</span></h2>
@@ -99,8 +101,9 @@ export default function SiteNav(){
             <span>Discover</span>
             <div className="adva-v4-secondary-links">
               <a href="/services" onClick={shut}>Services <AdvaIcon name="up" size={18}/></a>
-              <a href="/#approach" onClick={shut}>How we work <AdvaIcon name="up" size={18}/></a>
+              <a href="/#approach" onClick={shut}>How We Work <AdvaIcon name="up" size={18}/></a>
               <a href="/#about" onClick={shut}>About ADVA <AdvaIcon name="up" size={18}/></a>
+              <a href="/#contact" onClick={shut}>Contact <AdvaIcon name="up" size={18}/></a>
             </div>
             <button type="button" className="adva-v4-expand-services" aria-expanded={showMenuServices} onClick={()=>setShowMenuServices(v=>!v)}>
               Browse services <AdvaIcon name={showMenuServices?"minus":"plus"} size={17}/>
