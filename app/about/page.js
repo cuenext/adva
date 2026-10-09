@@ -50,7 +50,7 @@ export default function About(){
               <span className="adva-about2-line adva-about2-blue">people.</span>
             </h1>
             <div className="adva-about2-hero-aside">
-              <p>Based in Abu Dhabi, ADVA works across film, photography, design, marketing and events. We build the team around the brief.</p>
+              <p>ADVA works across film, photography, design, marketing and live events. We combine creative thinking with practical production, from the first brief to delivery.</p>
               <div className="adva-about2-facts">
                 <div><span>Based in</span><strong>Abu Dhabi, UAE</strong></div>
                 <div><span>Founded</span><strong>January 2026</strong></div>
@@ -81,7 +81,7 @@ export default function About(){
         <div className="container">
           <div className="adva-about2-services-heading">
             <div><span className="adva-about2-section-label">Our capabilities</span><h2 id="about-services-title">Film, digital<br/><em>and events.</em></h2></div>
-            <p>From a single shoot to a long-term content partnership or a multi-day event, we bring together the skills each project needs.</p>
+            <p>We produce films and photography, create brands and digital content, and support exhibitions and live events.</p>
           </div>
           <div className="adva-about2-service-list">
             {disciplines.map((s,i)=><a className="adva-about2-service" href={s.href} key={s.title}>
@@ -100,7 +100,7 @@ export default function About(){
           <div className="adva-about2-team-label"><span className="adva-about2-section-label">The people</span><span className="adva-about2-team-rule"/></div>
           <div className="adva-about2-team-copy">
             <h2 id="about-people-title">People who care<br/>about the <em>details.</em></h2>
-            <p>ADVA brings together filmmakers, photographers, editors, designers, marketers and event professionals. Different backgrounds and skills, brought together by the work.</p>
+            <p>We work with filmmakers, photographers, editors, designers, marketers and event professionals. Each brings specialist skills and a genuine interest in making work they're proud of.</p>
             <p>We value people who take pride in their craft, ask good questions and follow through. For us, how a project is handled matters just as much as how it looks when it is finished.</p>
             <div className="adva-about2-expertise" aria-label="Creative disciplines">
               <span>Production</span><span>Post-production</span><span>Design</span><span>Digital</span><span>Events</span>
