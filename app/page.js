@@ -2,8 +2,6 @@ import CinematicHero from "../components/CinematicHero";
 import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import ServicesShowcase from "../components/ServicesShowcase";
-import CreativeGallery from "../components/CreativeGallery";
-import EditRoom from "../components/EditRoom";
 import {AdvaMark} from "../components/AdvaIcon";
 
 export default function Home(){
@@ -12,8 +10,6 @@ export default function Home(){
   <main>
    <CinematicHero/>
    <ServicesShowcase/>
-   <CreativeGallery/>
-   <EditRoom/>
    <section className="adva-home-approach" id="approach"><div className="container">
     <div className="adva-home-approach-head"><div><span className="adva-small-eyebrow"><i/> HOW WE WORK</span><h2>From brief<br/><em>to delivery.</em></h2></div><p>A clear scope, a production plan and work made for the right audience.</p></div>
     <div className="adva-home-process">{[["01","The brief","Tell us the goal, audience, deadline and what’s already in place."],["02","The plan","We set the approach, team, deliverables and production schedule."],["03","The work","We create, refine and prepare everything for its intended use."]].map(([number,title,description])=><article key={number}><span>{number} /</span><h3>{title}</h3><p>{description}</p></article>)}</div>

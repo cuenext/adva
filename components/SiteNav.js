@@ -61,7 +61,7 @@ export default function SiteNav(){
             <ServiceLinks close={shut} expanded={services}/>
           </div>
         </div>
-        <a href="/#work" onClick={shut}>Creative work</a>
+        <a href="/#approach" onClick={shut}>How we work</a>
         <a href="/#about" onClick={shut}>About</a>
       </nav>
       <div className="adva-v4-actions">
@@ -97,8 +97,7 @@ export default function SiteNav(){
             <span>Discover</span>
             <div className="adva-v4-secondary-links">
               <a href="/services" onClick={shut}>Services <AdvaIcon name="up" size={18}/></a>
-              <a href="/#work" onClick={shut}>Creative work <AdvaIcon name="up" size={18}/></a>
-              <a href="/lab" onClick={shut}>ADVA Lab <AdvaIcon name="up" size={18}/></a>
+              <a href="/#approach" onClick={shut}>How we work <AdvaIcon name="up" size={18}/></a>
               <a href="/#about" onClick={shut}>About ADVA <AdvaIcon name="up" size={18}/></a>
             </div>
             <button type="button" className="adva-v4-expand-services" aria-expanded={showMenuServices} onClick={()=>setShowMenuServices(v=>!v)}>

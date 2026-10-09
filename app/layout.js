@@ -7,7 +7,6 @@ import "./experience.css";
 import "./spotlight.css";
 import "./activation.css";
 import "./refinement-v4.css";
-import "./v5-studio.css";
 import "./v5-services.css";
 import "./v5-layout.css";
 import CursorSpotlight from "../components/CursorSpotlight";
