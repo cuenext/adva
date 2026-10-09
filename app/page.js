@@ -2,7 +2,6 @@ import CinematicHero from "../components/CinematicHero";
 import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import ServicesShowcase from "../components/ServicesShowcase";
-import {AdvaMark} from "../components/AdvaIcon";
 
 export default function Home(){
  return <div className="website adva-home" id="top">
