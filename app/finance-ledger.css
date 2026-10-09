@@ -1,0 +1,46 @@
+/* ADVA HQ — multi-month finance and private receipt ledger */
+.aws-finance-alltime{background:linear-gradient(120deg,#15233a 0%,#101922 100%);border:1px solid #6daaff32;border-radius:12px;padding:21px 23px;margin:0 0 19px}
+.aws-finance-alltime>span{display:block;text-transform:uppercase;font-size:9px;font-weight:800;letter-spacing:.15em;color:#8cb8e8;margin-bottom:15px}
+.aws-finance-alltime-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.aws-finance-alltime-grid>div{display:flex;flex-direction:column;gap:7px}
+.aws-finance-alltime-grid small{font-size:11px;color:#91aac2}
+.aws-finance-alltime-grid strong{font-size:clamp(16px,2vw,24px);font-weight:800;letter-spacing:-.035em;color:#ecf6ff;font-variant-numeric:tabular-nums}
+.aws-multimonth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:11px;padding:17px}
+.aws-multimonth-grid article{display:flex;flex-direction:column;gap:8px;border-radius:9px;background:#142237;border:1px solid #ffffff1f;padding:16px;min-width:0}
+.aws-multimonth-grid article>strong{font-size:13px;color:#f0f6ff;font-weight:800}
+.aws-multimonth-grid article>span{font-size:11px;color:#b9cce1;line-height:1.65}
+.aws-multimonth-grid article>small{font-size:10px;color:#86a7c9}
+.aws-multimonth-grid article>div{display:flex;flex-direction:column;gap:5px;padding-top:9px;border-top:1px solid #ffffff1b}
+.aws-multimonth-grid article b{font-size:11px;color:#e0f0ff;font-weight:700}
+.aws-multimonth-section>.aws-small-note{padding:21px}
+.aws-finance-paid-readonly{display:flex;flex-direction:column;gap:8px;padding:12px 14px;background:#ffffff08;border:1px solid #ffffff20;border-radius:8px}
+.aws-finance-paid-readonly span{font-size:10px;color:#8fb3d8}
+.aws-finance-paid-readonly strong{font-size:17px;color:#eaf4ff}
+.aws-finance-paid-readonly small{font-size:10px;color:#92adc5;line-height:1.5}
+.aws-receipt-modal{width:min(100%,640px)}
+.aws-receipt-allocate{border:1px solid #ffffff24;border-radius:10px;padding:14px;background:#0c1623;max-height:325px;overflow:auto}
+.aws-receipt-allocate>strong{display:block;font-size:11px;letter-spacing:.015em;margin:0 0 9px;color:#d6eaff}
+.aws-receipt-allocation-row{display:grid!important;grid-template-columns:minmax(0,1fr) 110px;gap:12px;align-items:center!important;border-top:1px solid #ffffff16;padding:12px 0}
+.aws-receipt-allocation-row>span{display:flex;flex-direction:column;gap:5px;min-width:0}
+.aws-receipt-allocation-row b{font-size:11px;line-height:1.55;color:#e7f4ff;font-weight:700;overflow-wrap:anywhere}
+.aws-receipt-allocation-row small{font-size:10px;color:#9ab7d8}
+.aws-receipt-allocation-row input{width:100%;min-width:0;text-align:right;font-variant-numeric:tabular-nums}
+.aws-receipts-panel>.aws-small-note{padding:18px 23px 8px}
+.aws-receipt-list{display:grid;gap:12px;padding:16px}
+.aws-receipt-record{background:linear-gradient(115deg,#152234,#121e2b);border:1px solid #ffffff1c;border-radius:10px;padding:18px;min-width:0}
+.aws-receipt-record.is-void{opacity:.63}
+.aws-receipt-record-top{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.aws-receipt-record-top>div{display:flex;flex-direction:column;gap:6px;min-width:0}
+.aws-receipt-record-top strong{font-size:13px;font-weight:800;color:#eff7ff;line-height:1.6;overflow-wrap:anywhere}
+.aws-receipt-record-top small{font-size:10px;color:#9bb4cf}
+.aws-receipt-record-top>b{white-space:nowrap;color:#e3f5ff;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.aws-receipt-line-items{margin-top:15px;border-top:1px solid #ffffff1b;border-bottom:1px solid #ffffff16;padding:11px 0}
+.aws-receipt-line-items>div{display:flex;justify-content:space-between;gap:20px;padding:6px 0}
+.aws-receipt-line-items span{font-size:11px;line-height:1.5;color:#b8cbe1;min-width:0}
+.aws-receipt-line-items strong{white-space:nowrap;color:#e6f2ff;font-size:11px;font-variant-numeric:tabular-nums}
+.aws-receipt-record>p{margin:11px 0 0;color:#9ab2cd;font-size:11px;line-height:1.7}
+.aws-receipt-record-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:14px}
+.aws-receipt-record-footer>span{font-size:10px;color:#91b2d5}
+.aws-receipt-record-footer button{margin:0;color:#a9b9cc}
+.aws-receipt-voided{color:#f1aeb8!important}
+@media(max-width:680px){.aws-finance-alltime-grid{grid-template-columns:1fr;gap:13px}.aws-finance-alltime-grid>div{flex-direction:row;align-items:center;justify-content:space-between}.aws-finance-alltime-grid strong{font-size:18px}.aws-receipt-allocation-row{grid-template-columns:minmax(0,1fr) 90px}.aws-receipt-record-top{flex-wrap:wrap}.aws-receipt-record-top>b{font-size:15px}}
