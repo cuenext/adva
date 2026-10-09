@@ -2,7 +2,7 @@
 import {useState} from "react";
 import AdvaIcon,{AdvaMark} from "./AdvaIcon";
 export default function WorkspaceLogin({db,mode="hq",redirect="/hq"}){
- const [email,setEmail]=useState(""),[stage,setStage]=useState("email"),[token,setToken]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[message,setMessage]=useState(""),[busy,setBusy]=useState(false),[isAdult,setAdult]=useState(false);
+ const [email,setEmail]=useState(""),[stage,setStage]=useState(mode==="hq"?"password":"email"),[token,setToken]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[message,setMessage]=useState(""),[busy,setBusy]=useState(false),[isAdult,setAdult]=useState(false);
  const join=mode==="join";
  const intro=mode==="portal"?{title:"Your work, all in one place.",subtitle:"Project timelines, approved content and performance — when ADVA has linked your verified account."}:join?{title:"Create your space in ADVA.",subtitle:"Join our creative network, build your portfolio and apply for opportunities once our NDA is approved."}:{title:"Welcome back to ADVA.",subtitle:"One secure login. The projects and tools you are permitted to access."};
  async function send(e){
