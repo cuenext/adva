@@ -32,39 +32,45 @@
 }
 /* A single entrance fade on the field; slow drift runs independently on each SVG.
    Compositor-friendly transforms avoid 145 individual animated particles. */
+/* Layered, continuous star drift: visible within seconds without distracting loops. */
 .website .cinema-cosmos-stars-field{
  position:absolute;inset:0;pointer-events:none;
  mask-image:linear-gradient(90deg,transparent 17%,#0004 42%,#000 79%,#000b 100%);
  animation:adva-cosmos-arrive 1.35s ease-out both;
 }
 .website .cinema-cosmos-stars{
- position:absolute;inset:-13px;width:calc(100% + 26px);height:calc(100% + 26px);
- pointer-events:none;
+ position:absolute;inset:-48px;width:calc(100% + 96px);height:calc(100% + 96px);
+ pointer-events:none;will-change:transform;
 }
 .website .cinema-cosmos-stars-1{
- opacity:.62;
- animation:adva-star-drift-1 36s ease-in-out infinite alternate;
+ opacity:.72;
+ animation:adva-star-drift-1 22s linear infinite alternate;
 }
 .website .cinema-cosmos-stars-2{
- opacity:.58;
- animation:adva-star-drift-2 51s ease-in-out infinite alternate;
+ opacity:.62;
+ animation:adva-star-drift-2 27s linear infinite alternate;
 }
 .website .cinema-cosmos-stars-3{
- opacity:.60;
- animation:adva-star-drift-3 67s ease-in-out infinite alternate;
+ opacity:.64;
+ animation:adva-star-drift-3 32s linear infinite alternate;
 }
 @keyframes adva-star-drift-1{
- from{transform:translate3d(-4px,-2px,0);opacity:.60}
- to{transform:translate3d(8px,5px,0);opacity:.69}
+ from{transform:translate3d(-20px,-8px,0);opacity:.68}
+ to{transform:translate3d(24px,12px,0);opacity:.79}
 }
 @keyframes adva-star-drift-2{
- from{transform:translate3d(5px,-4px,0);opacity:.55}
- to{transform:translate3d(-7px,5px,0);opacity:.64}
+ from{transform:translate3d(17px,-14px,0);opacity:.60}
+ to{transform:translate3d(-22px,17px,0);opacity:.70}
 }
 @keyframes adva-star-drift-3{
- from{transform:translate3d(-3px,4px,0);opacity:.57}
- to{transform:translate3d(6px,-6px,0);opacity:.65}
+ from{transform:translate3d(-12px,17px,0);opacity:.61}
+ to{transform:translate3d(19px,-21px,0);opacity:.71}
 }
+/* A handful of independent twinkles make the movement apparent even at rest. */
+.website .cinema-cosmos-stars circle:nth-child(17n + 2){animation:adva-star-twinkle-a 7.5s ease-in-out infinite alternate}
+.website .cinema-cosmos-stars circle:nth-child(23n + 9){animation:adva-star-twinkle-b 9.4s ease-in-out infinite alternate-reverse}
+@keyframes adva-star-twinkle-a{from{opacity:.15}to{opacity:.82}}
+@keyframes adva-star-twinkle-b{from{opacity:.08}to{opacity:.72}}
 .website .cinema-cosmos-vignette{
  position:absolute;inset:0;
  background:linear-gradient(90deg,#060b13ed 0%,#060b1384 37%,transparent 72%),
@@ -77,14 +83,14 @@
  padding-top:54px;padding-bottom:30px;
 }
 .website .cinema-cosmos-hero .cinema-main{
- display:flex;flex:1;justify-content:flex-start;align-items:center;width:100%;
+ display:flex;flex:1;justify-content:center;align-items:center;width:100%;
 }
 .website .cinema-cosmos-hero .cinema-story{
- position:relative;z-index:2;width:100%;max-width:760px;padding:0;
+ position:relative;z-index:2;width:100%;max-width:900px;margin-inline:auto;padding:0;text-align:center;
 }
 .website .cinema-cosmos-hero .cinema-title{
  color:#f2f5fb;font-size:clamp(70px,7.85vw,126px);
- line-height:.97;letter-spacing:-.091em;max-width:770px;text-shadow:none;
+ line-height:.97;letter-spacing:-.091em;max-width:900px;margin-inline:auto;text-shadow:none;
 }
 .website .cinema-cosmos-hero .cinema-ink-gradient{
  background:linear-gradient(102deg,#e3f2ff 0%,#92c8f5 48%,#4e91d8 100%);
@@ -94,23 +100,24 @@
 .website .cinema-cosmos-hero .cinema-q{color:#a5d9ff;-webkit-text-fill-color:#a5d9ff}
 .website .cinema-cosmos-hero .cinema-intro{
  max-width:540px;color:#bacbdc;font-size:clamp(15px,1.25vw,17px);
- line-height:1.76;margin:32px 0 31px;
+ line-height:1.76;margin:32px auto 31px;
 }
-.website .cinema-cosmos-hero .cinema-search-group{max-width:650px}
+.website .cinema-cosmos-hero .cinema-search-group{max-width:680px;margin-inline:auto}
 .website .cinema-cosmos-hero .cinema-search{
  min-height:76px;background:#0d1828de;border:1px solid #88b8e359;
  border-radius:12px;box-shadow:0 22px 60px #0008;
  backdrop-filter:blur(14px);
 }
 .website .cinema-cosmos-hero .cinema-search:hover{border-color:#7fbbea8a}
+.website .cinema-cosmos-hero .cinema-examples{justify-content:center}
 .website .cinema-cosmos-hero .cinema-examples button{
  color:#b3c5d6;background:#0b1725b8;border-color:#9bc3e526;
 }
 .website .cinema-cosmos-hero .cinema-examples button:hover{background:#20384f;color:#fff}
-.website .cinema-cosmos-hero .cinema-ai-nudge{color:#91a9bf}
+.website .cinema-cosmos-hero .cinema-ai-nudge{color:#91a9bf;justify-content:center}
 .website .cinema-cosmos-hero .cinema-foot{
  width:100%;border-color:#ffffff24;margin-top:10px;padding-top:20px;
- position:relative;z-index:1;
+ position:relative;z-index:1;justify-content:center;
 }
 .website .cinema-cosmos-hero .cinema-foot a{color:#c2d5e7}
 @keyframes adva-cosmos-arrive{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
@@ -126,7 +133,7 @@
 .website .adva-about-teaser-body a:hover{gap:28px;color:#fff}
 
 @media(max-width:1050px){
- .website .cinema-cosmos-hero .cinema-story{max-width:670px}
+ .website .cinema-cosmos-hero .cinema-story{max-width:min(100%,810px)}
  .website .cinema-cosmos-horizon{right:-84%;opacity:.65}
  .website .adva-about-teaser-grid{gap:65px}
 }
@@ -136,12 +143,12 @@
   min-height:calc(100svh - 70px);padding-top:65px;padding-bottom:26px;gap:23px;
  }
  .website .cinema-cosmos-hero .cinema-main{align-items:center}
- .website .cinema-cosmos-hero .cinema-story{max-width:none}
+ .website .cinema-cosmos-hero .cinema-story{max-width:none;text-align:center}
  .website .cinema-cosmos-hero .cinema-title{
   font-size:clamp(49px,10.4vw,80px);line-height:.99;letter-spacing:-.087em;
  }
  .website .cinema-cosmos-hero .cinema-intro{
-  font-size:14px;line-height:1.7;margin:21px 0 25px;max-width:500px;
+  font-size:14px;line-height:1.7;margin:21px auto 25px;max-width:500px;
  }
  .website .cinema-cosmos-hero .cinema-search{min-height:66px}
  .website .cinema-cosmos-stars-field{opacity:.78;mask-image:linear-gradient(90deg,transparent 3%,#0009 65%,#000 100%)}
@@ -160,8 +167,9 @@
 @media(prefers-reduced-motion:reduce){
  .website .cinema-cosmos-stars-field{animation:none!important;opacity:1}
  .website .cinema-cosmos-stars{animation:none!important;transform:none!important}
- .website .cinema-cosmos-stars-1{opacity:.62}
- .website .cinema-cosmos-stars-2{opacity:.58}
- .website .cinema-cosmos-stars-3{opacity:.60}
+ .website .cinema-cosmos-stars-1{opacity:.72}
+ .website .cinema-cosmos-stars-2{opacity:.62}
+ .website .cinema-cosmos-stars-3{opacity:.64}
+ .website .cinema-cosmos-stars circle{animation:none!important}
  .website .adva-about-teaser-body a{transition:none!important}
 }
