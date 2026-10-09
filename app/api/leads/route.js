@@ -12,7 +12,7 @@ export function GET(){
  return respond({available:isReady()});
 }
 function validOrigin(request){
- try{const origin=request.headers.get("origin");return !origin||new URL(origin).origin===new URL(request.url).origin;}catch{return false;}
+ try{const origin=request.headers.get("origin");return Boolean(origin) && new URL(origin).origin===new URL(request.url).origin;}catch{return false;}
 }
 function clean(value,max=120){return typeof value==="string"?value.trim().slice(0,max):"";}
 

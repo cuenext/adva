@@ -13,7 +13,7 @@ function respond(body,status=200){
 }
 function isSameOrigin(request){
  const origin=request.headers.get("origin");
- try{return !origin || new URL(origin).origin===new URL(request.url).origin;}catch{return false;}
+ try{return Boolean(origin) && new URL(origin).origin===new URL(request.url).origin;}catch{return false;}
 }
 export function GET(){
  return respond({available:isReady(),mode:isReady()?"generative":"guided",model:isReady()?model:null});
