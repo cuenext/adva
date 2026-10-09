@@ -22,7 +22,7 @@ function StudyVisual({id}){
 export default function CreativeGallery({full=false}){
  const [filter,setFilter]=useState("all"),[selected,setSelected]=useState(null);
  const closeRef=useRef(null),returnFocus=useRef(null);
- const visible=studies.filter(s=>!full?["frame","identity","stage","interface"].includes(s.id):filter==="all"||s.category===filter);
+ const visible=studies.filter(s=>filter==="all"||s.category===filter);
  useEffect(()=>{
   if(!selected)return;
   const overflow=document.body.style.overflow;document.body.style.overflow="hidden";
@@ -35,9 +35,9 @@ export default function CreativeGallery({full=false}){
   <div className="container">
    <div className="adva-v5-section-head">
     <div><span className="adva-v5-kicker">{full?"ADVA LAB":"THE CREATIVE GALLERY"}</span><h2 id="adva-gallery-heading">{full?<>Ideas, tested<br/><em>in public.</em></>:<>A closer<br/><em>look.</em></>}</h2></div>
-    <p>{full?"Experiments in motion, identity, digital and physical space. Uncommissioned studies created to explore new ideas.":"Creative disciplines, explored through original design studies. Real production work will be added with publication approval."}</p>
+    <p>{full?"Experiments in motion, identity, digital and physical space. Uncommissioned studies created to explore new ideas.":"Interactive studies in motion, identity, digital and live experiences. Original concepts, not client commissions."}</p>
    </div>
-   {full&&<div className="adva-gallery-filterbar" role="group" aria-label="Filter concept gallery">{categories.map(([id,name])=><button key={id} type="button" className={id===filter?"active":""} aria-pressed={id===filter} onClick={()=>setFilter(id)}>{name}</button>)}</div>}
+   <div className="adva-gallery-filterbar" role="group" aria-label="Filter concept gallery">{categories.map(([id,name])=><button key={id} type="button" className={id===filter?"active":""} aria-pressed={id===filter} onClick={()=>setFilter(id)}>{name}</button>)}</div>
    <div className="adva-gallery-grid">
     {visible.map((study,i)=><button key={study.id} type="button" className={"adva-gallery-card "+study.id} onClick={e=>open(study,e)} aria-label={"Open "+study.name+" concept study"}>
       <div className="adva-gallery-art"><StudyVisual id={study.id}/><div className="adva-gallery-art-overlay"><span>VIEW STUDY</span><AdvaIcon name="up" size={19}/></div></div>
