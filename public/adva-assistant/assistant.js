@@ -19,30 +19,35 @@
 .adva-orb-art .adva-orb-eye{position:absolute;z-index:2;transform-origin:center;}
 .adva-orb-art .adva-orb-eye--left{left:14.583333%;top:37.760417%;width:23.958333%;height:18.229167%;}
 .adva-orb-art .adva-orb-eye--right{left:45.3125%;top:38.541667%;width:24.869792%;height:17.838542%;}
-.adva-orb-art .adva-orb-eye img{inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0);will-change:transform;opacity:calc(1 - var(--eye-round,0));}
+.adva-orb-art .adva-orb-eye img{inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0);will-change:transform;opacity:var(--arch-opacity,1);}
 .adva-orb-art .adva-orb-mouth{position:absolute;left:28.385417%;top:55.598958%;width:23.567708%;height:12.239583%;z-index:3;}
 .adva-orb-art .adva-orb-mouth img{inset:0;width:100%;height:100%;object-fit:fill;}
 
 /* Expressive state: replace the LED eye arches with glowing full O-shaped eyes. */
+/* Refined surprise eyes: translucent blue whites, irises, pupils and tiny reflections. */
 .adva-orb-art .adva-orb-round-eye{
- position:absolute;left:50%;top:49%;width:80%;aspect-ratio:1;border-radius:50%;z-index:3;
- transform:translate(-50%,-50%) scale(calc(.58 + var(--eye-round,0)*.42));
- opacity:var(--eye-round,0);transform-origin:center;
- background:radial-gradient(circle at 32% 24%,#edffff 0%,#82efff 24%,#29c3f8 55%,#0765c5 82%,#002d5d 100%);
- border:1px solid rgba(155,246,255,.90);
- box-shadow:0 0 7px 2px rgba(65,209,255,.67),0 0 19px rgba(0,145,255,.64),inset 0 0 10px rgba(6,66,143,.35);
+ position:absolute;left:50%;top:50%;width:74%;aspect-ratio:1;z-index:3;
+ border-radius:49% 49% 45% 45%;
+ opacity:clamp(0,calc((var(--eye-round,0) - .12)*2.8),1);
+ transform:translate(-50%,-50%) scale(calc(.79 + var(--eye-round,0)*.21));
+ transform-origin:center;
+ background:radial-gradient(circle at 34% 25%,#e6fbff 0%,#b2ecfb 27%,#78d4f2 57%,#2e93c7 84%,#0b508c 100%);
+ border:1px solid rgba(156,239,255,.58);
+ box-shadow:0 0 10px rgba(13,158,250,.29),inset 0 -2px 5px rgba(0,57,114,.37);
  pointer-events:none;will-change:opacity,transform;
 }
-.adva-orb-art .adva-orb-round-eye::after{
- content:"";position:absolute;inset:11%;border-radius:50%;
- background-image:radial-gradient(circle,#f5ffff 0 20%,#abf5ff 32%,transparent 58%);
- background-size:10% 10%;
- mask-image:radial-gradient(circle at center,#000 0 75%,transparent 98%);
- opacity:.88;filter:drop-shadow(0 0 2px #b7faff);
-}
 .adva-orb-art .adva-orb-round-eye::before{
- content:"";position:absolute;inset:-8%;border-radius:50%;
- border:1px solid rgba(74,205,255,.62);filter:blur(1px);
+ content:'';position:absolute;width:58%;height:58%;left:50%;top:52%;z-index:2;
+ border-radius:50%;
+ transform:translate(calc(-50% + var(--iris-x,0px)),calc(-50% + var(--iris-y,0px)));
+ background:
+  radial-gradient(circle at 32% 23%,rgba(246,255,255,.98) 0 9%,transparent 11%),
+  radial-gradient(circle at 52% 51%,#06132c 0%,#071a36 30%,#074c83 33%,#047fbf 55%,#71eaff 76%,#157abd 100%);
+ box-shadow:0 0 0 1px rgba(19,109,162,.34),inset 0 0 4px rgba(0,11,40,.4);
+}
+.adva-orb-art .adva-orb-round-eye::after{
+ content:'';position:absolute;left:24%;top:18%;width:12%;height:12%;z-index:3;
+ border-radius:50%;background:rgba(255,255,255,.92);filter:blur(.2px);
 }
 .adva-orb-art .adva-orb-face.is-blinking .adva-orb-round-eye{animation:adva-orb-round-blink 240ms ease-in-out both;}
 @keyframes adva-orb-round-blink{0%,100%{scale:1 1;filter:brightness(1)}46%,58%{scale:1 .07;filter:brightness(.4)}}
@@ -50,10 +55,10 @@
 /* Eyes darken and close together for a split second, like LED eyes naturally blinking. */
 .adva-orb-art .adva-orb-face.is-blinking .adva-orb-eye img{animation:adva-orb-natural-blink 240ms ease-in-out both;}
 @keyframes adva-orb-natural-blink{
-  0%,100%{opacity:1;scale:1 1;filter:brightness(1);}
-  36%{opacity:.35;scale:1 .87;filter:brightness(.65);}
+  0%,100%{opacity:var(--arch-opacity,1);scale:1 1;filter:brightness(1);}
+  36%{opacity:calc(var(--arch-opacity,1)*.35);scale:1 .87;filter:brightness(.65);}
   47%,57%{opacity:0;scale:1 .80;filter:brightness(.45);}
-  77%{opacity:.75;scale:1 .96;filter:brightness(.92);}
+  77%{opacity:calc(var(--arch-opacity,1)*.75);scale:1 .96;filter:brightness(.92);}
 }
 @media(prefers-reduced-motion:reduce){.adva-orb-art *, .adva-orb-art *::before,.adva-orb-art *::after{animation:none!important;transition:none!important;}}
 `;
@@ -142,6 +147,11 @@
       holder.style.setProperty('--eye-y',(followY*s*.0065).toFixed(2)+'px');
       // Morph both LEDs into unmistakably round, excited O eyes.
       holder.style.setProperty('--eye-round',proximity.toFixed(3));
+      // Fade away the original LED arches before the irises finish emerging.
+      holder.style.setProperty('--arch-opacity',Math.max(0,Math.min(1,(.52-proximity)*3)).toFixed(3));
+      // The iris/pupil follows the cursor independently, giving the O eyes a real gaze.
+      holder.style.setProperty('--iris-x',(followX*s*.008).toFixed(2)+'px');
+      holder.style.setProperty('--iris-y',(followY*s*.007).toFixed(2)+'px');
     }
     function visibility(){if(document.hidden)stopBlinkClock();else if(!paused)scheduleBlink();}
     document.addEventListener('visibilitychange',visibility);
