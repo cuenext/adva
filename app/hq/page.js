@@ -1,3 +1,8 @@
+import "../workspace.css";
+import "../workspace-extras.css";
+import "../workspace-polish.css";
+import "../inquiries.css";
+import "../posting-times/planner.css";
 import WorkspaceApp from "../../components/WorkspaceApp";
 export const metadata={title:"ADVA HQ | CEO Workspace",robots:{index:false,follow:false}};
 export default function HQ(){return <WorkspaceApp mode="hq"/>;}

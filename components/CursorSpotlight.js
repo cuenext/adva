@@ -10,6 +10,7 @@ import {useEffect,useRef} from "react";
 export default function CursorSpotlight(){
  const light=useRef(null);
  useEffect(()=>{
+  if(/^\/(hq|portal|network|join)(?:\/|$)/.test(window.location.pathname))return;
   const fine=window.matchMedia("(hover: hover) and (pointer: fine)");
   const reduce=window.matchMedia("(prefers-reduced-motion: reduce)");
   const root=document.documentElement;

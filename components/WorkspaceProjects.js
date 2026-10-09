@@ -12,7 +12,10 @@ export default function WorkspaceProjects({ws}){
  useEffect(()=>{if(projects.length&&(!selected||!projects.some(p=>p.id===selected)))setSelected((projects.find(x=>x.slug==="silwadi")||projects[0]).id)},[projects,selected]);
  const project=projects.find(x=>x.id===selected),members=data.members.filter(a=>a.project_id===selected),clients=data.clients.filter(c=>c.project_id===selected);
  const signedContract=data.contracts.find(c=>c.project_id===selected);
- useEffect(()=>{if(signedContract)setContract({starts_on:signedContract.starts_on||"",ends_on:signedContract.ends_on||"",contracted_deliverables:signedContract.contracted_deliverables||"",client_visible:!!signedContract.client_visible});else setContract({starts_on:"",ends_on:"",contracted_deliverables:"",client_visible:true})},[selected,signedContract?.id,signedContract?.updated_at]);
+ const activeNda=data.ndas.find(n=>n.active&&n.legal_reviewed);
+ const ndaSignedIds=new Set(data.ndaAcceptances.filter(a=>a.nda_id===activeNda?.id).map(a=>a.user_id));
+ const eligibleCreators=data.freelancers.filter(f=>ndaSignedIds.has(f.user_id));
+ useEffect(()=>{if(signedContract)setContract({starts_on:signedContract.starts_on||"",ends_on:signedContract.ends_on||"",contracted_deliverables:signedContract.contracted_deliverables||"",client_visible:!!signedContract.client_visible});else setContract({starts_on:"",ends_on:"",contracted_deliverables:"",client_visible:true})},[selected,signedContract?.id,signedContract?.starts_on,signedContract?.ends_on,signedContract?.contracted_deliverables,signedContract?.client_visible]);
  const scopedContent=data.content.filter(p=>p.project_id===selected);
  const posted=scopedContent.filter(p=>p.status==="posted").length,scheduled=scopedContent.filter(p=>p.status==="scheduled").length;
  const handle=async(op)=>{
@@ -21,7 +24,7 @@ export default function WorkspaceProjects({ws}){
  };
  async function addProject(e){
   e.preventDefault();
-  const slug=newProject.name.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,80);
+  const slug=newProject.name.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,72)+"-"+crypto.randomUUID().slice(0,6);
   const ok=await handle(()=>db.from("adva_projects").insert({...newProject,slug}));
   if(ok){setCreating(false);setNewProject({...emptyProject})}
  }
@@ -62,7 +65,7 @@ export default function WorkspaceProjects({ws}){
   <div className="aws-project-grid">
    <div className="aws-panel"><div className="aws-panel-title"><div><span>TEAM / ASSIGNMENTS</span><h2>Who's on this?</h2></div><span>{members.length} ASSIGNED</span></div>
     {members.length?<div className="aws-members">{members.map(m=><div key={m.user_id}><span className="aws-avatar">{userLabel(m.user_id,data.freelancers).slice(0,1).toUpperCase()}</span><div><strong>{userLabel(m.user_id,data.freelancers)}</strong><small>{m.responsibility}</small></div>{isCEO&&<button onClick={()=>revoke(m.user_id)} aria-label="Remove freelancer">Remove</button>}</div>)}</div>:<div className="aws-empty"><p>No freelancers assigned yet. They won't see this project until you grant access.</p></div>}
-    {isCEO&&<form className="aws-project-inline" onSubmit={assign}><label>Assign a verified freelancer<select required value={assignUser} onChange={e=>setAssignUser(e.target.value)}><option value="">Choose freelancer</option>{data.freelancers.map(f=><option value={f.user_id} key={f.user_id}>{f.display_name} / {f.specialty}</option>)}</select></label><label>Responsibility<input value={responsibility} maxLength={120} onChange={e=>setResponsibility(e.target.value)} placeholder="Editor / content manager"/></label><button disabled={busy||!assignUser} type="submit" className="aws-outline">Grant access ↗</button></form>}
+    {isCEO&&<form className="aws-project-inline" onSubmit={assign}><label>Assign a verified freelancer<select required value={assignUser} onChange={e=>setAssignUser(e.target.value)}><option value="">Choose freelancer</option>{eligibleCreators.map(f=><option value={f.user_id} key={f.user_id}>{f.display_name} / {f.specialty}</option>)}</select></label>{eligibleCreators.length===0&&<p className="aws-small-note">Freelancers become assignable after a legally reviewed ADVA NDA is activated and accepted. {activeNda?"No eligible freelancer has signed yet.":"No reviewed NDA is active yet."}</p>}<label>Responsibility<input value={responsibility} maxLength={120} onChange={e=>setResponsibility(e.target.value)} placeholder="Editor / content manager"/></label><button disabled={busy||!assignUser} type="submit" className="aws-outline">Grant access ↗</button></form>}
    </div>
    <div className="aws-panel"><div className="aws-panel-title"><div><span>CLIENT VISIBILITY</span><h2>Client portal access</h2></div><span>{clients.length} LINKED</span></div>
      {clients.length?<div className="aws-members">{clients.map(c=><div key={c.user_id}><span className="aws-avatar">C</span><div><strong>Verified client</strong><small>Account {c.user_id.slice(0,8)}…</small></div>{isCEO&&<button onClick={()=>removeClient(c.user_id)}>Remove</button>}</div>)}</div>:<div className="aws-empty"><p>No client account connected yet. Content and reporting remain private.</p></div>}

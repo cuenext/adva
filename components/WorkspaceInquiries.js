@@ -21,8 +21,8 @@ export default function WorkspaceInquiries({ws,go}){
   try{
    const {error}=await db.from("adva_projects").insert({slug,name:l.company||l.name,client_name:l.company||l.name,description:l.description,status:"active"});
    if(error)throw error;
-   await db.from("adva_leads").update({status:"won"}).eq("id",l.id);
-   setMessage("Project created privately. Assign a freelancer or client from Projects.");setSelected(null);refresh();
+   if(l.status==="new")await db.from("adva_leads").update({status:"reviewing"}).eq("id",l.id);
+   setMessage("Private project created. The enquiry stays in your pipeline until you decide whether it is won.");setSelected(null);refresh();
   }catch(e){setMessage(e.message||"Couldn't create a project.")}finally{setBusy(false)}
  }
  return <div className="aws-module aws-inquiries">
