@@ -11,6 +11,7 @@ import "./v5-services.css";
 import "./v5-layout.css";
 import "./editorial.css";
 import CursorSpotlight from "../components/CursorSpotlight";
+import Script from "next/script";
 export const metadata = {
  title: "ADVA | Creative, Media & Events in Abu Dhabi",
  description: "ADVA is an Abu Dhabi-based creative, media and events agency. Brand transformation, videography, photography, exhibitions, social media, websites and production.",
@@ -18,4 +19,4 @@ export const metadata = {
  openGraph: { title:"ADVA | Ideas into impact", description:"Creative thinking. Real-world execution. Media, events and brand experiences from Abu Dhabi.",type:"website"},
  robots: {index:false,follow:false}, // Preview staging only; switch when advaae.com migrates.
 };
-export default function RootLayout({children}){return <html lang="en"><body><CursorSpotlight/>{children}</body></html>;}
+export default function RootLayout({children}){return <html lang="en"><body><CursorSpotlight/>{children}<Script src="/adva-assistant/assistant.js" strategy="afterInteractive" /></body></html>;}
