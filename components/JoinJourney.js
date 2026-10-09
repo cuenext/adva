@@ -28,7 +28,7 @@ export default function JoinJourney({db,user,role,refresh}){
  const [step,setStep]=useState(0),[form,setForm]=useState(initial),[code,setCode]=useState(""),[showCode,setShowCode]=useState(false),[agreed,setAgreed]=useState(false);
  const [error,setError]=useState(""),[emailLimited,setEmailLimited]=useState(false),[notice,setNotice]=useState(""),[busy,setBusy]=useState(false),[restored,setRestored]=useState(false);
  const saving=useRef(false);
- useEffect(()=>{const previous=savedForm();if(previous){setForm({...initial,...previous});setStep(4)}setRestored(true)},[]);
+ useEffect(()=>{const previous=savedForm();if(previous){setForm({...initial,...previous});setStep(3)}setRestored(true)},[]);
  async function complete(account,fields){
   if(saving.current||!account||!db)return;
   const f=fields||savedForm()||form;
