@@ -19,46 +19,36 @@
 .adva-orb-art .adva-orb-eye{position:absolute;z-index:2;transform-origin:center;}
 .adva-orb-art .adva-orb-eye--left{left:14.583333%;top:37.760417%;width:23.958333%;height:18.229167%;}
 .adva-orb-art .adva-orb-eye--right{left:45.3125%;top:38.541667%;width:24.869792%;height:17.838542%;}
-.adva-orb-art .adva-orb-eye img{inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0);will-change:transform;opacity:var(--arch-opacity,1);}
+/* Smile-to-curiosity morph: one LED ring becomes a big O; the other stays a small o. */
+.adva-orb-art .adva-orb-eye img{
+ inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;
+ transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0);
+ opacity:calc(1 - var(--curiosity,0));will-change:transform,opacity;
+}
+.adva-orb-art .adva-orb-eye .adva-orb-curiosity-eye{
+ position:absolute;left:50%;top:50%;width:100%;height:115%;display:block;overflow:visible;
+ transform:translate(-50%,-50%) scale(var(--curious-scale,.45));
+ opacity:var(--curiosity,0);filter:drop-shadow(0 0 2.4px rgba(41,195,252,.56));
+ transform-origin:center;will-change:transform,opacity;pointer-events:none;
+}
+.adva-orb-art .adva-orb-eye--left .adva-orb-curiosity-eye{--curious-scale:var(--left-curious-scale,.40)}
+.adva-orb-art .adva-orb-eye--right .adva-orb-curiosity-eye{--curious-scale:var(--right-curious-scale,.40)}
+.adva-orb-art .adva-orb-face.is-blinking .adva-orb-curiosity-eye{
+ animation:adva-orb-natural-circle-blink 240ms ease-in-out both;
+}
+@keyframes adva-orb-natural-circle-blink{0%,100%{scale:1 1;filter:brightness(1)}48%,57%{scale:1 .07;filter:brightness(.65)}}
 .adva-orb-art .adva-orb-mouth{position:absolute;left:28.385417%;top:55.598958%;width:23.567708%;height:12.239583%;z-index:3;}
 .adva-orb-art .adva-orb-mouth img{inset:0;width:100%;height:100%;object-fit:fill;}
 
 /* Expressive state: replace the LED eye arches with glowing full O-shaped eyes. */
 /* Refined surprise eyes: translucent blue whites, irises, pupils and tiny reflections. */
-.adva-orb-art .adva-orb-round-eye{
- position:absolute;left:50%;top:50%;width:74%;aspect-ratio:1;z-index:3;
- border-radius:49% 49% 45% 45%;
- opacity:clamp(0,calc((var(--eye-round,0) - .12)*2.8),1);
- transform:translate(-50%,-50%) scale(calc(.79 + var(--eye-round,0)*.21));
- transform-origin:center;
- background:radial-gradient(circle at 34% 25%,#e6fbff 0%,#b2ecfb 27%,#78d4f2 57%,#2e93c7 84%,#0b508c 100%);
- border:1px solid rgba(156,239,255,.58);
- box-shadow:0 0 10px rgba(13,158,250,.29),inset 0 -2px 5px rgba(0,57,114,.37);
- pointer-events:none;will-change:opacity,transform;
-}
-.adva-orb-art .adva-orb-round-eye::before{
- content:'';position:absolute;width:58%;height:58%;left:50%;top:52%;z-index:2;
- border-radius:50%;
- transform:translate(calc(-50% + var(--iris-x,0px)),calc(-50% + var(--iris-y,0px)));
- background:
-  radial-gradient(circle at 32% 23%,rgba(246,255,255,.98) 0 9%,transparent 11%),
-  radial-gradient(circle at 52% 51%,#06132c 0%,#071a36 30%,#074c83 33%,#047fbf 55%,#71eaff 76%,#157abd 100%);
- box-shadow:0 0 0 1px rgba(19,109,162,.34),inset 0 0 4px rgba(0,11,40,.4);
-}
-.adva-orb-art .adva-orb-round-eye::after{
- content:'';position:absolute;left:24%;top:18%;width:12%;height:12%;z-index:3;
- border-radius:50%;background:rgba(255,255,255,.92);filter:blur(.2px);
-}
-.adva-orb-art .adva-orb-face.is-blinking .adva-orb-round-eye{animation:adva-orb-round-blink 240ms ease-in-out both;}
-@keyframes adva-orb-round-blink{0%,100%{scale:1 1;filter:brightness(1)}46%,58%{scale:1 .07;filter:brightness(.4)}}
-
 /* Eyes darken and close together for a split second, like LED eyes naturally blinking. */
 .adva-orb-art .adva-orb-face.is-blinking .adva-orb-eye img{animation:adva-orb-natural-blink 240ms ease-in-out both;}
 @keyframes adva-orb-natural-blink{
-  0%,100%{opacity:var(--arch-opacity,1);scale:1 1;filter:brightness(1);}
-  36%{opacity:calc(var(--arch-opacity,1)*.35);scale:1 .87;filter:brightness(.65);}
+  0%,100%{opacity:calc(1 - var(--curiosity,0));scale:1 1;filter:brightness(1);}
+  36%{opacity:calc(calc(1 - var(--curiosity,0))*.35);scale:1 .87;filter:brightness(.65);}
   47%,57%{opacity:0;scale:1 .80;filter:brightness(.45);}
-  77%{opacity:calc(var(--arch-opacity,1)*.75);scale:1 .96;filter:brightness(.92);}
+  77%{opacity:calc(calc(1 - var(--curiosity,0))*.75);scale:1 .96;filter:brightness(.92);}
 }
 @media(prefers-reduced-motion:reduce){.adva-orb-art *, .adva-orb-art *::before,.adva-orb-art *::after{animation:none!important;transition:none!important;}}
 `;
@@ -71,16 +61,45 @@
     const levitate=document.createElement('div');levitate.className='adva-orb-float';
     levitate.appendChild(makeImg('adva-orb-shell',src('shell')));
     const face=document.createElement('div');face.className='adva-orb-face';
+    function makeCuriousEye(){
+      const ns='http://www.w3.org/2000/svg';
+      const svg=document.createElementNS(ns,'svg');
+      svg.setAttribute('viewBox','0 0 100 100');
+      svg.setAttribute('aria-hidden','true');
+      svg.setAttribute('class','adva-orb-curiosity-eye');
+      const circle=(cx,cy,r,fill,alpha=1)=>{
+        const el=document.createElementNS(ns,'circle');
+        el.setAttribute('cx',cx.toFixed(2));el.setAttribute('cy',cy.toFixed(2));
+        el.setAttribute('r',r.toFixed(2));el.setAttribute('fill',fill);
+        if(alpha!==1)el.setAttribute('opacity',alpha.toFixed(2));
+        svg.appendChild(el);
+      };
+      circle(50,50,34.5,'#052947',.26);
+      for(let i=0;i<28;i++){
+        const angle=2*Math.PI*i/28;
+        circle(50+31*Math.cos(angle),50+32*Math.sin(angle),2.75,'#77eaff',.95);
+      }
+      for(let i=0;i<18;i++){
+        const angle=2*Math.PI*i/18;
+        circle(50+24*Math.cos(angle),50+25*Math.sin(angle),1.45,'#18a9f5',.65);
+      }
+      circle(50,50,9,'#0873bc',.90);
+      circle(51,51,4.8,'#072647');
+      circle(46,45,3.2,'#dcfcff',.96);
+      return svg;
+    }
     for(const side of ['left','right']){
       const wrapper=document.createElement('span');wrapper.className='adva-orb-eye adva-orb-eye--'+side;
-      wrapper.appendChild(makeImg('',src(side)));const round=document.createElement('span');round.className='adva-orb-round-eye';wrapper.appendChild(round);face.appendChild(wrapper);
+      wrapper.appendChild(makeImg('',src(side)));
+      wrapper.appendChild(makeCuriousEye());
+      face.appendChild(wrapper);
     }
     const mouth=document.createElement('span');mouth.className='adva-orb-mouth';mouth.appendChild(makeImg('',src('mouth')));face.appendChild(mouth);
     levitate.appendChild(face);holder.appendChild(levitate);target.appendChild(holder);
 
     const reduced=Boolean(opts.reducedMotion)||Boolean(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
     let dead=false,paused=false,blinking=false,blinkTimer=0,blinkEnd=0,frame=0,lastTime=0;
-    let pointerX=0,pointerY=0,followX=0,followY=0,proximityTarget=0,proximity=0;
+    let pointerX=0,pointerY=0,followX=0,followY=0,curiosityTarget=0,curiosity=0,largeEyeSide='right';
     const started=performance.now();
     const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
     function stopBlinkClock(){if(blinkTimer){clearTimeout(blinkTimer);blinkTimer=0;}}
@@ -102,7 +121,13 @@
       blinkEnd=global.setTimeout(()=>{face.classList.remove('is-blinking');blinking=false;},255);
       return true;
     }
-    function pause(){if(dead)return;paused=true;stopBlinkClock();clearTimeout(blinkEnd);blinking=false;face.classList.remove('is-blinking');levitate.style.transform='none';holder.style.setProperty('--eye-x','0px');holder.style.setProperty('--eye-y','0px');holder.style.setProperty('--eye-round','0');face.style.transform='none';}
+    function pause(){
+      if(dead)return;paused=true;stopBlinkClock();clearTimeout(blinkEnd);
+      blinking=false;face.classList.remove('is-blinking');
+      levitate.style.transform='none';face.style.transform='none';
+      holder.style.setProperty('--curiosity','0');
+      holder.style.setProperty('--eye-x','0px');holder.style.setProperty('--eye-y','0px');
+    }
     function resume(){if(dead||reduced)return;paused=false;lastTime=0;scheduleBlink();}
     function setCursor(x,y,bounds){
       if(dead||paused||reduced||!bounds)return;
@@ -114,15 +139,20 @@
       const radiusY=launcher?Math.min(550,Math.max(230,global.innerHeight*.43)):Math.max(165,bounds.height*.73);
       pointerX=clamp((x-cx)/radiusX,-1,1);
       pointerY=clamp((y-cy)/radiusY,-1,1);
-      // Soft, brief excitement only when the pointer comes near the character.
+      // One actual LED ring expands; its companion remains a small dot.
+      // Choose the large eye by cursor side, not oscillating time.
       const distance=Math.hypot(x-cx,y-cy);
-      // Transition from happy arches to wide-open circles when approaching.
-      // Full O eyes appear throughout the actual launcher, not only at its exact center.
-      const outerRadius=launcher?Math.max(bounds.width*2.35,215):Math.max(bounds.width*1.25,235);
-      const fullRadius=launcher?Math.max(bounds.width*1.25,125):Math.max(bounds.width*.55,135);
-      proximityTarget=clamp((outerRadius-distance)/(outerRadius-fullRadius),0,1);
+      const outerRadius=launcher?Math.max(bounds.width*2.15,180):Math.max(bounds.width*.72,180);
+      const innerRadius=launcher?Math.max(bounds.width*.58,54):Math.max(bounds.width*.18,74);
+      const closeness=clamp((outerRadius-distance)/(outerRadius-innerRadius),0,1);
+      curiosityTarget=closeness*closeness*(3-2*closeness);
+      const sideX=x-cx;
+      if(curiosityTarget>.12){
+        if(sideX < -bounds.width*.10)largeEyeSide='left';
+        if(sideX > bounds.width*.10)largeEyeSide='right';
+      }
     }
-    function resetCursor(){pointerX=0;pointerY=0;proximityTarget=0;}
+    function resetCursor(){pointerX=0;pointerY=0;curiosityTarget=0;}
     function render(time){
       if(dead)return;
       frame=global.requestAnimationFrame(render);
@@ -131,7 +161,7 @@
       // Physics-like lag; eyes can glance just ahead of the body as the visitor moves.
       const smooth=1-Math.exp(-dt/195);
       followX+=(pointerX-followX)*smooth;followY+=(pointerY-followY)*smooth;
-      proximity+=(proximityTarget-proximity)*(1-Math.exp(-dt/140));
+      curiosity+=(curiosityTarget-curiosity)*(1-Math.exp(-dt/155));
       const s=holder.clientWidth||240,t=(time-started)/1000;
       // Slow, low amplitude idle movement. Head tracking dominates whenever the cursor moves.
       const x=(Math.sin(t*.42)*.0025+Math.sin(t*.18+.7)*.0014)*s;
@@ -143,15 +173,14 @@
       // imperceptible rotateY of a flat image (which was the earlier bug).
       levitate.style.transform=`perspective(${Math.max(430,s*2.05).toFixed(0)}px) translate3d(${tx.toFixed(2)}px,${ty.toFixed(2)}px,0) rotateX(${pitch.toFixed(2)}deg) rotateY(${yaw.toFixed(2)}deg) rotateZ(${roll.toFixed(2)}deg)`;
       face.style.transform=`translate3d(${(followX*s*.014).toFixed(2)}px,${(followY*s*.009).toFixed(2)}px,12px)`;
-      holder.style.setProperty('--eye-x',(followX*s*.0098).toFixed(2)+'px');
-      holder.style.setProperty('--eye-y',(followY*s*.0065).toFixed(2)+'px');
-      // Morph both LEDs into unmistakably round, excited O eyes.
-      holder.style.setProperty('--eye-round',proximity.toFixed(3));
-      // Fade away the original LED arches before the irises finish emerging.
-      holder.style.setProperty('--arch-opacity',Math.max(0,Math.min(1,(.52-proximity)*3)).toFixed(3));
-      // The iris/pupil follows the cursor independently, giving the O eyes a real gaze.
-      holder.style.setProperty('--iris-x',(followX*s*.008).toFixed(2)+'px');
-      holder.style.setProperty('--iris-y',(followY*s*.007).toFixed(2)+'px');
+      holder.style.setProperty('--eye-x',(followX*s*.004).toFixed(2)+'px');
+      holder.style.setProperty('--eye-y',(followY*s*.003).toFixed(2)+'px');
+      const c=clamp(curiosity,0,1);
+      holder.style.setProperty('--curiosity',c.toFixed(3));
+      const bigger=.48+.72*c;
+      const smaller=.48-.11*c;
+      holder.style.setProperty('--left-curious-scale',(largeEyeSide==='left'?bigger:smaller).toFixed(3));
+      holder.style.setProperty('--right-curious-scale',(largeEyeSide==='right'?bigger:smaller).toFixed(3));
     }
     function visibility(){if(document.hidden)stopBlinkClock();else if(!paused)scheduleBlink();}
     document.addEventListener('visibilitychange',visibility);
