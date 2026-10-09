@@ -19,7 +19,7 @@
 .adva-orb-art .adva-orb-eye{position:absolute;z-index:2;transform-origin:center;}
 .adva-orb-art .adva-orb-eye--left{left:14.583333%;top:37.760417%;width:23.958333%;height:18.229167%;}
 .adva-orb-art .adva-orb-eye--right{left:45.3125%;top:38.541667%;width:24.869792%;height:17.838542%;}
-.adva-orb-art .adva-orb-eye img{inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0);will-change:transform;}
+.adva-orb-art .adva-orb-eye img{inset:0;width:100%;height:100%;object-fit:fill;transform-origin:center;transform:translate3d(var(--eye-x,0px),var(--eye-y,0px),0) scale(var(--eye-scale,1));will-change:transform;}
 .adva-orb-art .adva-orb-mouth{position:absolute;left:28.385417%;top:55.598958%;width:23.567708%;height:12.239583%;z-index:3;}
 .adva-orb-art .adva-orb-mouth img{inset:0;width:100%;height:100%;object-fit:fill;}
 /* Eyes darken and close together for a split second, like LED eyes naturally blinking. */
@@ -50,7 +50,7 @@
 
     const reduced=Boolean(opts.reducedMotion)||Boolean(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
     let dead=false,paused=false,blinking=false,blinkTimer=0,blinkEnd=0,frame=0,lastTime=0;
-    let pointerX=0,pointerY=0,followX=0,followY=0;
+    let pointerX=0,pointerY=0,followX=0,followY=0,proximityTarget=0,proximity=0;
     const started=performance.now();
     const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
     function stopBlinkClock(){if(blinkTimer){clearTimeout(blinkTimer);blinkTimer=0;}}
@@ -72,7 +72,7 @@
       blinkEnd=global.setTimeout(()=>{face.classList.remove('is-blinking');blinking=false;},255);
       return true;
     }
-    function pause(){if(dead)return;paused=true;stopBlinkClock();clearTimeout(blinkEnd);blinking=false;face.classList.remove('is-blinking');levitate.style.transform='none';holder.style.setProperty('--eye-x','0px');holder.style.setProperty('--eye-y','0px');face.style.transform='none';}
+    function pause(){if(dead)return;paused=true;stopBlinkClock();clearTimeout(blinkEnd);blinking=false;face.classList.remove('is-blinking');levitate.style.transform='none';holder.style.setProperty('--eye-x','0px');holder.style.setProperty('--eye-y','0px');holder.style.setProperty('--eye-scale','1');face.style.transform='none';}
     function resume(){if(dead||reduced)return;paused=false;lastTime=0;scheduleBlink();}
     function setCursor(x,y,bounds){
       if(dead||paused||reduced||!bounds)return;
@@ -84,8 +84,12 @@
       const radiusY=launcher?Math.min(550,Math.max(230,global.innerHeight*.43)):Math.max(165,bounds.height*.73);
       pointerX=clamp((x-cx)/radiusX,-1,1);
       pointerY=clamp((y-cy)/radiusY,-1,1);
+      // Soft, brief excitement only when the pointer comes near the character.
+      const distance=Math.hypot(x-cx,y-cy);
+      const excitementRadius=launcher?Math.max(bounds.width*1.18,86):Math.max(bounds.width*.82,118);
+      proximityTarget=clamp(1-distance/excitementRadius,0,1);
     }
-    function resetCursor(){pointerX=0;pointerY=0;}
+    function resetCursor(){pointerX=0;pointerY=0;proximityTarget=0;}
     function render(time){
       if(dead)return;
       frame=global.requestAnimationFrame(render);
@@ -94,6 +98,7 @@
       // Physics-like lag; eyes can glance just ahead of the body as the visitor moves.
       const smooth=1-Math.exp(-dt/195);
       followX+=(pointerX-followX)*smooth;followY+=(pointerY-followY)*smooth;
+      proximity+=(proximityTarget-proximity)*(1-Math.exp(-dt/140));
       const s=holder.clientWidth||240,t=(time-started)/1000;
       // Slow, low amplitude idle movement. Head tracking dominates whenever the cursor moves.
       const x=(Math.sin(t*.42)*.0025+Math.sin(t*.18+.7)*.0014)*s;
@@ -107,6 +112,8 @@
       face.style.transform=`translate3d(${(followX*s*.014).toFixed(2)}px,${(followY*s*.009).toFixed(2)}px,12px)`;
       holder.style.setProperty('--eye-x',(followX*s*.0098).toFixed(2)+'px');
       holder.style.setProperty('--eye-y',(followY*s*.0065).toFixed(2)+'px');
+      // Enlarge both eyes by no more than 11%, then ease back to normal.
+      holder.style.setProperty('--eye-scale',(1+proximity*.11).toFixed(3));
     }
     function visibility(){if(document.hidden)stopBlinkClock();else if(!paused)scheduleBlink();}
     document.addEventListener('visibilitychange',visibility);
