@@ -5,13 +5,13 @@ import {AdvaMark} from "./AdvaIcon";
 const suggestions=[
  {title:"Branding & identity",keys:["brand","branding","rebrand","identity","logo","design system"],service:"branding",project:"Branding",desc:"Shape a distinctive and consistent visual identity."},
  {title:"Website design",keys:["website","web design","web development","landing page","redesign","site"],service:"website-design",project:"Web design",desc:"A digital presence that's considered from first click to last."},
- {title:"Video production",keys:["videography","film","filming","videographer","production","video shoot","interview"],service:"videography",project:"Video production",desc:"Purposeful filming and stories built for the right platform."},
- {title:"Photography",keys:["photography","photographer","photos","portraits","photo shoot","photoshoot"],service:"photography",project:"Photography",desc:"Striking stills for brands, people and experiences."},
+ {title:"Video production",keys:["video","videos","videography","film","filming","shoot","videographer","production","interview"],service:"videography",project:"Video production",desc:"Purposeful filming and stories built for the right platform."},
+ {title:"Photography",keys:["photo","photos","photography","photographer","images","portrait","photoshoot"],service:"photography",project:"Photography",desc:"Striking stills for brands, people and experiences."},
  {title:"Video editing",keys:["editing","edit video","post production","colour grade","motion graphics"],service:"video-editing",project:"Video editing",desc:"Refined edits, motion and sound that finish the story."},
- {title:"Social media",keys:["instagram","tiktok","reels","social media","socials","content plan","content calendar"],service:"social-media-management",project:"Social media",desc:"Content planning, creative execution and platform management."},
+ {title:"Social media",keys:["instagram","tiktok","reel","content","social media","socials","post","content calendar"],service:"social-media-management",project:"Social media",desc:"Content planning, creative execution and platform management."},
  {title:"Marketing & campaigns",keys:["marketing","campaign","ads","advertising","promotion","leads","seo"],service:"marketing",project:"Marketing",desc:"Creative and strategic direction built around your goals."},
  {title:"Event coverage",keys:["exhibition","event","conference","expo","trade show","highlight"],service:"event-coverage",project:"Event coverage",desc:"Photo and video coverage for moments that matter."},
- {title:"Event staffing",keys:["staff","staffing","hostess","promoter","ushers","event crew"],service:"event-staffing",project:"Event staffing",desc:"The right people to support the experience on site."}
+ {title:"Event staffing",keys:["staff","staffing","hostess","host","promoter","usher","event crew"],service:"event-staffing",project:"Event staffing",desc:"The right people to support the experience on site."}
 ];
 const prompts=["I need creative coverage for a three-day exhibition","We need to rebrand and launch a new website","We want to make content people actually watch","I'm planning a brand campaign in Abu Dhabi"];
 function match(q){const t=q.toLowerCase().replace(/[^a-z0-9 ]/g," ");const items=suggestions.map((s,i)=>({...s,score:s.keys.reduce((n,k)=>n+(t.includes(k)?(k.length>8?4:3):0),0)-i*.00001})).sort((a,b)=>b.score-a.score);return items[0].score>0?items.filter(s=>s.score>0).slice(0,4):[suggestions[1],suggestions[5]]}
