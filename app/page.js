@@ -15,10 +15,12 @@ export default function Home(){
     <div className="adva-home-process">{[["01","The brief","Tell us the goal, audience, deadline and what’s already in place."],["02","The plan","We set the approach, team, deliverables and production schedule."],["03","The work","We create, refine and prepare everything for its intended use."]].map(([number,title,description])=><article key={number}><span>{number} /</span><h3>{title}</h3><p>{description}</p></article>)}</div>
     <a href="/brief" className="adva-home-approach-link">Talk us through your idea <span>→</span></a>
    </div></section>
-   <section className="adva-home-about" id="about"><div className="container adva-home-about-grid">
-    <div className="adva-home-about-art" aria-hidden="true"><AdvaMark size={65} className="adva-home-about-star"/><span className="adva-home-about-a">A.</span><span className="adva-home-about-caption">ABU DHABI / CREATIVE PARTNERS</span></div>
-    <div className="adva-home-about-copy"><span className="adva-small-eyebrow"><i/> ABOUT ADVA</span><h2>Independent.<br/><em>Based in Abu Dhabi.</em></h2><p>ADVA brings together production, brand design, digital work and event teams.</p><p>One project might need a film crew. Another needs a website, a content plan or people on site. We build the team around the brief.</p><a href="/services">See what we do <span>→</span></a></div>
-   </div></section>
+   <section className="adva-about-teaser" id="about">
+    <div className="container adva-about-teaser-grid">
+      <div className="adva-about-teaser-head"><span className="adva-about-section-name">About ADVA</span><h2>Creative work is<br/>about the people<br/><em>behind it.</em></h2></div>
+      <div className="adva-about-teaser-body"><p>Founded in Abu Dhabi in January 2026 by Abdullah Avadoglu, ADVA works across media production, marketing, design and events.</p><p>We build each project around its brief and the people best suited to deliver it.</p><a href="/about">Get to know ADVA <span aria-hidden="true">↗</span></a></div>
+    </div>
+   </section>
    <section className="adva-home-contact" id="contact"><div className="container">
     <span className="adva-small-eyebrow"><i/> GET IN TOUCH</span>
     <h2>Got a brief?<br/><em>Send it over.</em></h2>

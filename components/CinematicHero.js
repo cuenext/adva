@@ -18,18 +18,11 @@ function match(q){const t=q.toLowerCase().replace(/[^a-z0-9 ]/g," ");const items
 function Arrow(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6"/></svg>}
 function Up(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
 export default function CinematicHero(){
- const root=useRef(null),orb=useRef(null),input=useRef(null),chatBox=useRef(null);
+ const input=useRef(null),chatBox=useRef(null);
  const [query,setQuery]=useState(""),[prompt,setPrompt]=useState(0),[submitted,setSubmitted]=useState(""),[open,setOpen]=useState(false),[question,setQuestion]=useState(""),[messages,setMessages]=useState([]),[aiLive,setAiLive]=useState(false),[sending,setSending]=useState(false);
  const matches=useMemo(()=>match(submitted),[submitted]);
  useEffect(()=>{let active=true;fetch("/api/assistant",{cache:"no-store"}).then(r=>r.json()).then(d=>{if(active)setAiLive(Boolean(d.available))}).catch(()=>{if(active)setAiLive(false)});return()=>{active=false}},[]);
  useEffect(()=>{const id=setInterval(()=>setPrompt(p=>(p+1)%prompts.length),4800);return()=>clearInterval(id)},[]);
- useEffect(()=>{
-   if(!root.current||!orb.current||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-   const r=root.current,o=orb.current,t={x:0,y:0},v={x:0,y:0};let id;
-   const move=e=>{const box=r.getBoundingClientRect(),x=(e.clientX-box.left)/box.width-.5,y=(e.clientY-box.top)/box.height-.5;t.x=x*60;t.y=y*47;r.style.setProperty("--hover-x",((x+.5)*100)+"%");r.style.setProperty("--hover-y",((y+.5)*100)+"%")};
-   const tick=()=>{v.x+=(t.x-v.x)*.08;v.y+=(t.y-v.y)*.08;o.style.setProperty("--orb-x",v.x+"px");o.style.setProperty("--orb-y",v.y+"px");id=requestAnimationFrame(tick)};
-   r.addEventListener("pointermove",move,{passive:true});tick();return()=>{r.removeEventListener("pointermove",move);cancelAnimationFrame(id)};
- },[]);
  useEffect(()=>{if(!open)return;const onKey=e=>{if(e.key==="Escape")setOpen(false)};document.addEventListener("keydown",onKey);return()=>document.removeEventListener("keydown",onKey)},[open]);
  useEffect(()=>{if(open&&chatBox.current)chatBox.current.scrollTop=chatBox.current.scrollHeight},[messages,open]);
  function saveBriefIdea(){
@@ -60,15 +53,14 @@ export default function CinematicHero(){
  }
  const encoded=encodeURIComponent("Hello ADVA,\n\nI'd like to discuss a new project:\n"+(submitted||query)+"\n\nCompany:\nTimeline:\n");
  return <>
-  <section className="cinema" ref={root} aria-labelledby="cinema-title">
-    <div className="cinema-backdrop" aria-hidden="true"><div className="cinema-grid"/><span className="cinema-light"/><span className="cinema-edge"/></div>
+  <section className="cinema cinema-photo-hero" aria-labelledby="cinema-title">
+    <img src="/adva-crew-hero.webp" className="cinema-hero-photograph" alt="" aria-hidden="true" width="720" height="480" fetchPriority="high"/>
+    <div className="cinema-photograph-shade" aria-hidden="true"/>
     <div className="container cinema-inner">
-      <div className="cinema-top"><span className="live-dot"/> CREATIVE STUDIO <span className="cinema-top-right">ABU DHABI</span></div>
       <div className="cinema-main">
         <div className="cinema-story">
-          <div className="cinema-kicker"><span/> THE NEXT IDEA STARTS HERE</div>
           <h1 id="cinema-title" className="cinema-title"><span className="cinema-mask"><span>How can we</span></span><span className="cinema-mask"><span className="cinema-ink-gradient">help you<span className="cinema-q">?</span></span></span></h1>
-          <p className="cinema-intro">Film, branding, digital and live experiences. Tell us what you have in mind.</p>
+          <p className="cinema-intro">Film and photography. Brand and digital. Events and production. Tell us what you have in mind.</p>
           <div className="cinema-search-group">
             <form className="cinema-search" onSubmit={submit}>
               <span className="cinema-search-mark" aria-hidden="true"><AdvaMark size={23}/></span>
@@ -80,10 +72,9 @@ export default function CinematicHero(){
             <div className="cinema-ai-nudge"><span className="ai-live-dot"/>Questions? <button type="button" onClick={()=>setOpen(true)}>Talk to ADVA AI <Up/></button></div>
           </div>
         </div>
-        <div className="cinema-scene" aria-hidden="true"><span className="cinema-outline">A</span><span className="cinema-ring outer"/><span className="cinema-ring inner"/><div ref={orb} className="cinema-orb"><div className="cinema-orb-inner"><b>ADVA<span>.</span></b></div></div><div className="cinema-cross-h"/><div className="cinema-cross-v"/></div>
       </div>
       {submitted&&<div className="cinema-results" role="status" aria-live="polite"><div className="cinema-results-title"><div><span>YOUR PROJECT</span><h2>Services that fit.</h2></div><button onClick={()=>setSubmitted("")}>Reset</button></div><div className="cinema-result-list">{matches.map((m,i)=><a href={"/services/"+m.service} key={m.title}><small>{"0"+(i+1)}</small><strong>{m.title}</strong><p>{m.desc}</p><span>Explore {m.project} <Up/></span></a>)}</div><div className="cinema-results-actions"><a className="cinema-results-primary" href={"/brief?services="+matches.map(m=>m.service).join(",")+"&from=search"} onClick={saveBriefIdea}>Continue with these services <Up/></a><button type="button" onClick={()=>setOpen(true)}>Ask ADVA AI <Up/></button></div></div>}
-      <div className="cinema-foot"><a href="#services">Scroll to services <span className="cinema-foot-rule"/></a></div>
+      <div className="cinema-foot"><a href="#services">Explore our services <span className="cinema-foot-rule"/></a></div>
     </div>
   </section>
   <button className="ai-orb-button" type="button" onClick={()=>setOpen(true)} aria-label="Open ADVA AI guided assistant"><span className="ai-orb-mini"/> ADVA AI <Up/></button>

@@ -1,0 +1,102 @@
+/* Photography-led home and independent About page. Loaded after legacy CSS. */
+.website .cinema-photo-hero{position:relative;isolation:isolate;overflow:hidden;background:#080d14;min-height:calc(100svh - 78px)}
+.website .cinema-photo-hero .cinema-hero-photograph{position:absolute;inset:0;width:100%;height:100%;z-index:-2;object-fit:cover;object-position:67% 44%;filter:brightness(.84) saturate(.95);animation:adva-photo-arrive 1.6s ease-out both}
+.website .cinema-photo-hero .cinema-photograph-shade{position:absolute;z-index:-1;inset:0;pointer-events:none;background:linear-gradient(90deg,#070c15 0%,#070c15f2 17%,#070c15d2 39%,#070c1570 58%,#070c1518 100%),linear-gradient(0deg,#080d14 0%,transparent 30%,#080d141b)}
+.website .cinema-photo-hero .cinema-inner{position:relative;min-height:clamp(650px,calc(100svh - 78px),1000px);padding-top:65px;padding-bottom:32px;justify-content:center;gap:26px}
+.website .cinema-photo-hero .cinema-main{display:flex;flex:1;align-items:center;justify-content:flex-start;width:100%}
+.website .cinema-photo-hero .cinema-story{max-width:670px;width:100%;padding:0;position:relative}
+.website .cinema-photo-hero .cinema-title{font-size:clamp(68px,7.7vw,120px);line-height:.99;letter-spacing:-.09em;max-width:720px;text-shadow:0 12px 60px #0005}
+.website .cinema-photo-hero .cinema-ink-gradient{background:none;color:#9fcdf3;-webkit-text-fill-color:#9fcdf3}
+.website .cinema-photo-hero .cinema-q{color:#bce5ff;-webkit-text-fill-color:#bce5ff}
+.website .cinema-photo-hero .cinema-intro{color:#c6d3e1;font-size:clamp(14px,1.3vw,17px);max-width:485px;line-height:1.75;margin:28px 0}
+.website .cinema-photo-hero .cinema-search-group{max-width:610px}
+.website .cinema-photo-hero .cinema-search{min-height:72px;border-radius:12px;background:#0c1521eb;border-color:#acc5dd58;backdrop-filter:blur(12px);box-shadow:0 26px 65px #02060ba8}
+.website .cinema-photo-hero .cinema-examples button{background:#091018c7;color:#c4d3e2;border-color:#b5c9db35;backdrop-filter:blur(4px)}
+.website .cinema-photo-hero .cinema-examples button:hover{background:#1d3449;color:#fff}
+.website .cinema-photo-hero .cinema-ai-nudge{color:#adbed0}
+.website .cinema-photo-hero .cinema-foot{position:relative;z-index:2;width:100%;border-color:#ffffff35;padding:19px 0 0}
+.website .cinema-photo-hero .cinema-foot a{color:#d5e4f1}
+.website .cinema-photo-hero .cinema-results{z-index:3;position:relative}
+@keyframes adva-photo-arrive{from{opacity:.4;transform:scale(1.04)}to{opacity:1;transform:none}}
+.website .adva-about-section-name{display:block;font:750 12px/1.5 Manrope,Arial,sans-serif;color:#a0c8e9;letter-spacing:.008em}
+.website .adva-about-teaser{padding:clamp(88px,10vw,155px) 0;background:#0a1119;border-block:1px solid #ffffff1b}
+.website .adva-about-teaser-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.78fr);gap:clamp(45px,9vw,148px);align-items:end}
+.website .adva-about-teaser-head h2{font:800 clamp(44px,5.7vw,85px)/1.06 Manrope,Arial,sans-serif;letter-spacing:-.077em;color:#f0f5fc;margin:27px 0 0}
+.website .adva-about-teaser-head h2 em,.website .adva-about-lead h1 em,.website .adva-about-origin h2 em,.website .adva-about-people h2 em{font-style:normal;color:#9fcdf3}
+.website .adva-about-teaser-body{border-top:1px solid #759abd6c;padding-top:28px}
+.website .adva-about-teaser-body p{font:480 clamp(15px,1.35vw,18px)/1.82 Manrope,Arial,sans-serif;color:#aabbcd;margin:0 0 23px}
+.website .adva-about-teaser-body p:first-child{color:#e2ecf7}
+.website .adva-about-teaser-body a,.website .adva-about-people a{display:inline-flex;align-items:center;gap:20px;color:#b6dafa;font-size:13px;font-weight:800;margin-top:15px;transition:gap .2s,color .2s}
+.website .adva-about-teaser-body a:hover,.website .adva-about-people a:hover{gap:28px;color:#fff}
+.website .adva-about-lead{background:#090f17;padding:clamp(66px,8vw,123px) 0 0}
+.website .adva-about-lead-copy{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(255px,.57fr);gap:58px;align-items:end;padding-bottom:clamp(60px,7vw,105px)}
+.website .adva-about-lead h1{font:800 clamp(57px,7.1vw,111px)/.99 Manrope,Arial,sans-serif;letter-spacing:-.089em;color:#f0f6fc;margin:24px 0 0}
+.website .adva-about-lead-copy>p{font:490 clamp(16px,1.3vw,19px)/1.8 Manrope,Arial,sans-serif;color:#b5c6d8;margin:0 0 8px}
+.website .adva-about-lead-photo{width:100%;height:clamp(350px,51vw,745px);position:relative;overflow:hidden;background:#122234}
+.website .adva-about-lead-photo:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#07101954,transparent 32%),linear-gradient(90deg,#07101932,transparent 55%)}
+.website .adva-about-lead-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 49%;filter:contrast(1.02) saturate(.91)}
+.website .adva-about-origin{background:#0b1119;padding:clamp(96px,10vw,168px) 0}
+.website .adva-about-origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(60px,11vw,172px)}
+.website .adva-about-origin h2{font:800 clamp(47px,5vw,78px)/1.08 Manrope,Arial,sans-serif;letter-spacing:-.073em;color:#f5f8fd;margin:26px 0}
+.website .adva-about-origin-prose{padding-top:19px;border-top:1px solid #ffffff3a}
+.website .adva-about-origin-prose p{font:470 clamp(16px,1.3vw,19px)/1.86 Manrope,Arial,sans-serif;color:#a9bed1;margin:0 0 25px}
+.website .adva-about-origin-prose strong{font-weight:740;color:#e1edfa}
+.website .adva-about-disciplines{background:#080e16;padding:clamp(96px,10vw,145px) 0}
+.website .adva-about-disciplines-head{display:grid;grid-template-columns:.55fr 1.05fr .65fr;align-items:end;gap:45px;padding-bottom:46px}
+.website .adva-about-disciplines-head .adva-about-section-name{align-self:start;padding-top:12px}
+.website .adva-about-disciplines h2{font:800 clamp(43px,4.7vw,74px)/1.08 Manrope,Arial,sans-serif;letter-spacing:-.077em;color:#f1f7fd;margin:0}
+.website .adva-about-disciplines-head>p{font:470 15px/1.8 Manrope,Arial,sans-serif;color:#a8bbcd;margin:0 0 8px}
+.website .adva-about-discipline-list{border-top:1px solid #ffffff4a}
+.website .adva-about-discipline{display:grid;grid-template-columns:60px minmax(0,1fr) minmax(230px,.85fr) 28px;gap:26px;align-items:center;padding:34px 0;border-bottom:1px solid #ffffff2a;color:#f0f5fc;transition:padding .25s,background .25s}
+.website .adva-about-discipline:hover{padding-left:12px;background:linear-gradient(90deg,#28679922,transparent 75%)}
+.website .adva-about-discipline-number{font:730 11px Manrope,Arial,sans-serif;color:#92bfdf}
+.website .adva-about-discipline strong{font:760 clamp(27px,3.2vw,48px)/1.1 Manrope,Arial,sans-serif;letter-spacing:-.055em}
+.website .adva-about-discipline-desc{font:470 13px/1.7 Manrope,Arial,sans-serif;color:#a6b9ca;max-width:315px}
+.website .adva-about-discipline-arrow{font-size:26px;color:#9ac9ed;justify-self:end}
+.website .adva-about-view-services{display:inline-flex;gap:21px;align-items:center;margin-top:38px;font:780 13px Manrope,Arial,sans-serif;color:#acd9fa}
+.website .adva-about-people{background:#0c1520;padding:clamp(105px,11vw,170px) 0}
+.website .adva-about-people-grid{display:grid;grid-template-columns:1fr minmax(0,1.6fr);gap:clamp(50px,10vw,140px)}
+.website .adva-about-people h2{font:800 clamp(54px,6.3vw,100px)/1.04 Manrope,Arial,sans-serif;letter-spacing:-.086em;color:#eff6ff;margin:0 0 35px}
+.website .adva-about-people p{max-width:740px;font:480 clamp(16px,1.34vw,19px)/1.9 Manrope,Arial,sans-serif;color:#acbed1;margin:0 0 24px}
+.website .adva-about-last{background:#102239;padding:clamp(80px,8vw,135px) 0}
+.website .adva-about-last .container{display:flex;align-items:end;justify-content:space-between;gap:30px}
+.website .adva-about-last h2{font:800 clamp(53px,7.5vw,110px)/1.02 Manrope,Arial,sans-serif;letter-spacing:-.085em;margin:0;color:#f2f8ff}
+.website .adva-about-last a{display:inline-flex;align-items:center;gap:26px;padding:18px 24px;border:1px solid #bddaf470;border-radius:100px;background:#e5f2fd;color:#132b45;font-weight:800;font-size:13px;transition:background .2s,transform .2s}
+.website .adva-about-last a:hover{background:#b9defa;transform:translateY(-2px)}
+@media(max-width:1050px){.website .adva-about-teaser-grid{gap:70px}.website .adva-about-lead-copy{grid-template-columns:1fr 260px;gap:32px}.website .adva-about-disciplines-head{grid-template-columns:.5fr 1fr}.website .adva-about-disciplines-head>p{grid-column:2}}
+@media(max-width:760px){
+ .website .cinema-photo-hero .cinema-hero-photograph{object-position:61% top}
+ .website .cinema-photo-hero .cinema-photograph-shade{background:linear-gradient(180deg,#07101966 0%,#07101922 23%,#071019d7 42%,#071019 65%,#071019 100%)}
+ .website .cinema-photo-hero .cinema-inner{min-height:calc(100svh - 70px);padding-top:clamp(280px,41svh,435px);padding-bottom:26px;gap:23px}
+ .website .cinema-photo-hero .cinema-main{display:flex;align-items:end;flex:1}
+ .website .cinema-photo-hero .cinema-story{max-width:none}
+ .website .cinema-photo-hero .cinema-title{font-size:clamp(47px,10.3vw,78px);line-height:1.01}
+ .website .cinema-photo-hero .cinema-intro{font-size:14px;margin:20px 0 24px;max-width:470px}
+ .website .cinema-photo-hero .cinema-search{min-height:65px;border-radius:11px}
+ .website .cinema-photo-hero .cinema-foot{margin-top:10px}
+ .website .adva-about-teaser{padding:83px 0}
+ .website .adva-about-teaser-grid{grid-template-columns:1fr;gap:39px}
+ .website .adva-about-teaser-head h2{font-size:clamp(45px,9.5vw,72px);margin-top:19px}
+ .website .adva-about-lead{padding-top:64px}
+ .website .adva-about-lead-copy{display:block;padding-bottom:45px}
+ .website .adva-about-lead h1{font-size:clamp(50px,10.1vw,80px);margin-top:19px}
+ .website .adva-about-lead-copy>p{margin-top:29px;max-width:540px;font-size:16px}
+ .website .adva-about-lead-photo{height:clamp(310px,66vw,500px)}
+ .website .adva-about-lead-photo img{object-position:62% 45%}
+ .website .adva-about-origin,.website .adva-about-disciplines,.website .adva-about-people{padding:85px 0}
+ .website .adva-about-origin-grid,.website .adva-about-people-grid{grid-template-columns:1fr;gap:30px}
+ .website .adva-about-origin h2{font-size:clamp(43px,9vw,64px);margin:17px 0 0}
+ .website .adva-about-origin-prose{padding-top:26px}
+ .website .adva-about-disciplines-head{display:block;padding-bottom:33px}
+ .website .adva-about-disciplines h2{font-size:clamp(44px,8vw,68px);margin:20px 0}
+ .website .adva-about-disciplines-head>p{max-width:540px}
+ .website .adva-about-discipline{grid-template-columns:30px minmax(0,1fr) 24px;gap:12px;padding:26px 0}
+ .website .adva-about-discipline strong{font-size:clamp(22px,5.1vw,31px)}
+ .website .adva-about-discipline-desc{grid-column:2;grid-row:2;font-size:12px}
+ .website .adva-about-discipline-arrow{grid-column:3;grid-row:1}
+ .website .adva-about-people h2{font-size:clamp(50px,9vw,82px);margin-bottom:30px}
+ .website .adva-about-last .container{align-items:start;flex-direction:column;gap:30px}
+ .website .adva-about-last h2{font-size:clamp(59px,12vw,95px)}
+}
+@media(max-width:400px){.website .cinema-photo-hero .cinema-inner{padding-top:clamp(220px,34svh,320px)}.website .cinema-photo-hero .cinema-title{font-size:clamp(45px,10.35vw,56px)}.website .adva-about-teaser-head h2{font-size:clamp(42px,10vw,54px)}.website .adva-about-lead h1{font-size:clamp(44px,9.6vw,61px)}}
+@media(prefers-reduced-motion:reduce){.website .cinema-photo-hero .cinema-hero-photograph{animation:none!important;transform:none!important}.website .adva-about-discipline,.website .adva-about-last a{transition:none!important}}
