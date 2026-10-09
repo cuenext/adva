@@ -2,13 +2,14 @@ import {notFound} from "next/navigation";
 import SiteNav from "../../../components/SiteNav";
 import SiteFooter from "../../../components/SiteFooter";
 import {SELECTED_WORK,selectedWorkBySlug} from "../../../lib/selected-work";
+import {PUBLIC_ROBOTS} from "../../../lib/site-publication";
 
 export function generateStaticParams(){return SELECTED_WORK.map(item=>({slug:item.slug}));}
 export async function generateMetadata({params}){
  const {slug}=await params;
  const project=selectedWorkBySlug(slug);
- if(!project)return {title:"Project not found | ADVA",robots:{index:false}};
- return {title:project.title+" | Selected Work — ADVA",description:project.intro,robots:{index:false,follow:false}};
+ if(!project)return {title:"Project not found | ADVA",robots:PUBLIC_ROBOTS};
+ return {title:project.title+" | Selected Work — ADVA",description:project.intro,robots:PUBLIC_ROBOTS};
 }
 export default async function WorkCase({params}){
  const {slug}=await params;

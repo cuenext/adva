@@ -13,6 +13,7 @@ export default function BriefForm({initialService,initialServices=[]}){
  const [timeline,setTimeline]=useState("Still exploring");
  const [location,setLocation]=useState("Abu Dhabi");
  const [budget,setBudget]=useState("");
+ const [referenceUrl,setReferenceUrl]=useState("");
  const [name,setName]=useState("");
  const [email,setEmail]=useState("");
  const [company,setCompany]=useState("");
@@ -36,14 +37,16 @@ export default function BriefForm({initialService,initialServices=[]}){
  },[]);
  useEffect(()=>{let active=true;fetch("/api/leads",{cache:"no-store"}).then(r=>r.json()).then(d=>{if(active)setCaptureReady(Boolean(d.available))}).catch(()=>{});return()=>{active=false}},[]);
  function toggle(slug){setSelected(s=>s.includes(slug)?s.filter(x=>x!==slug):[...s,slug]);setError("")}
+ function validReference(url){if(!url.trim())return true;try{const u=new URL(url.trim());return u.protocol==="https:"&&!u.username&&!u.password&&u.hostname!=="localhost"&&u.hostname!=="127.0.0.1"&&url.length<=600}catch{return false}}
  function next(){
   if(step===1&&!overview.trim()){setError("Tell us a little about the idea to continue.");return}
+  if(step===1&&!validReference(referenceUrl)){setError("Use a full, secure https:// reference link, or leave this field blank.");return}
   if(step===2&&(!name.trim()||!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))){setError("Add your name and a valid email to prepare the brief.");return}
   setError("");setStep(s=>Math.min(3,s+1));window.scrollTo({top:0,behavior:"smooth"});
  }
  function back(){setError("");setStep(s=>Math.max(0,s-1));window.scrollTo({top:0,behavior:"smooth"})}
  const names=selected.length?selected.map(slug=>SERVICES.find(s=>s.slug===slug)?.name).filter(Boolean):["I'd like guidance on what I need"];
- const summary=useMemo(()=>"Hello ADVA,\n\nHere's my project brief:\n\nSERVICES\n"+names.map(n=>"• "+n).join("\n")+"\n\nTHE IDEA\n"+(overview.trim()||"I'd like help shaping the brief")+"\n\nTIMELINE\n"+timeline+"\n\nLOCATION\n"+location+"\n\nBUDGET (IF KNOWN)\n"+(budget||"To be discussed")+"\n\nCONTACT\n"+name+(company?" | "+company:"")+"\n"+email+"\n\nThank you.",[names.join(","),overview,timeline,location,budget,name,company,email]);
+ const summary=useMemo(()=>"Hello ADVA,\n\nHere's my project brief:\n\nSERVICES\n"+names.map(n=>"• "+n).join("\n")+"\n\nTHE IDEA\n"+(overview.trim()||"I'd like help shaping the brief")+"\n\nTIMELINE\n"+timeline+"\n\nLOCATION\n"+location+"\n\nBUDGET (IF KNOWN)\n"+(budget||"To be discussed")+"\n\nREFERENCE LINK (OPTIONAL)\n"+(referenceUrl.trim()||"Not provided")+"\n\nCONTACT\n"+name+(company?" | "+company:"")+"\n"+email+"\n\nThank you.",[names.join(","),overview,timeline,location,budget,referenceUrl,name,company,email]);
  const mailHref="mailto:inquiries@advaae.com?subject="+encodeURIComponent("New ADVA project inquiry")+"&body="+encodeURIComponent(summary);
  const waHref="https://wa.me/971585876114?text="+encodeURIComponent(summary);
  async function copy(){try{await navigator.clipboard.writeText(summary);setCopied(true)}catch{setCopied(false)}}
@@ -54,7 +57,7 @@ export default function BriefForm({initialService,initialServices=[]}){
   try{
    const response=await fetch("/api/leads",{
      method:"POST",credentials:"same-origin",headers:{"Content-Type":"application/json"},
-     body:JSON.stringify({name,email,company,description:overview,services:selected,timeline,location,budget,consent:true,website:""})
+     body:JSON.stringify({name,email,company,description:overview,services:selected,timeline,location,budget,reference_url:referenceUrl.trim(),consent:true,website:""})
    });
    const result=await response.json();
    if(!response.ok||!result.ok)throw new Error(result.error||"Couldn't submit the brief");
@@ -74,6 +77,9 @@ export default function BriefForm({initialService,initialServices=[]}){
    <textarea id="brief-overview" rows="6" maxLength={1800} placeholder="We're launching a new brand, and need a website and content that feel different from the usual..." value={overview} onChange={e=>setOverview(e.target.value)}/>
    <div className="adva-field-row"><div><label className="adva-field-label" htmlFor="brief-timeline">Timeline</label><select id="brief-timeline" value={timeline} onChange={e=>setTimeline(e.target.value)}>{TIMEFRAMES.map(x=><option key={x}>{x}</option>)}</select></div><div><label className="adva-field-label" htmlFor="brief-location">Where's the project?</label><select id="brief-location" value={location} onChange={e=>setLocation(e.target.value)}>{LOCATIONS.map(x=><option key={x}>{x}</option>)}</select></div></div>
    <label className="adva-field-label" htmlFor="brief-budget">Approximate budget <span>Optional</span></label><input id="brief-budget" value={budget} onChange={e=>setBudget(e.target.value)} placeholder="An estimate or 'not sure yet' is fine" maxLength={120}/>
+   <label className="adva-field-label" htmlFor="brief-reference">Reference or moodboard link <span>Optional</span></label>
+   <input id="brief-reference" type="url" inputMode="url" value={referenceUrl} onChange={e=>setReferenceUrl(e.target.value)} placeholder="https://drive.google.com/..." maxLength={600}/>
+   <p className="adva-form-help">Share a viewable Drive, Dropbox, Figma or portfolio link. Please don't include confidential patient information, passwords or private financial documents.</p>
   </section>}
   {step===2&&<section className="adva-brief-step" aria-labelledby="brief-step-three">
    <span className="adva-small-eyebrow"><i/> STEP 03 / YOUR DETAILS</span><h2 id="brief-step-three">Who are we speaking to?</h2><p>Just the essentials so we know who the brief is coming from.</p>
@@ -84,10 +90,10 @@ export default function BriefForm({initialService,initialServices=[]}){
   {step===3&&<section className="adva-brief-step" aria-labelledby="brief-step-four">
    <span className="adva-small-eyebrow"><i/> STEP 04 / READY TO SHARE</span><h2 id="brief-step-four">Ready to send.</h2><p>Here's your brief. Choose how you'd like to send it to ADVA.</p>
    <div className="adva-brief-review">
-    <div><span>SERVICES</span><strong>{names.join(" · ")}</strong></div><div><span>PROJECT</span><p>{overview||"Need help shaping the project"}</p></div><div><span>WHEN & WHERE</span><strong>{timeline} · {location}</strong></div><div><span>CONTACT</span><strong>{name} · {email}</strong>{company&&<small>{company}</small>}</div>
+    <div><span>SERVICES</span><strong>{names.join(" · ")}</strong></div><div><span>PROJECT</span><p>{overview||"Need help shaping the project"}</p></div><div><span>WHEN & WHERE</span><strong>{timeline} · {location}</strong></div>{referenceUrl.trim()&&<div><span>REFERENCE</span><p>{referenceUrl.trim()}</p></div>}<div><span>CONTACT</span><strong>{name} · {email}</strong>{company&&<small>{company}</small>}</div>
    </div>
    {captureReady&&<label className="adva-brief-consent"><input type="checkbox" checked={consent} onChange={e=>setConsent(e.target.checked)}/><span>I agree that ADVA may use this information to contact me about my project. <a href="/privacy">Privacy policy →</a></span></label>}
-   {submittedReference?<div className="adva-brief-success" role="status"><strong>Brief received by ADVA.</strong><p>We've recorded your enquiry. Reference: {submittedReference}. The team can review it in ADVA HQ.</p></div>:<div className="adva-brief-send-options">{captureReady&&<button type="button" className="adva-brief-send-primary" onClick={submitDirect} disabled={sending}>{sending?"Sending securely…":"Send to ADVA securely"} <Up/></button>}<a href={mailHref} className={captureReady?"adva-brief-send-secondary":"adva-brief-send-primary"}>Open email to send <Up/></a><a href={waHref} target="_blank" rel="noopener noreferrer" className="adva-brief-send-secondary">Send via WhatsApp <Up/></a><button type="button" onClick={copy}>{copied?"Copied":"Copy brief"}</button></div>}
+   {submittedReference?<div className="adva-brief-success" role="status"><strong>Thank you. Your brief is with ADVA.</strong><p>Reference: {submittedReference}. We'll review your enquiry and respond using the contact details you provided.</p><div className="adva-brief-received-links"><a href="/work">Explore selected work ↗</a><a href="/">Return to the homepage ↗</a></div></div>:<div className="adva-brief-send-options">{captureReady&&<button type="button" className="adva-brief-send-primary" onClick={submitDirect} disabled={sending}>{sending?"Sending securely…":"Send to ADVA securely"} <Up/></button>}<a href={mailHref} className={captureReady?"adva-brief-send-secondary":"adva-brief-send-primary"}>Open email to send <Up/></a><a href={waHref} target="_blank" rel="noopener noreferrer" className="adva-brief-send-secondary">Send via WhatsApp <Up/></a><button type="button" onClick={copy}>{copied?"Copied":"Copy brief"}</button></div>}
    <p className="adva-form-help">{submittedReference?"Submission confirmed. Please do not send the same enquiry again unless you want to add new information.":captureReady?"Secure submission stores your brief for the ADVA team. Email and WhatsApp remain available as alternatives.":"This brief is not yet submitted. Email or WhatsApp opens your app, where you must press Send yourself."}</p>
   </section>}
   {error&&<p role="alert" className="adva-brief-error">{error}</p>}

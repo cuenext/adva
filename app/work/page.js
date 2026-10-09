@@ -1,11 +1,12 @@
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import {SELECTED_WORK} from "../../lib/selected-work";
+import {PUBLIC_ROBOTS} from "../../lib/site-publication";
 
 export const metadata={
  title:"Selected Work | ADVA Creative Production in Abu Dhabi",
  description:"Selected ADVA projects across exhibition media, photography, videography and live-event production in Abu Dhabi and Dubai.",
- robots:{index:false,follow:false}
+ robots:PUBLIC_ROBOTS
 };
 
 export default function WorkIndex(){

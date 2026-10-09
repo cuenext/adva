@@ -13,11 +13,13 @@ import "./editorial.css";
 import "./work/work.css";
 import CursorSpotlight from "../components/CursorSpotlight";
 import Script from "next/script";
+import {SITE_ORIGIN,PUBLIC_ROBOTS} from "../lib/site-publication";
 export const metadata = {
+ metadataBase:new URL(SITE_ORIGIN),
  title: "ADVA | Creative, Media & Events in Abu Dhabi",
  description: "ADVA is an Abu Dhabi-based creative, media and events agency. Brand transformation, videography, photography, exhibitions, social media, websites and production.",
  applicationName: "ADVA",
- openGraph: { title:"ADVA | Ideas into impact", description:"Creative thinking. Real-world execution. Media, events and brand experiences from Abu Dhabi.",type:"website"},
- robots: {index:false,follow:false}, // Preview staging only; switch when advaae.com migrates.
+ openGraph: {title:"ADVA | Creative, Media & Events in Abu Dhabi",description:"Film, photography, digital and exhibition production from Abu Dhabi.",type:"website",siteName:"ADVA",locale:"en_AE"},
+ robots: PUBLIC_ROBOTS, // Staging noindex; explicit approval required for production indexing.
 };
 export default function RootLayout({children}){return <html lang="en"><body><CursorSpotlight/>{children}<Script src="/adva-assistant/assistant.js" strategy="afterInteractive" /></body></html>;}

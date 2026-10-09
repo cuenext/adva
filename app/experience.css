@@ -199,3 +199,8 @@
 .adva-pathway p{font-size:13px;line-height:1.8;color:#9aadc3;margin:0;max-width:390px}
 .adva-pathway-next{display:flex;align-items:center;gap:15px;margin-top:auto;padding-top:23px;color:#b5dbff;font:800 12px Manrope,Arial,sans-serif}
 @media(max-width:650px){.adva-pathways{padding:77px 0}.adva-pathways-heading h2{font-size:clamp(41px,10vw,59px)}.adva-pathways-grid{grid-template-columns:1fr}.adva-pathway{min-height:240px;padding:24px}}
+
+/* Clear direct-submission confirmation / safe reference formatting. */
+.adva-brief-received-links{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px}
+.adva-brief-received-links a{color:#b1deff;font:760 12px Manrope,Arial,sans-serif;text-decoration:underline;text-underline-offset:5px}
+.adva-brief-received-links a:hover{color:#fff}

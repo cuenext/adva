@@ -15,6 +15,15 @@ function validOrigin(request){
  try{const origin=request.headers.get("origin");return Boolean(origin) && new URL(origin).origin===new URL(request.url).origin;}catch{return false;}
 }
 function clean(value,max=120){return typeof value==="string"?value.trim().slice(0,max):"";}
+function validReference(value){
+ if(value===undefined||value===null||value==="")return "";
+ if(typeof value!=="string"||value.length>600)return null;
+ try{
+  const u=new URL(value.trim());
+  if(u.protocol!=="https:"||u.username||u.password||u.hostname==="localhost"||u.hostname==="127.0.0.1")return null;
+  return value.trim();
+ }catch{return null}
+}
 
 export async function POST(request){
  if(!isReady())return respond({error:"Secure submission is not connected yet. You can send your brief via email or WhatsApp."},503);
@@ -26,12 +35,12 @@ export async function POST(request){
  if(body?.website)return respond({ok:true,reference:""}); // unobtrusive honeypot
  const name=clean(body?.name,100),email=clean(body?.email,180).toLowerCase(),
    company=clean(body?.company,150),description=clean(body?.description,2600),
-   timeline=clean(body?.timeline,100),location=clean(body?.location,100),budget=clean(body?.budget,160);
+   timeline=clean(body?.timeline,100),location=clean(body?.location,100),budget=clean(body?.budget,160),reference_url=validReference(body?.reference_url);
  const validSlugs=new Set(SERVICES.map(s=>s.slug));
  const services=Array.isArray(body?.services)?
    [...new Set(body.services.filter(s=>typeof s==="string"&&validSlugs.has(s)))].slice(0,9):[];
  if(!body?.consent || name.length<2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-   description.length<12 || description.length>2600)return respond({error:"Please complete the name, email, project idea and consent fields."},400);
+   description.length<12 || description.length>2600 || reference_url===null)return respond({error:"Please complete the name, email and project idea, and use a secure HTTPS reference link if provided."},400);
  const limit=await applyRateLimit(request,"leads",3,20);
  if(!limit.allowed)return respond({error:limit.reason==="rate_limited"?
   "Too many submissions. Please wait or email ADVA directly.":
@@ -47,7 +56,7 @@ export async function POST(request){
       "Prefer":"return=representation"
     },
     body:JSON.stringify({
-       name,email,company,description,services,timeline,location,budget,
+       name,email,company,description,services,timeline,location,budget,reference_url,
        consent_to_contact:true,source:"adva_website"
     }),
     cache:"no-store",signal:AbortSignal.timeout(9000)

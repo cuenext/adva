@@ -38,13 +38,13 @@ export default function WorkspaceInquiries({ws,go}){
    <aside className="aws-inquiry-detail">
     {current?<><div className="aws-inquiry-detail-head"><span>BRIEF / {date(current.created_at)}</span><button type="button" onClick={()=>setSelected(null)} aria-label="Close enquiry"><AdvaIcon name="close" size={17}/></button></div><h2>{amount(current.company||current.name)}</h2><p className="aws-inquiry-contact"><strong>{current.name}</strong><a href={"mailto:"+current.email}>{current.email} →</a></p>
       <div className="aws-inquiry-description"><span>THE IDEA</span><p>{current.description}</p></div>
-      <div className="aws-inquiry-fields"><div><span>WHAT THEY NEED</span><strong>{current.services?.join(" / ")||"Not specified"}</strong></div><div><span>WHERE / WHEN</span><strong>{current.location||"—"} · {current.timeline||"—"}</strong></div><div><span>BUDGET</span><strong>{current.budget||"Not specified"}</strong></div></div>
+      <div className="aws-inquiry-fields"><div><span>WHAT THEY NEED</span><strong>{current.services?.join(" / ")||"Not specified"}</strong></div><div><span>WHERE / WHEN</span><strong>{current.location||"—"} · {current.timeline||"—"}</strong></div><div><span>BUDGET</span><strong>{current.budget||"Not specified"}</strong></div>{current.reference_url?.startsWith("https://")&&<div><span>REFERENCE / INSPIRATION</span><a href={current.reference_url} target="_blank" rel="noopener noreferrer">Open submitted reference ↗</a></div>}</div>
       <label className="aws-inquiry-status">PIPELINE STAGE<select disabled={busy} value={current.status} onChange={e=>update(current,{status:e.target.value})}>{statuses.map(x=><option key={x} value={x}>{x}</option>)}</select></label>
       <form onSubmit={e=>{e.preventDefault();const fd=new FormData(e.currentTarget);update(current,{internal_notes:String(fd.get("notes")||"").slice(0,6000)})}}><label>PRIVATE NOTES<textarea name="notes" key={current.id+"-"+current.internal_notes} defaultValue={current.internal_notes||""} maxLength={6000} rows={4} placeholder="Next steps, call summary, meeting notes…"/></label><button disabled={busy} type="submit" className="aws-outline">Save internal notes →</button></form>
       <button disabled={busy} type="button" className="aws-primary aws-inquiry-convert" onClick={()=>createProject(current)}>Turn into a project →</button>
      </>:<div className="aws-inquiry-placeholder"><span>→</span><strong>Open a conversation.</strong><p>Choose a client inquiry to review their idea, update the stage or turn it into a private ADVA project.</p></div>}
    </aside>
   </div>
-  <p className="aws-small-note">Enquiry details are private to the verified CEO. Website submissions are currently disabled until the rate limiter and server-only credentials are connected; this dashboard never displays invented leads.</p>
+  <p className="aws-small-note">Enquiry details are private to the verified CEO. Leads arrive here when the secure submission endpoint is enabled. References are private to ADVA HQ; never open unfamiliar links with elevated browser access.</p>
  </div>;
 }

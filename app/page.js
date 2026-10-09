@@ -4,10 +4,23 @@ import SiteFooter from "../components/SiteFooter";
 import ServicesShowcase from "../components/ServicesShowcase";
 import SelectedWorkTeaser from "../components/SelectedWorkTeaser";
 
+const organizationStructuredData={
+ "@context":"https://schema.org",
+ "@type":"Organization",
+ name:"ADVA",
+ legalName:"AALAM ADVA Events & Marketing",
+ url:"https://advaae.com",
+ foundingDate:"2026-01",
+ email:"inquiries@advaae.com",
+ telephone:"+971585876114",
+ address:{"@type":"PostalAddress",addressLocality:"Abu Dhabi",addressCountry:"AE"},
+ sameAs:["https://www.linkedin.com/company/adva-ae/","https://www.instagram.com/adva.ae/"]
+};
 export default function Home(){
  return <div className="website adva-home" id="top">
   <SiteNav/>
   <main>
+   <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(organizationStructuredData)}}/>
    <CinematicHero/>
    <ServicesShowcase/>
    <SelectedWorkTeaser/>
