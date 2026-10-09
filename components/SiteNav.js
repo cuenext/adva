@@ -58,13 +58,13 @@ export default function SiteNav(){
  },[menu]);
  const shut=()=>{cancelServiceClose();setMenu(false);setServices(false)};
  return <>
-  <header className="main-header adva-site-nav adva-nav-v4">
+  <header className="main-header adva-site-nav adva-nav-v4" onMouseLeave={scheduleServiceClose}>
     <div className="container header-inner">
       <a href="/" className="brand adva-brand" aria-label="ADVA home" onClick={shut}>
         <img className="brand-logo" src="/adva-logo.webp" alt="ADVA" width="116" height="65"/>
       </a>
       <nav className="adva-desktop-nav adva-v4-primary" aria-label="Main site navigation">
-        <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={openServiceMenu} onMouseLeave={scheduleServiceClose} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget)){cancelServiceClose();setServices(false)}}}>
+        <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={openServiceMenu} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget)){cancelServiceClose();setServices(false)}}}>
           <button type="button" aria-expanded={services} aria-controls="adva-v4-services-dropdown" className="adva-v4-service-trigger" onClick={()=>{cancelServiceClose();setServices(v=>!v)}}>Services <AdvaIcon name="chevron" size={14}/></button>
           <div id="adva-v4-services-dropdown" className={"adva-v4-services-dropdown"+(services?" is-open":"")} onMouseEnter={cancelServiceClose} aria-hidden={!services} inert={!services}>
             <div className="adva-v4-services-top"><span>What we do</span><a href="/services" onClick={shut} tabIndex={services?0:-1}>All services <AdvaIcon name="up" size={14}/></a></div>
