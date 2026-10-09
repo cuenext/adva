@@ -14,6 +14,11 @@ const suggestions=[
  {title:"Event staffing",keys:["staff","staffing","hostess","host","promoter","usher","event crew"],service:"event-staffing",project:"Event staffing",desc:"The right people to support the experience on site."}
 ];
 const prompts=["I need creative coverage for a three-day exhibition","We need to rebrand and launch a new website","We want to make content people actually watch","I'm planning a brand campaign in Abu Dhabi"];
+// Fixed positions keep the background consistent during hydration and avoid expensive particles.
+const skyPoints=Array.from({length:145},(_,i)=>{
+ const noise=n=>{const v=Math.sin(n*127.1+34.47)*43758.5453;return v-Math.floor(v)};
+ return {x:Math.round(noise(i+1)*1440),y:Math.round(noise(i+178)*900),size:noise(i+305)>.94?1.8:.65,alpha:.2+noise(i+500)*.65};
+});
 function match(q){const t=q.toLowerCase().replace(/[^a-z0-9 ]/g," ");const items=suggestions.map((s,i)=>({...s,score:s.keys.reduce((n,k)=>n+(t.includes(k)?(k.length>8?4:3):0),0)-i*.00001})).sort((a,b)=>b.score-a.score);return items[0].score>0?items.filter(s=>s.score>0).slice(0,4):[suggestions[1],suggestions[5]]}
 function Arrow(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6"/></svg>}
 function Up(){return <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 16 16 4M6 4h10v10"/></svg>}
@@ -29,9 +34,15 @@ export default function CinematicHero(){
  function submit(e){e.preventDefault();const v=query.trim();if(!v){input.current?.focus();return}setSubmitted(v)}
  function openAssistant(){window.dispatchEvent(new CustomEvent("adva:assistant:open",{detail:{brief:submitted||query}}))}
  return <>
-  <section className="cinema cinema-photo-hero" aria-labelledby="cinema-title">
-    <img src="/adva-crew-hero.webp" className="cinema-hero-photograph" alt="" aria-hidden="true" width="720" height="480" fetchPriority="high"/>
-    <div className="cinema-photograph-shade" aria-hidden="true"/>
+  <section className="cinema cinema-cosmos-hero" aria-labelledby="cinema-title">
+    <div className="cinema-cosmos" aria-hidden="true">
+      <div className="cinema-cosmos-nebula"/>
+      <div className="cinema-cosmos-horizon"/>
+      <svg className="cinema-cosmos-stars" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+        {skyPoints.map((s,i)=><circle key={i} cx={s.x} cy={s.y} r={s.size} fill="#d2e8ff" opacity={s.alpha}/>)}
+      </svg>
+      <div className="cinema-cosmos-vignette"/>
+    </div>
     <div className="container cinema-inner">
       <div className="cinema-main">
         <div className="cinema-story">

@@ -3,9 +3,9 @@ import {useState} from "react";
 import AdvaIcon,{AdvaMark} from "./AdvaIcon";
 import {authEmailRedirect} from "../lib/auth-email-redirect";
 export default function WorkspaceLogin({db,mode="hq",redirect="/hq"}){
- const [email,setEmail]=useState(""),[stage,setStage]=useState(mode==="hq"?"password":"email"),[showCode,setShowCode]=useState(false),[token,setToken]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[message,setMessage]=useState(""),[busy,setBusy]=useState(false),[isAdult,setAdult]=useState(false);
+ const [email,setEmail]=useState(""),[stage,setStage]=useState(mode==="hq"||mode==="network"?"password":"email"),[showCode,setShowCode]=useState(false),[token,setToken]=useState(""),[password,setPassword]=useState(""),[error,setError]=useState(""),[message,setMessage]=useState(""),[busy,setBusy]=useState(false),[isAdult,setAdult]=useState(false);
  const join=mode==="join";
- const intro=mode==="portal"?{title:"Your work, all in one place.",subtitle:"Project timelines, approved content and performance — when ADVA has linked your verified account."}:join?{title:"Create your space in ADVA.",subtitle:"Join our creative network, build your portfolio and apply for opportunities once our NDA is approved."}:{title:"Welcome back to ADVA.",subtitle:"One secure login. The projects and tools you are permitted to access."};
+ const intro=mode==="portal"?{title:"Your projects, in one place.",subtitle:"Sign in to see the project information ADVA has shared with you."}:join?{title:"Join the ADVA network.",subtitle:"Create a verified profile to share your work and hear about opportunities."}:mode==="network"?{title:"Welcome back.",subtitle:"Sign in with your password to open your ADVA freelancer workspace. No email link needed."}:{title:"Welcome back to ADVA.",subtitle:"Sign in to access your ADVA workspace."};
  async function send(e){
   e.preventDefault();setError("");setMessage("");
   if(join&&!isAdult){setError("ADVA's freelance network is currently for applicants aged 18 and over.");return}
@@ -16,7 +16,7 @@ export default function WorkspaceLogin({db,mode="hq",redirect="/hq"}){
    const r=await db.auth.signInWithOtp({email:email.trim().toLowerCase(),options:{shouldCreateUser:mode==="portal"||mode==="join",emailRedirectTo:authEmailRedirect(redirect)}});
    if(r.error)throw r.error;
    setShowCode(false);setToken("");setStage("link");setMessage("A secure sign-in link was sent. Follow the link in your email to access ADVA.");
-  }catch(e){setError(e.message||"We couldn't send the verification email.")}finally{setBusy(false)}
+  }catch(e){const limited=/email rate limit|over_email_send_rate_limit/i.test(e?.message||"");setError(limited?"Email sign-in is temporarily unavailable because Supabase reached its sending limit. Use password sign-in instead, or try an email link later.":(e.message||"We couldn't send the sign-in email."))}finally{setBusy(false)}
  }
  async function verify(e){
   e.preventDefault();setBusy(true);setError("");try{
@@ -42,9 +42,9 @@ export default function WorkspaceLogin({db,mode="hq",redirect="/hq"}){
     {showCode&&<form onSubmit={verify}><label htmlFor="ws-otp">Six-digit verification code</label><input id="ws-otp" inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="000000" value={token} onChange={e=>setToken(e.target.value.replace(/\D/g,""))}/><button type="submit" className="aws-primary" disabled={busy||token.length!==6}>Verify email <span>→</span></button></form>}
     <button type="button" className="aws-text-button" onClick={()=>{setStage("email");setShowCode(false);setToken("");setMessage("")}}>← Change email or request a new link</button>
   </div>}
-  {stage==="password"&&<form onSubmit={passwordLogin}><label htmlFor="ws-p-email">Email</label><input id="ws-p-email" type="email" required value={email} onChange={e=>setEmail(e.target.value)}/><label htmlFor="ws-password">Password</label><input id="ws-password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)}/><button className="aws-primary" disabled={busy}>Sign in <span>→</span></button><button className="aws-text-button" type="button" onClick={()=>setStage("email")}>← Use email verification instead</button></form>}
+  {stage==="password"&&<form onSubmit={passwordLogin}><label htmlFor="ws-p-email">Email</label><input id="ws-p-email" type="email" required value={email} onChange={e=>setEmail(e.target.value)}/><label htmlFor="ws-password">Password</label><input id="ws-password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)}/><button className="aws-primary" disabled={busy} type="submit">{busy?"Signing in…":"Sign in with password"} <span>→</span></button><button className="aws-text-button" type="button" onClick={()=>{setError("");setStage("email")}}>Use a one-time email link instead →</button></form>}
   {error&&<p className="aws-error" role="alert">{error}</p>}{message&&<p className="aws-success" role="status">{message}</p>}
-  {stage==="email"&&!join&&<button className="aws-text-button" type="button" onClick={()=>setStage("password")}>Already have a password? Sign in here →</button>}
+  {stage==="email"&&!join&&<button className="aws-text-button" type="button" onClick={()=>{setError("");setStage("password")}}>Sign in with your password instead →</button>}
   <div className="aws-login-footer"><a href="/join">Join the ADVA network</a><a href="/portal">Client access</a><a href="/">← Main website</a></div>
  </div></div>;
 }

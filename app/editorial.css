@@ -1,35 +1,89 @@
-/* ADVA — photographic homepage and restrained editorial About preview.
-   The About page uses app/about/about.css, with no photographic hero. */
-.website .cinema-photo-hero{position:relative;isolation:isolate;overflow:hidden;min-height:calc(100svh - 78px);background:#080d14}
-.website .cinema-photo-hero .cinema-hero-photograph{
- position:absolute;z-index:-2;inset:clamp(76px,8vw,112px) 3% auto auto;
- width:min(45%,630px);height:clamp(350px,46svh,445px);object-fit:cover;
- object-position:49% 46%;filter:saturate(.92) contrast(1.08);
- -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 19%,#000 92%,transparent 100%);
- mask-image:linear-gradient(90deg,transparent 0%,#000 19%,#000 92%,transparent 100%);
- animation:adva-photo-arrive 1.3s ease-out both
+/* ADVA / Deep-field hero. Pure CSS and scalable vector stars; no hero photograph. */
+.website .cinema-cosmos-hero{
+ position:relative;isolation:isolate;overflow:hidden;background:#060b12;
+ min-height:calc(100svh - 78px);
 }
-.website .cinema-photo-hero .cinema-photograph-shade{
- position:absolute;z-index:-1;inset:0;pointer-events:none;
- background:linear-gradient(90deg,#080d14 0%,#080d14ee 21%,#080d14b6 39%,#080d145b 60%,transparent 90%),
- linear-gradient(0deg,#080d14 0%,transparent 25%,#080d145e 100%)
+.website .cinema-cosmos-hero .cinema-cosmos{
+ position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;
+ background:
+ radial-gradient(ellipse at 78% 46%,rgba(29,73,117,.25),transparent 34%),
+ radial-gradient(ellipse at 87% 88%,rgba(30,91,148,.12),transparent 36%),
+ linear-gradient(115deg,#070c13 0%,#08111d 47%,#050b15 75%,#03070d 100%);
 }
-.website .cinema-photo-hero .cinema-inner{position:relative;min-height:clamp(670px,calc(100svh - 78px),1020px);padding-top:55px;padding-bottom:31px;gap:25px;justify-content:center}
-.website .cinema-photo-hero .cinema-main{display:flex;flex:1;justify-content:flex-start;align-items:center;width:100%}
-.website .cinema-photo-hero .cinema-story{width:100%;max-width:665px;position:relative;z-index:2;padding:0}
-.website .cinema-photo-hero .cinema-title{max-width:750px;font-size:clamp(68px,7.75vw,123px);line-height:.99;letter-spacing:-.091em;text-shadow:0 10px 45px #0005}
-.website .cinema-photo-hero .cinema-ink-gradient{background:none;color:#a5d1f4;-webkit-text-fill-color:#a5d1f4}
-.website .cinema-photo-hero .cinema-q{color:#bfe8ff;-webkit-text-fill-color:#bfe8ff}
-.website .cinema-photo-hero .cinema-intro{max-width:460px;font-size:clamp(15px,1.35vw,17px);line-height:1.77;color:#c1cddc;margin:29px 0}
-.website .cinema-photo-hero .cinema-search-group{max-width:615px}
-.website .cinema-photo-hero .cinema-search{min-height:73px;border-radius:12px;background:#101a28ef;border:1px solid #94b6d45a;backdrop-filter:blur(10px);box-shadow:0 23px 70px #0007}
-.website .cinema-photo-hero .cinema-examples button{background:#101720c7;color:#b4c2d1;border-color:#a4bfdb35;backdrop-filter:blur(3px)}
-.website .cinema-photo-hero .cinema-examples button:hover{background:#24354a;color:#f4f9fc}
-.website .cinema-photo-hero .cinema-ai-nudge{color:#a4b6c7}
-.website .cinema-photo-hero .cinema-foot{position:relative;z-index:2;margin-top:8px;padding-top:18px;border-color:#ffffff27;width:100%}
-.website .cinema-photo-hero .cinema-foot a{color:#c4d5e5}
-.website .cinema-photo-hero .cinema-results{position:relative;z-index:3}
-@keyframes adva-photo-arrive{from{opacity:.35;transform:translateY(12px) scale(1.025)}to{opacity:1;transform:none}}
+.website .cinema-cosmos-nebula{
+ position:absolute;width:min(74vw,1130px);height:min(70vw,830px);
+ right:-16%;top:-5%;border-radius:42%;
+ background:
+ radial-gradient(ellipse at 56% 44%,rgba(57,109,163,.19),transparent 37%),
+ radial-gradient(ellipse at 47% 52%,rgba(63,128,180,.11),transparent 61%),
+ radial-gradient(ellipse at 75% 37%,rgba(132,170,204,.07),transparent 70%);
+ filter:blur(29px);opacity:.9;transform:rotate(-17deg);
+}
+.website .cinema-cosmos-horizon{
+ position:absolute;width:min(118vw,1660px);height:min(118vw,1660px);
+ border-radius:50%;top:-64%;right:-71%;
+ border-left:1px solid rgba(158,200,242,.26);
+ box-shadow:-16px 0 57px rgba(43,103,157,.13),-55px 0 130px rgba(26,79,131,.07);
+ transform:rotate(-19deg);opacity:.85;
+}
+.website .cinema-cosmos-horizon:before{
+ content:"";position:absolute;inset:37px;border-radius:50%;
+ border-left:1px solid rgba(95,141,183,.09);
+}
+.website .cinema-cosmos-stars{
+ position:absolute;inset:0;height:100%;width:100%;
+ opacity:.63;mask-image:linear-gradient(90deg,transparent 17%,#0004 42%,#000 79%,#000b 100%);
+ animation:adva-cosmos-arrive 1.3s ease-out both;
+}
+.website .cinema-cosmos-vignette{
+ position:absolute;inset:0;
+ background:linear-gradient(90deg,#060b13ed 0%,#060b1384 37%,transparent 72%),
+ linear-gradient(0deg,#060b13ec 0%,transparent 24%,transparent 70%,#060b1366 100%);
+}
+.website .cinema-cosmos-hero .cinema-inner{
+ position:relative;z-index:1;display:flex;flex-direction:column;
+ justify-content:center;gap:26px;
+ min-height:clamp(700px,calc(100svh - 78px),1030px);
+ padding-top:54px;padding-bottom:30px;
+}
+.website .cinema-cosmos-hero .cinema-main{
+ display:flex;flex:1;justify-content:flex-start;align-items:center;width:100%;
+}
+.website .cinema-cosmos-hero .cinema-story{
+ position:relative;z-index:2;width:100%;max-width:760px;padding:0;
+}
+.website .cinema-cosmos-hero .cinema-title{
+ color:#f2f5fb;font-size:clamp(70px,7.85vw,126px);
+ line-height:.97;letter-spacing:-.091em;max-width:770px;text-shadow:none;
+}
+.website .cinema-cosmos-hero .cinema-ink-gradient{
+ background:linear-gradient(102deg,#e3f2ff 0%,#92c8f5 48%,#4e91d8 100%);
+ -webkit-background-clip:text;background-clip:text;
+ color:transparent;-webkit-text-fill-color:transparent;
+}
+.website .cinema-cosmos-hero .cinema-q{color:#a5d9ff;-webkit-text-fill-color:#a5d9ff}
+.website .cinema-cosmos-hero .cinema-intro{
+ max-width:540px;color:#bacbdc;font-size:clamp(15px,1.25vw,17px);
+ line-height:1.76;margin:32px 0 31px;
+}
+.website .cinema-cosmos-hero .cinema-search-group{max-width:650px}
+.website .cinema-cosmos-hero .cinema-search{
+ min-height:76px;background:#0d1828de;border:1px solid #88b8e359;
+ border-radius:12px;box-shadow:0 22px 60px #0008;
+ backdrop-filter:blur(14px);
+}
+.website .cinema-cosmos-hero .cinema-search:hover{border-color:#7fbbea8a}
+.website .cinema-cosmos-hero .cinema-examples button{
+ color:#b3c5d6;background:#0b1725b8;border-color:#9bc3e526;
+}
+.website .cinema-cosmos-hero .cinema-examples button:hover{background:#20384f;color:#fff}
+.website .cinema-cosmos-hero .cinema-ai-nudge{color:#91a9bf}
+.website .cinema-cosmos-hero .cinema-foot{
+ width:100%;border-color:#ffffff24;margin-top:10px;padding-top:20px;
+ position:relative;z-index:1;
+}
+.website .cinema-cosmos-hero .cinema-foot a{color:#c2d5e7}
+@keyframes adva-cosmos-arrive{from{opacity:0;transform:translateY(-8px)}to{opacity:.63;transform:none}}
 .website .adva-about-section-name{display:block;font:750 12px/1.5 Manrope,Arial,sans-serif;color:#a2c6e5;letter-spacing:.005em}
 .website .adva-about-teaser{background:#0b121b;border-block:1px solid #ffffff1a;padding:clamp(88px,10vw,150px) 0}
 .website .adva-about-teaser-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.78fr);gap:clamp(45px,9vw,145px);align-items:end}
@@ -40,39 +94,40 @@
 .website .adva-about-teaser-body p:first-child{color:#e2ecf7}
 .website .adva-about-teaser-body a{display:inline-flex;align-items:center;gap:20px;color:#b6dafa;font-size:13px;font-weight:800;margin-top:15px;transition:gap .2s,color .2s}
 .website .adva-about-teaser-body a:hover{gap:28px;color:#fff}
+
 @media(max-width:1050px){
- .website .cinema-photo-hero .cinema-story{max-width:590px}
- .website .cinema-photo-hero .cinema-hero-photograph{width:min(49%,540px);object-position:45% center}
+ .website .cinema-cosmos-hero .cinema-story{max-width:670px}
+ .website .cinema-cosmos-horizon{right:-84%;opacity:.65}
  .website .adva-about-teaser-grid{gap:65px}
 }
 @media(max-width:760px){
- .website .cinema-photo-hero{min-height:0}
- .website .cinema-photo-hero .cinema-hero-photograph{
-  inset:0 0 auto auto;width:100%;height:clamp(265px,40svh,370px);
-  object-position:50% 43%;
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 48%,transparent 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 48%,transparent 100%)
+ .website .cinema-cosmos-hero{min-height:0}
+ .website .cinema-cosmos-hero .cinema-inner{
+  min-height:calc(100svh - 70px);padding-top:65px;padding-bottom:26px;gap:23px;
  }
- .website .cinema-photo-hero .cinema-photograph-shade{
-  background:linear-gradient(180deg,#080d1433 0%,transparent 18%,#080d14b9 40%,#080d14 68%,#080d14 100%)
+ .website .cinema-cosmos-hero .cinema-main{align-items:center}
+ .website .cinema-cosmos-hero .cinema-story{max-width:none}
+ .website .cinema-cosmos-hero .cinema-title{
+  font-size:clamp(49px,10.4vw,80px);line-height:.99;letter-spacing:-.087em;
  }
- .website .cinema-photo-hero .cinema-inner{min-height:calc(100svh - 70px);padding-top:clamp(280px,41svh,425px);padding-bottom:28px;gap:22px}
- .website .cinema-photo-hero .cinema-main{align-items:end}
- .website .cinema-photo-hero .cinema-story{max-width:none}
- .website .cinema-photo-hero .cinema-title{font-size:clamp(47px,10.1vw,77px);line-height:1.01}
- .website .cinema-photo-hero .cinema-intro{font-size:14px;line-height:1.7;margin:20px 0 25px;max-width:480px}
- .website .cinema-photo-hero .cinema-search{min-height:65px;border-radius:11px}
- .website .cinema-photo-hero .cinema-foot{margin-top:8px}
+ .website .cinema-cosmos-hero .cinema-intro{
+  font-size:14px;line-height:1.7;margin:21px 0 25px;max-width:500px;
+ }
+ .website .cinema-cosmos-hero .cinema-search{min-height:66px}
+ .website .cinema-cosmos-stars{opacity:.46;mask-image:linear-gradient(90deg,transparent 3%,#0009 65%,#000 100%)}
+ .website .cinema-cosmos-nebula{width:130%;height:70%;right:-40%;top:-4%;filter:blur(26px)}
+ .website .cinema-cosmos-horizon{width:750px;height:750px;right:-540px;top:-220px;opacity:.5}
+ .website .cinema-cosmos-vignette{background:linear-gradient(0deg,#060b13b5,transparent 70%),linear-gradient(90deg,#060b138c,transparent 100%)}
  .website .adva-about-teaser{padding:83px 0}
  .website .adva-about-teaser-grid{grid-template-columns:1fr;gap:38px}
  .website .adva-about-teaser-head h2{font-size:clamp(45px,9.5vw,72px);margin-top:19px}
 }
 @media(max-width:400px){
- .website .cinema-photo-hero .cinema-inner{padding-top:clamp(255px,36svh,335px)}
- .website .cinema-photo-hero .cinema-title{font-size:clamp(44px,10vw,54px)}
+ .website .cinema-cosmos-hero .cinema-title{font-size:clamp(45px,10.35vw,55px)}
+ .website .cinema-cosmos-hero .cinema-inner{min-height:calc(100svh - 70px);padding-top:55px}
  .website .adva-about-teaser-head h2{font-size:clamp(42px,10vw,54px)}
 }
 @media(prefers-reduced-motion:reduce){
- .website .cinema-photo-hero .cinema-hero-photograph{animation:none!important;transform:none!important}
+ .website .cinema-cosmos-stars{animation:none!important;opacity:.63}
  .website .adva-about-teaser-body a{transition:none!important}
 }
