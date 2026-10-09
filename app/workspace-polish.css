@@ -104,3 +104,74 @@
 .aws-finance-chart-month>span{font-size:10px;font-weight:800;color:#83a0bf;letter-spacing:.08em}
 .aws-finance-history-empty{padding:34px 15px;text-align:center;font-size:12px;color:#819fbe;line-height:1.8;border:1px dashed #ffffff27;border-radius:9px}
 @media(max-width:600px){.aws-finance-history{padding:18px}.aws-finance-history-head{flex-direction:column;align-items:start}.aws-finance-chart{gap:6px}.aws-finance-bars{gap:3px}.aws-finance-bar{min-width:8px}}
+
+
+/* Production mobile treatment: the sidebar becomes a deliberate slide-over,
+   not a permanently visible column. */
+@media(max-width:960px){
+ .aws-console{display:block;min-height:100svh}
+ .aws-sidebar{position:fixed;inset:0 auto 0 0;width:min(285px,82vw);height:100dvh;transform:translateX(-103%);transition:transform .32s cubic-bezier(.2,1,.25,1);box-shadow:22px 0 75px #0007;z-index:96;overflow-y:auto;overscroll-behavior:contain}
+ .aws-sidebar.open{transform:translateX(0)}
+ .aws-mobile-toggle{display:flex;align-items:center;justify-content:center;flex:none;width:38px;height:38px;border:1px solid #ffffff3c;background:#18304c;border-radius:9px;color:#ecf9ff;font-size:18px;cursor:pointer}
+ .aws-mobile-scrim{position:fixed;inset:0;z-index:75;background:#02060cbd;border:0;backdrop-filter:blur(4px);cursor:default}
+ .aws-topbar{padding:0 clamp(14px,3vw,32px);gap:14px}
+ .aws-main{width:100%;min-height:100svh}
+ .aws-body{padding:clamp(18px,4vw,35px)}
+}
+@media(max-width:620px){
+ .aws-topbar{height:65px}
+ .aws-topbar>span{font-size:9px;letter-spacing:.09em}
+ .aws-topbar-role{display:none}
+ .aws-topbar>div{gap:10px}
+ .aws-topbar>div button{font-size:0}
+ .aws-topbar>div button:before{content:"↻";font-size:20px;color:#9bcaee}
+ .aws-topbar>div a{font-size:10px}
+ .aws-page-heading{flex-direction:column;align-items:flex-start;gap:19px;margin-bottom:25px}
+ .aws-page-heading h1{font-size:clamp(35px,8.8vw,52px)}
+ .aws-page-heading-actions{width:100%}
+ .aws-page-heading-actions>*{flex:1}
+ .aws-body{padding:23px 14px 70px}
+ .aws-mini-stats,.aws-client-stats,.aws-overview-stats,.aws-finance-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .aws-mini-stats article,.aws-client-stats article,.aws-overview-stats article,.aws-finance-kpis article{min-height:125px;padding:16px}
+ .aws-mini-stats article>span,.aws-client-stats article>span,.aws-overview-stats article>span,.aws-finance-kpis article>span{font-size:8px}
+ .aws-mini-stats article strong,.aws-client-stats article strong,.aws-overview-stats article strong{font-size:34px}
+ .aws-finance-kpis article strong{font-size:17px}
+ .aws-toolbar{gap:11px}
+ .aws-toolbar label{flex:1;min-width:130px}
+ .aws-toolbar :is(select,input){min-width:0;width:100%}
+ .aws-subtabs{width:100%;margin-left:0}
+ .aws-subtabs button{flex:1}
+ .aws-panel-title{padding:19px 16px}
+ .aws-panel-title h2{font-size:18px}
+ .aws-panel-title>span{font-size:8px}
+ .aws-modal{padding:8px}
+ .aws-modal-card{padding:21px 17px;max-height:calc(100dvh - 16px);border-radius:14px}
+ .aws-modal-card .aws-form-pair{grid-template-columns:1fr;gap:12px}
+ .aws-post-row{grid-template-columns:1fr auto}
+ .aws-post-platform{grid-column:1}
+ .aws-post-platform b{display:inline-block;margin-left:9px}
+ .aws-post-description{grid-column:1/-1;grid-row:2}
+ .aws-post-row>.aws-pill{grid-column:2;grid-row:1}
+ .aws-post-actions{grid-column:1/-1;justify-content:flex-start;margin-top:5px}
+ .aws-strategy-cover{margin-top:12px}
+ .aws-network-profile{gap:12px}
+ .aws-network-profile>button{width:100%}
+ .aws-inquiry-stage{grid-template-columns:1fr}
+}
+@media(max-width:420px){
+ .aws-mini-stats article strong,.aws-overview-stats article strong{font-size:30px}
+ .aws-sidebar{width:min(275px,87vw)}
+ .aws-topbar>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+ .aws-finance-kpis{grid-template-columns:1fr 1fr}
+ .aws-join-progress>span:last-child{display:none}
+ .aws-join-progress>div{width:100%}
+}
+@media(max-width:610px){
+ .adva-site-nav .adva-access-trigger{padding:7px;min-width:41px;min-height:41px;gap:0;justify-content:center}
+ .adva-site-nav .adva-access-word,.adva-site-nav .adva-access-chevron{display:none}
+ .adva-site-nav .adva-access-trigger-orb{height:27px;width:27px}
+ .adva-site-nav .header-inner{gap:11px}
+ .adva-site-nav .adva-access-holder{margin-left:auto}
+ .adva-site-nav .adva-access-panel{right:-49px;width:min(390px,calc(100vw - 24px));}
+}
+@media(prefers-reduced-motion:reduce){.aws-sidebar{transition:none!important}}
