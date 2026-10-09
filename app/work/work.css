@@ -1,0 +1,108 @@
+/* ADVA / Selected Work — photographic publishing ready; no synthetic portfolio art. */
+.website.adva-work-page{background:#080d14!important;overflow-x:clip}
+.adva-work-page .adva-work-intro{background:#090e16;border-bottom:1px solid #ffffff24;padding:58px 0 clamp(92px,10vw,155px)}
+.adva-work-intro-top,.adva-work-heading>span,.adva-work-kicker,.adva-case-label,.adva-case-breadcrumb,.adva-work-gallery-note,.adva-work-closer>.container>span,.adva-case-next .container>span{font:760 11px/1.5 Manrope,Arial,sans-serif;letter-spacing:.08em;color:#9db7d0}
+.adva-work-intro-top{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.adva-work-intro h1{color:#f1f6fb;font:800 clamp(68px,10vw,155px)/.97 Manrope,Arial,sans-serif;letter-spacing:-.095em;margin:clamp(75px,9vw,133px) 0 67px}
+.adva-work-intro h1 em,.adva-work-heading h2 em,.adva-work-teaser-heading h2 em,.adva-work-closer h2 em{color:#91c4ed;font-style:normal}
+.adva-work-intro-bottom{border-top:1px solid #ffffff37;padding-top:30px;display:flex;align-items:end;justify-content:space-between;gap:45px}
+.adva-work-intro-bottom p{max-width:640px;color:#b8c7d7;font-size:clamp(17px,1.5vw,21px);line-height:1.7;margin:0}
+.adva-work-intro-bottom a,.adva-work-gallery-note a,.adva-work-teaser-more{display:inline-flex;align-items:center;gap:28px;color:#b4dbf8;font-weight:770;font-size:13px;white-space:nowrap}
+.adva-work-intro-bottom a:hover,.adva-work-gallery-note a:hover,.adva-work-teaser-more:hover{color:#fff}
+.adva-work-index{padding:clamp(80px,8vw,135px) 0;background:#0b121b}
+.adva-work-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:41px}
+.adva-work-heading h2{font:800 clamp(35px,5vw,70px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.072em;color:#f3f7fc;margin:0}
+.adva-work-rows{border-top:1px solid #ffffff5c}
+.adva-work-row{display:grid;grid-template-columns:70px minmax(0,1fr) minmax(115px,.23fr) 25px;align-items:center;gap:25px;padding:clamp(27px,3vw,48px) 4px;border-bottom:1px solid #ffffff2c;color:#f4f8fc;transition:padding .27s,background .27s}
+.adva-work-row:hover{padding-left:19px;background:linear-gradient(90deg,#18354f40,transparent 85%)}
+.adva-work-row-number{align-self:start;color:#819cb6;font:760 11px Manrope,Arial,sans-serif;padding-top:8px}
+.adva-work-row-main{min-width:0}
+.adva-work-row-kind{display:block;color:#91b9d9;font:760 10px Manrope,Arial,sans-serif;letter-spacing:.03em}
+.adva-work-row-main h3{font:790 clamp(36px,5.6vw,80px)/1.04 Manrope,Arial,sans-serif;letter-spacing:-.071em;margin:13px 0 11px;color:#f1f7ff}
+.adva-work-row-main p{margin:0;color:#aabccf;font-size:15px;line-height:1.75}
+.adva-work-row-location{color:#c0d0df;font:740 12px Manrope,Arial,sans-serif;justify-self:end;text-align:right}
+.adva-work-row-location small{display:block;color:#778fa8;margin-top:9px}
+.adva-work-row-arrow{color:#a7d5f7;font-size:23px;justify-self:end;transition:transform .22s}
+.adva-work-row:hover .adva-work-row-arrow{transform:translate(3px,-3px)}
+.adva-work-gallery-note{display:flex;justify-content:space-between;align-items:start;gap:44px;margin-top:37px}
+.adva-work-gallery-note p{font:470 12px/1.8 Manrope,Arial,sans-serif;color:#7790a9;max-width:575px;margin:0;letter-spacing:normal}
+.adva-work-closer{background:#11253a;padding:clamp(100px,10vw,170px) 0}
+.adva-work-closer h2{color:#f0f8ff;font:800 clamp(58px,7.6vw,112px)/1.05 Manrope,Arial,sans-serif;letter-spacing:-.085em;margin:27px 0 38px}
+.adva-work-closer a{display:inline-flex;align-items:center;gap:30px;background:#e9f4ff;color:#14304e;border-radius:60px;padding:17px 25px;font:780 13px Manrope,Arial,sans-serif}
+.adva-work-closer a:hover{background:#a9dbff}
+.adva-work-teaser{padding:clamp(90px,9vw,145px) 0;background:#0b111a;border-block:1px solid #ffffff1e}
+.adva-work-teaser-heading{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px}
+.adva-work-teaser-heading h2{font:800 clamp(45px,5.6vw,84px)/1.045 Manrope,Arial,sans-serif;color:#f2f7fb;letter-spacing:-.079em;margin:24px 0 0}
+.adva-work-teaser-heading p{font-size:15px;color:#aabed1;max-width:370px;line-height:1.8;margin:0 0 5px}
+.adva-work-teaser-list{border-top:1px solid #c9e0f34e}
+.adva-work-teaser-list a{display:grid;grid-template-columns:65px minmax(0,1fr) minmax(140px,.32fr) 23px;align-items:center;gap:20px;padding:36px 0;border-bottom:1px solid #ffffff26;color:#f0f6fb;transition:padding .2s}
+.adva-work-teaser-list a:hover{padding-left:13px}
+.adva-work-teaser-list a>span{color:#839fb9;font-size:11px}
+.adva-work-teaser-list strong{font:790 clamp(29px,3.5vw,51px)/1.1 Manrope,Arial,sans-serif;letter-spacing:-.057em}
+.adva-work-teaser-list small{justify-self:end;color:#93a9bf;font-size:12px}
+.adva-work-teaser-list b{font-size:20px;color:#9fcef1;justify-self:end;font-weight:500}
+.adva-work-teaser-more{margin-top:36px}
+/* Individual project notes */
+.adva-case-hero{background:#090e17;padding:45px 0 clamp(100px,9vw,160px)}
+.adva-case-breadcrumb{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.adva-case-breadcrumb a{color:#a4c6e2}
+.adva-case-hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,.56fr);gap:clamp(40px,6vw,110px);align-items:end;margin-top:clamp(80px,9vw,145px)}
+.adva-case-hero h1{font:800 clamp(61px,8vw,119px)/1.02 Manrope,Arial,sans-serif;color:#f2f7fc;letter-spacing:-.095em;margin:26px 0 0;overflow-wrap:break-word}
+.adva-case-heading-dot{color:#83bce8}
+.adva-case-side{border-top:1px solid #ffffff56;padding-top:23px}
+.adva-case-side>span{display:block;color:#8db5d5;font:740 11px Manrope,Arial,sans-serif;margin-bottom:32px}
+.adva-case-side p{margin:0;color:#c1cfdf;font-size:clamp(16px,1.4vw,19px);line-height:1.75}
+.adva-case-info{background:#101923;padding:clamp(90px,9vw,150px) 0}
+.adva-case-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(65px,10vw,165px)}
+.adva-case-info-title>span,.adva-case-info-body h3,.adva-case-services>span{font:770 11px Manrope,Arial,sans-serif;color:#95b9d9}
+.adva-case-info-title h2{color:#f1f7fd;font:800 clamp(41px,5.1vw,79px)/1.07 Manrope,Arial,sans-serif;letter-spacing:-.078em;margin:30px 0}
+.adva-case-info-body{border-top:1px solid #ffffff4c;padding-top:35px}
+.adva-case-info-body h3{margin:0 0 12px;color:#bcd7ea}
+.adva-case-info-body p{font-size:clamp(15px,1.3vw,18px);line-height:1.87;color:#abbdd0;margin:0 0 38px}
+.adva-case-services{border-top:1px solid #ffffff31;padding-top:26px}
+.adva-case-services>div{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}
+.adva-case-services>div span{border:1px solid #8aa9c53e;border-radius:100px;color:#c1d5e7;padding:10px 14px;font-size:12px}
+.adva-case-gallery{background:#080d14;padding:60px 0}.adva-case-gallery .container{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.adva-case-gallery img,.adva-case-gallery video{max-width:100%;width:100%;display:block;border-radius:7px}
+.adva-case-gallery figcaption{margin-top:11px;color:#92a8bc;font-size:11px}
+.adva-case-next{background:#0b1118;padding:60px 0 115px}
+.adva-case-next .container>a{display:flex;align-items:end;justify-content:space-between;gap:20px;color:#f2f8fc;border-top:1px solid #ffffff3b;padding-top:27px;margin-top:30px}
+.adva-case-next strong{font:800 clamp(49px,6vw,91px)/1.07 Manrope,Arial,sans-serif;letter-spacing:-.078em}
+.adva-case-next .container>a>span{font-size:27px;color:#99c5e8}
+@media(max-width:850px){
+ .adva-work-row{grid-template-columns:35px minmax(0,1fr) 24px;gap:16px}
+ .adva-work-row-location{grid-column:2;grid-row:2;justify-self:start;display:flex;gap:12px;text-align:left;font-size:11px}
+ .adva-work-row-location small{margin:0}
+ .adva-work-row-arrow{grid-column:3;grid-row:1}
+ .adva-work-teaser-list a{grid-template-columns:30px minmax(0,1fr) 20px;gap:13px}
+ .adva-work-teaser-list small{grid-column:2;grid-row:2;justify-self:start}
+ .adva-work-teaser-list b{grid-column:3;grid-row:1}
+ .adva-case-hero-grid{grid-template-columns:1fr;gap:42px}
+ .adva-case-info-grid{grid-template-columns:1fr;gap:38px}
+}
+@media(max-width:700px){
+ .adva-work-page .adva-work-intro{padding:32px 0 80px}
+ .adva-work-intro h1{font-size:clamp(59px,12vw,86px);margin:90px 0 40px}
+ .adva-work-intro-bottom,.adva-work-gallery-note{flex-direction:column;align-items:start;gap:29px}
+ .adva-work-intro-bottom p{font-size:16px}
+ .adva-work-index{padding:78px 0}
+ .adva-work-heading{align-items:start;flex-direction:column;gap:14px}
+ .adva-work-row{padding:27px 0}
+ .adva-work-row-main h3{font-size:clamp(31px,8.1vw,48px)}
+ .adva-work-row-main p{font-size:13px}
+ .adva-work-teaser{padding:78px 0}
+ .adva-work-teaser-heading{display:block;margin-bottom:39px}
+ .adva-work-teaser-heading h2{font-size:clamp(44px,9vw,67px)}
+ .adva-work-teaser-heading p{font-size:13px;margin-top:20px}
+ .adva-work-teaser-list strong{font-size:clamp(25px,6.5vw,39px)}
+ .adva-case-hero{padding:34px 0 80px}
+ .adva-case-hero-grid{margin-top:74px}
+ .adva-case-hero h1{font-size:clamp(55px,11vw,85px)}
+ .adva-case-info{padding:78px 0}
+ .adva-case-info-title h2{font-size:clamp(42px,8.5vw,66px)}
+ .adva-case-gallery .container{grid-template-columns:1fr}
+ .adva-case-next{padding:60px 0 75px}
+}
+@media(prefers-reduced-motion:reduce){
+ .adva-work-row,.adva-work-row-arrow,.adva-work-teaser-list a{transition:none!important}
+}

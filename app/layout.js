@@ -10,6 +10,7 @@ import "./refinement-v4.css";
 import "./v5-services.css";
 import "./v5-layout.css";
 import "./editorial.css";
+import "./work/work.css";
 import CursorSpotlight from "../components/CursorSpotlight";
 import Script from "next/script";
 export const metadata = {

@@ -71,6 +71,7 @@ export default function SiteNav(){
             <ServiceLinks close={shut} expanded={services}/>
           </div>
         </div>
+        <a href="/work" onClick={shut}>Work</a>
         <a href="/#approach" onClick={shut}>How We Work</a>
         <a href="/about" onClick={shut}>About</a>
         <a href="/#contact" onClick={shut}>Contact</a>
@@ -109,6 +110,7 @@ export default function SiteNav(){
             <span>Discover</span>
             <div className="adva-v4-secondary-links">
               <a href="/services" onClick={shut}>Services <AdvaIcon name="up" size={18}/></a>
+              <a href="/work" onClick={shut}>Selected Work <AdvaIcon name="up" size={18}/></a>
               <a href="/#approach" onClick={shut}>How We Work <AdvaIcon name="up" size={18}/></a>
               <a href="/about" onClick={shut}>About ADVA <AdvaIcon name="up" size={18}/></a>
               <a href="/#contact" onClick={shut}>Contact <AdvaIcon name="up" size={18}/></a>
