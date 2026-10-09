@@ -1,0 +1,124 @@
+"use client";
+import {useEffect,useRef,useState} from "react";
+
+const CACHE_KEY="adva_join_application_v1";
+const TTL=2*60*60*1000;
+const disciplines=[
+ ["videography","Videographer","Stories in motion"],
+ ["photography","Photographer","A point of view in every frame"],
+ ["editing","Video editor","The right story in the right cut"],
+ ["social_media","Social creative","Ideas made to connect"],
+ ["design","Designer","An identity people remember"],
+ ["marketing","Marketing creative","Strategy turned into momentum"],
+ ["event_staff","Events & staffing","Making real moments happen"],
+ ["other","Something else","A craft of your own"]
+];
+const initial={specialty:"",display_name:"",handle:"",location:"Abu Dhabi",availability:"Flexible / project-based",experience_level:"Developing",age_band:"18-24",is_adult:false,bio:"",portfolio_links:"",email:""};
+const isEmail=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v||"");
+const parseLinks=value=>String(value||"").split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+const validLink=value=>{try{return new URL(value).protocol==="https:"}catch{return false}};
+function savedForm(){
+ try{const x=JSON.parse(window.sessionStorage.getItem(CACHE_KEY)||"null");if(!x||Date.now()-x.createdAt>TTL){window.sessionStorage.removeItem(CACHE_KEY);return null}return x.form}catch{return null}
+}
+function stash(form){try{window.sessionStorage.setItem(CACHE_KEY,JSON.stringify({form,createdAt:Date.now()}))}catch{}}
+function clearStash(){try{window.sessionStorage.removeItem(CACHE_KEY)}catch{}}
+export default function JoinJourney({db,user,role,refresh}){
+ const [step,setStep]=useState(0),[form,setForm]=useState(initial),[code,setCode]=useState(""),[agreed,setAgreed]=useState(false);
+ const [error,setError]=useState(""),[notice,setNotice]=useState(""),[busy,setBusy]=useState(false),[restored,setRestored]=useState(false);
+ const saving=useRef(false);
+ useEffect(()=>{const previous=savedForm();if(previous){setForm({...initial,...previous});setStep(4)}setRestored(true)},[]);
+ async function complete(account,fields){
+  if(saving.current||!account||!db)return;
+  const f=fields||savedForm()||form;
+  if(!f.email||account.email?.trim().toLowerCase()!==f.email.trim().toLowerCase()){setError("Use the same verified email address as your application.");setStep(3);return}
+  const links=parseLinks(f.portfolio_links);
+  if(!f.is_adult||!f.specialty||f.display_name.trim().length<2||links.length>8||links.some(x=>!validLink(x))){setError("The saved application needs valid profile details.");setStep(2);return}
+  saving.current=true;setBusy(true);setError("");setStep(5);
+  try{
+   const record={
+     user_id:account.id,
+     display_name:f.display_name.trim().slice(0,120),
+     handle:f.handle.trim().toLowerCase()||null,
+     specialty:f.specialty,
+     location:f.location.slice(0,100),
+     availability:f.availability.slice(0,200),
+     experience_level:f.experience_level.slice(0,100),
+     age_band:f.age_band,
+     is_adult:true,
+     bio:f.bio.slice(0,1800),
+     portfolio_links:links,
+     approved_network_visible:false
+   };
+   const {error}=await db.from("adva_freelancers").insert(record);
+   if(error&&error.code!=="23505")throw error;
+   clearStash();setNotice("Your verified profile is ready.");refresh();
+   window.location.assign("/network");
+  }catch(e){setError(e.message||"Your profile could not be created. Please try again.");setStep(3)}
+  finally{saving.current=false;setBusy(false)}
+ }
+ useEffect(()=>{
+  if(!restored||!user||role!=="unlinked")return;
+  const pending=savedForm();
+  if(pending?.email?.toLowerCase()===user.email?.toLowerCase())complete(user,pending);
+ },[restored,user?.id,role]);
+ function update(field,value){setForm(f=>({...f,[field]:value}));setError("")}
+ function next(){
+  setError("");
+  if(step===0&&!form.specialty){setError("Choose the type of work you create.");return}
+  if(step===1&&!form.is_adult){setError("The ADVA freelance network currently accepts applicants aged 18 and over.");return}
+  if(step===2){
+   const links=parseLinks(form.portfolio_links);
+   if(form.display_name.trim().length<2){setError("Enter your name.");return}
+   if(form.handle&&!/^[a-z0-9_]{3,24}$/.test(form.handle)){setError("Use 3–24 lowercase letters, numbers or underscores for your handle.");return}
+   if(links.length>8||links.some(x=>!validLink(x))){setError("Use up to eight full https:// portfolio URLs, one per line.");return}
+  }
+  setStep(s=>Math.min(3,s+1));
+ }
+ async function requestEmail(e){
+  e.preventDefault();setError("");setNotice("");
+  if(!agreed){setError("Confirm the privacy acknowledgement before verification.");return}
+  const address=(user?.email||form.email).trim().toLowerCase();
+  if(!isEmail(address)){setError("Enter a valid email address.");return}
+  const profile={...form,email:address};
+  stash(profile);
+  setForm(profile);
+  if(user){await complete(user,profile);return}
+  setBusy(true);
+  try{
+   if(!db)throw new Error("Authentication has not been configured.");
+   const {error}=await db.auth.signInWithOtp({email:address,options:{shouldCreateUser:true,emailRedirectTo:window.location.origin+"/join"}});
+   if(error)throw error;
+   setNotice("Check your inbox for a verification message. Use the six-digit code if provided, or follow the secure confirmation link.");
+   setStep(4);
+  }catch(e){setError(e.message||"Couldn't send a verification email.")}finally{setBusy(false)}
+ }
+ async function verify(e){
+  e.preventDefault();setError("");if(code.length!==6)return;setBusy(true);
+  try{
+   const {data,error}=await db.auth.verifyOtp({email:form.email,token:code,type:"email"});
+   if(error)throw error;
+   if(data.user)await complete(data.user,form);
+   else setNotice("Verified. Preparing your profile…");
+  }catch(e){setError(e.message||"That code has expired or isn't valid.")}finally{setBusy(false)}
+ }
+ if(!restored)return <div className="aws-join-loading">Preparing ADVA…</div>;
+ return <div className="aws-join-page">
+  <header className="aws-join-top"><a href="/" aria-label="ADVA"><img src="/adva-logo.webp" alt="ADVA"/></a><a href="/enter">Explore ADVA ↗</a></header>
+  <div className="aws-join-ambient" aria-hidden="true"><span>A.</span><i/></div>
+  <main className="aws-join-container">
+   <div className="aws-join-topline"><span><i/> ADVA / THE CREATIVE NETWORK</span><span>MADE FOR THE PEOPLE BEHIND THE WORK</span></div>
+   <div className="aws-join-progress"><span>{step<=3?"0"+(step+1)+" / 04":"VERIFYING"}</span><div>{[0,1,2,3].map(i=><b key={i} className={step>=i?"active":""}/>)}</div><span>{["YOUR CRAFT","YOUR APPROACH","YOUR WORK","YOUR EMAIL","YOUR EMAIL","FINISHING"][step]}</span></div>
+   <div className="aws-join-content">
+    {step===0&&<><div className="aws-join-label">01 / WHO YOU ARE</div><h1>What's your<br/><em>creative language?</em></h1><p>Everyone brings something different. Choose what feels closest to your craft.</p><div className="aws-join-choice-grid">{disciplines.map(([slug,title,description])=><button type="button" onClick={()=>update("specialty",slug)} aria-pressed={form.specialty===slug} className={form.specialty===slug?"active":""} key={slug}><span><strong>{title}</strong><small>{description}</small></span><b>{form.specialty===slug?"✓":"↗"}</b></button>)}</div></>}
+    {step===1&&<><div className="aws-join-label">02 / YOUR AVAILABILITY</div><h1>When do you<br/><em>do your best work?</em></h1><p>The right opportunities depend on more than a portfolio. Tell us what your schedule looks like.</p><div className="aws-join-fields"><div className="aws-join-pair"><label>Location<input maxLength={100} value={form.location} onChange={e=>update("location",e.target.value)} placeholder="Abu Dhabi"/></label><label>Age range (18+ only)<select value={form.age_band} onChange={e=>update("age_band",e.target.value)}>{["18-24","25-34","35-44","45+"].map(x=><option key={x}>{x}</option>)}</select></label></div><label>Availability<input maxLength={200} value={form.availability} onChange={e=>update("availability",e.target.value)} placeholder="Weekends / weekdays / project-based"/></label><label>Experience level<select value={form.experience_level} onChange={e=>update("experience_level",e.target.value)}>{["Developing","1–2 years","3–5 years","5+ years"].map(x=><option key={x}>{x}</option>)}</select></label><label className="aws-join-check"><input type="checkbox" checked={form.is_adult} onChange={e=>update("is_adult",e.target.checked)}/> I confirm that I am at least 18 years old.</label></div></>}
+    {step===2&&<><div className="aws-join-label">03 / INTRODUCE YOURSELF</div><h1>Let's see what<br/><em>makes you, you.</em></h1><p>A few details about your work. You can upload selected photos and videos in your private profile after verification.</p><div className="aws-join-fields"><div className="aws-join-pair"><label>Display name<input maxLength={120} minLength={2} value={form.display_name} onChange={e=>update("display_name",e.target.value)} placeholder="Your name"/></label><label>Handle (optional)<input maxLength={24} value={form.handle} onChange={e=>update("handle",e.target.value.toLowerCase().replace(/[^a-z0-9_]/g,""))} placeholder="yourname"/></label></div><label>About your work<textarea rows={3} maxLength={1800} value={form.bio} onChange={e=>update("bio",e.target.value)} placeholder="The types of projects you love creating…"/></label><label>Portfolio / showreel links<textarea rows={4} value={form.portfolio_links} onChange={e=>update("portfolio_links",e.target.value)} placeholder={"https://yourportfolio.com\nhttps://yourshowreel.com"}/></label></div></>}
+    {step===3&&<><div className="aws-join-label">04 / THE FINAL STEP</div><h1>Let's make<br/><em>it official.</em></h1><p>Verify the email that belongs to you. Your ADVA account will be created after verification, not before.</p><form className="aws-join-fields" onSubmit={requestEmail}><label>Your email<input type="email" autoComplete="email" readOnly={Boolean(user)} required maxLength={254} value={user?.email||form.email} onChange={e=>update("email",e.target.value)} placeholder="you@example.com"/></label><label className="aws-join-check"><input type="checkbox" checked={agreed} onChange={e=>setAgreed(e.target.checked)}/> I consent to account verification and have read <a href="/privacy" target="_blank" rel="noopener noreferrer">the privacy information ↗</a>.</label><p className="aws-join-help">Your application is held temporarily in this browser for up to two hours during verification. Job access requires a separate, legally reviewed NDA.</p><button className="aws-join-next" disabled={busy} type="submit">{busy?"Sending…":user?"Create your verified profile":"Verify my email"} <span>↗</span></button></form></>}
+    {step===4&&<><div className="aws-join-label">EMAIL VERIFICATION</div><h1>Check your<br/><em>inbox.</em></h1><p>We've sent a verification message to <strong>{form.email}</strong>. Follow the confirmation link in this browser, or enter a six-digit code if your email provides one.</p><form className="aws-join-fields" onSubmit={verify}><label>Six-digit code<input inputMode="numeric" autoComplete="one-time-code" maxLength={6} placeholder="000000" value={code} onChange={e=>setCode(e.target.value.replace(/\D/g,""))}/></label><button className="aws-join-next" type="submit" disabled={busy||code.length!==6}>Complete verification <span>↗</span></button><button type="button" className="aws-join-back" onClick={()=>setStep(3)}>← Change email</button></form></>}
+    {step===5&&<><div className="aws-join-label">FINALIZING ACCOUNT</div><h1>Welcome to<br/><em>what's next.</em></h1><p>Saving your verified creative profile…</p></>}
+    {error&&<div className="aws-error" role="alert">{error}</div>}{notice&&<div className="aws-feedback" role="status">{notice}</div>}
+    {step<=2&&<div className="aws-join-actions">{step>0&&<button className="aws-join-back" type="button" onClick={()=>{setStep(step-1);setError("")}}>← Previous</button>}<button className="aws-join-next" type="button" onClick={next}>Continue <span>↗</span></button></div>}
+   </div>
+   <div className="aws-join-bottom"><span>REAL PEOPLE. REAL WORK. BETTER EXPERIENCES.</span><span>ADVA / ABU DHABI</span></div>
+  </main>
+ </div>;
+}
