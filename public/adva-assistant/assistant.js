@@ -153,14 +153,16 @@
   @media(max-width:480px){:host{right:8px;bottom:8px;width:107px;height:114px}.launcher{width:103px;height:103px}.floor-shadow{right:22px;width:67px}.note{right:101px;bottom:48px;font-size:11px}.panel{bottom:110px;right:2px;width:min(365px,calc(100vw - 20px));max-height:calc(100dvh - 133px)}}
   @media(prefers-reduced-motion:reduce){.launcher,.panel,.note{transition:none}}
 
- :host{right:clamp(9px,1.6vw,25px);bottom:clamp(14px,2vw,29px);width:142px;height:153px;}
- .rail{position:fixed;right:0;bottom:35px;height:146px;width:2px;pointer-events:none;background:linear-gradient(180deg,transparent,#148eea 30%,#63e4e0 62%,transparent);box-shadow:0 0 11px #1f95db55;}
- .launcher{right:0;bottom:2px;width:138px;height:138px;z-index:4;transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .3s;}
+ :host{right:clamp(10px,1.4vw,22px);bottom:clamp(14px,2vw,26px);width:100px;height:112px;}
+ .rail{position:fixed;right:0;bottom:27px;height:96px;width:2px;pointer-events:none;background:linear-gradient(180deg,transparent,#148eea 30%,#63e4e0 62%,transparent);box-shadow:0 0 11px #1f95db55;}
+ .launcher{right:0;bottom:7px;width:96px;height:96px;z-index:4;transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .3s;}
  .launcher::after{content:"ASK ADVA  ↗";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);padding:7px 10px;color:#e5f5ff;border:1px solid #6bbddd53;border-radius:7px;background:#091827f0;white-space:nowrap;letter-spacing:.12em;font:800 9px/1 Inter,system-ui,sans-serif;box-shadow:0 8px 20px #0007;}
- .launcher:hover{transform:translateY(-5px);}
+ .launcher:hover{transform:translateY(-3px);}
+ .floor-shadow{right:20px;bottom:7px;width:60px;height:10px;}
+ .note{right:93px;bottom:47px;}
  .scrim{position:fixed;inset:0;background:#020a1575;border:0;backdrop-filter:blur(2px);z-index:1;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .34s,visibility .34s}
  .scrim.visible{opacity:1;visibility:visible;pointer-events:auto;}
- .panel{right:0;bottom:157px;width:min(415px,calc(100vw - 24px));height:min(615px,calc(100dvh - 184px));max-height:none;min-height:280px;z-index:3;display:flex;flex-direction:column;overflow:hidden;border-radius:18px;border:1px solid #80c8ed42;background:linear-gradient(160deg,#0b1d2d,#09131e 67%,#0b1c2b);box-shadow:0 30px 95px #000a;transform:translate(16px,31px) scale(.94);filter:blur(4px);transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s,filter .39s,visibility .45s;}
+ .panel{right:0;bottom:113px;width:min(415px,calc(100vw - 24px));height:min(615px,calc(100dvh - 145px));max-height:none;min-height:280px;z-index:3;display:flex;flex-direction:column;overflow:hidden;border-radius:18px;border:1px solid #80c8ed42;background:linear-gradient(160deg,#0b1d2d,#09131e 67%,#0b1c2b);box-shadow:0 30px 95px #000a;transform:translate(16px,31px) scale(.94);filter:blur(4px);transition:transform .45s cubic-bezier(.16,1,.3,1),opacity .35s,filter .39s,visibility .45s;}
  .panel.open{transform:none;filter:none;}
  .panel::before{content:"";height:2px;position:absolute;inset:0 0 auto;background:linear-gradient(90deg,transparent,#2195ef,#5ce5e0,transparent)}
  .head{padding:18px 19px;gap:12px;flex:none}
@@ -207,7 +209,7 @@
  .actions a:hover{color:#65e5ee}
  @keyframes adva-enter{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
  @keyframes adva-type{0%,60%,100%{opacity:.4;transform:translateY(0)}30%{opacity:1;transform:translateY(-5px)}}
- @media(max-width:480px){:host{right:7px;bottom:9px;width:110px;height:121px}.launcher{width:106px;height:106px}.launcher::after{font-size:8px;padding:6px 8px}.panel{right:0;bottom:125px;width:calc(100vw - 14px);height:min(640px,calc(100dvh - 151px));max-height:none}.greeting h2{font-size:31px}.rail{height:86px;bottom:27px}}
+ @media(max-width:480px){:host{right:8px;bottom:10px;width:78px;height:90px}.launcher{width:76px;height:76px;bottom:8px}.launcher::after{font-size:7px;padding:5px 6px}.floor-shadow{right:16px;bottom:7px;width:48px;height:8px}.note{right:75px;bottom:38px}.panel{right:0;bottom:91px;width:calc(100vw - 14px);height:min(640px,calc(100dvh - 117px));max-height:none}.greeting h2{font-size:31px}.rail{height:68px;bottom:22px}}
  @media(prefers-reduced-motion:reduce){.launcher,.scrim,.panel,.bubble,.typing i{animation:none!important;transition:none!important}}
   `;
   const style=document.createElement('style');style.textContent=css;shadow.append(style);
