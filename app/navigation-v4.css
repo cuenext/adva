@@ -1,0 +1,102 @@
+/* ADVA / quiet editorial navigation */
+.website .adva-nav-v4,.website .adva-nav-v4.scrolled{position:sticky;top:0;z-index:125;height:78px;background:#0a0e15ef;border-bottom:1px solid #ffffff1c;backdrop-filter:blur(22px);box-shadow:none}
+.website .adva-nav-v4 .header-inner{width:min(100% - 68px,1380px);height:100%;max-width:1380px;margin:auto;gap:20px;display:flex;align-items:center;justify-content:space-between}
+.adva-nav-v4 .adva-brand{min-width:0;margin:0;flex:none;display:flex;align-items:center}
+.adva-nav-v4 .adva-brand .brand-logo{width:119px;height:65px;object-fit:contain;object-position:left}
+.adva-v4-primary{display:flex;align-items:center;justify-content:center;gap:35px;margin:auto}
+.adva-v4-primary>a,.adva-v4-service-trigger{font:700 12px Manrope,Arial,sans-serif;color:#afbed2;background:transparent;border:0;padding:14px 0;white-space:nowrap;transition:color .2s}
+.adva-v4-primary>a:hover,.adva-v4-service-trigger:hover,.adva-v4-service-trigger[aria-expanded=true]{color:#fff}
+.adva-v4-service-trigger{display:flex;align-items:center;gap:8px}
+.adva-v4-service-trigger svg{color:#819fbe;transition:transform .2s}
+.adva-v4-service-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
+.adva-nav-v4 .adva-menu-holder{position:static}
+.adva-v4-services-dropdown{position:absolute;left:0;right:0;top:100%;background:#101720;border-top:1px solid #ffffff20;border-bottom:1px solid #739bcb45;box-shadow:0 30px 65px #000a;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-7px);transition:opacity .24s,visibility .24s,transform .24s}
+.adva-v4-services-dropdown.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+.adva-v4-services-top{width:min(100% - 70px,1300px);display:flex;align-items:center;justify-content:space-between;gap:20px;margin:auto;padding:24px 0 16px}
+.adva-v4-services-top>span{font-size:10px;letter-spacing:.13em;font-weight:800;color:#9cb7d2;text-transform:uppercase}
+.adva-v4-services-top a{font-size:11px;font-weight:800;color:#b4dcfc;display:flex;align-items:center;gap:10px}
+.adva-v4-services-inner{width:min(100% - 70px,1300px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:42px;margin:auto;padding:5px 0 35px}
+.adva-v4-service-group{display:grid;align-content:start}
+.adva-v4-group-heading{display:block;color:#7c9ab8;text-transform:uppercase;font:800 9px Manrope,Arial,sans-serif;letter-spacing:.13em;padding:0 0 12px}
+.adva-v4-service-group a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #ffffff17;color:#dce9f6;font-size:13px;font-weight:650;transition:color .2s,padding .2s}
+.adva-v4-service-group a:hover{color:#98d0fa;padding-left:4px}
+.adva-v4-service-group a svg{color:#719fc9}
+.adva-v4-actions{display:flex;align-items:center;gap:20px;flex:none}
+.adva-v4-inquiry-link{display:inline-flex;align-items:center;gap:9px;color:#c7e2f9;font:750 12px Manrope,Arial,sans-serif;white-space:nowrap}
+.adva-v4-inquiry-link svg{color:#7eafe1}
+.adva-v4-hamburger{height:43px;min-width:98px;display:flex;align-items:center;justify-content:center;gap:12px;background:#ffffff09;border:1px solid #ffffff3c;border-radius:50px;padding:0 14px;color:#e6f2fd;transition:background .2s,border-color .2s}
+.adva-v4-hamburger:hover{background:#ffffff17;border-color:#91c7f47a}
+.adva-v4-hamburger-text{font:750 11px Manrope,Arial,sans-serif}
+.adva-v4-hamburger-lines{display:grid;gap:4px;width:19px}
+.adva-v4-hamburger-lines i{display:block;width:19px;height:1.5px;background:#e6f5ff;border-radius:5px}
+.adva-v4-hamburger-lines i:nth-child(2){width:13px}
+.adva-v4-overlay{position:fixed;inset:0;z-index:300;isolation:isolate;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s}
+.adva-v4-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.adva-v4-overlay-scrim{position:absolute;inset:0;border:0;background:#000b;backdrop-filter:blur(8px);cursor:default}
+.adva-v4-dialog{position:absolute;inset:0;background:linear-gradient(135deg,#0e141e,#090d14 62%,#112036);display:flex;flex-direction:column;overflow:hidden;transform:translateY(-17px);filter:blur(3px);transition:transform .4s cubic-bezier(.2,1,.2,1),filter .35s}
+.adva-v4-overlay.is-open .adva-v4-dialog{transform:none;filter:none}
+.adva-v4-dialog-header,.adva-v4-dialog-footer{width:min(100% - 70px,1380px);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex:none}
+.adva-v4-dialog-header{height:78px;border-bottom:1px solid #ffffff20}
+.adva-v4-dialog-header img{width:119px;height:65px;object-fit:contain;object-position:left}
+.adva-v4-dialog-close{display:flex;align-items:center;gap:12px;border:1px solid #ffffff37;background:#ffffff0b;border-radius:40px;padding:11px 14px;color:#e6f5ff;font-size:11px;font-weight:750}
+.adva-v4-dialog-close:hover{background:#ffffff1b}
+.adva-v4-dialog-body{width:min(100% - 70px,1380px);margin:auto;min-height:0;flex:1;overflow:auto;overscroll-behavior:contain;display:grid;grid-template-columns:minmax(0,1.14fr) minmax(310px,.86fr)}
+.adva-v4-menu-main{padding:clamp(32px,4vw,58px) clamp(36px,6vw,86px) 45px 0}
+.adva-v4-menu-eyebrow,.adva-v4-menu-secondary-top>span{font:800 10px Manrope,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#829fbd;margin:0 0 17px}
+.adva-v4-menu-main h2{font:800 clamp(51px,6.7vw,94px)/1.04 Manrope,Arial,sans-serif;letter-spacing:-.088em;color:#f2f7fd;margin:0 0 33px}
+.adva-v4-menu-main h2 span{color:#80bce9}
+.adva-v4-paths{border-top:1px solid #ffffff30}
+.adva-v4-path{display:flex;align-items:center;gap:22px;padding:18px 5px 18px 0;border-bottom:1px solid #ffffff22;color:#eaf4ff;transition:padding .25s,background .25s}
+.adva-v4-path:hover{padding-left:10px;background:linear-gradient(90deg,#2789df1b,transparent 80%)}
+.adva-v4-path-index{flex:none;width:18px;color:#7898b9;font-size:10px;font-weight:750;align-self:flex-start;padding-top:7px}
+.adva-v4-path-content{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.adva-v4-path-content strong{font:750 clamp(20px,2.7vw,33px)/1.16 Manrope,Arial,sans-serif;letter-spacing:-.045em}
+.adva-v4-path-content small{color:#94a9c0;font-size:11px;line-height:1.6}
+.adva-v4-path svg{flex:none;color:#86b9e5;transition:transform .25s}
+.adva-v4-path:hover svg{transform:translate(4px,-4px)}
+.adva-v4-menu-secondary{border-left:1px solid #ffffff1e;position:relative;overflow:hidden;padding:clamp(35px,5vw,64px) 0 35px clamp(30px,5vw,64px)}
+.adva-v4-menu-secondary-top{position:relative;z-index:1}
+.adva-v4-secondary-links{display:grid;margin-top:18px}
+.adva-v4-secondary-links a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid #ffffff24;color:#d3e5f4;font:720 clamp(18px,2.25vw,27px) Manrope,Arial,sans-serif;letter-spacing:-.04em;transition:color .2s}
+.adva-v4-secondary-links a:hover{color:#8fd0ff}
+.adva-v4-secondary-links svg{color:#769fc8}
+.adva-v4-expand-services{display:flex;align-items:center;justify-content:space-between;width:100%;padding:21px 0;background:none;border:0;border-bottom:1px solid #ffffff24;color:#9bbbd7;font-size:13px;font-weight:700}
+.adva-v4-expanded-services{padding:14px 0 20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px;max-height:240px;overflow:auto}
+.adva-v4-expanded-services>div{display:flex;flex-direction:column;gap:9px}
+.adva-v4-expanded-services>div>span{font:800 9px Manrope,Arial,sans-serif;color:#6f99bc;letter-spacing:.12em;margin-bottom:4px}
+.adva-v4-expanded-services a{color:#bbd0e6;font-size:11px}
+.adva-v4-menu-mark{position:absolute;bottom:3%;right:-4%;width:240px;height:230px;display:grid;place-items:center;opacity:.13;pointer-events:none}
+.adva-v4-menu-mark>span{color:transparent;-webkit-text-stroke:2px #7eaadc;font:800 230px Manrope,Arial,sans-serif;letter-spacing:-.12em}
+.adva-v4-menu-mark>i{position:absolute;inset:0;border:1px solid #82badf;border-radius:50%;animation:adva-menu-orbit 20s linear infinite}
+.adva-v4-dialog-footer{height:60px;border-top:1px solid #ffffff1c}
+.adva-v4-dialog-footer>span{font-size:10px;color:#778fa8;font-weight:700}
+.adva-v4-dialog-footer>a{display:flex;align-items:center;gap:9px;color:#b3d9f8;font-size:11px;font-weight:750}
+@keyframes adva-menu-orbit{to{transform:rotate(360deg)}}
+@media(max-width:990px){.adva-v4-primary{gap:22px}.adva-v4-inquiry-link{display:none}.adva-v4-dialog-body{grid-template-columns:minmax(0,1.13fr) minmax(260px,.87fr)}.adva-v4-menu-main{padding-right:30px}.adva-v4-menu-secondary{padding-left:31px}}
+@media(max-width:760px){
+ .website .adva-nav-v4,.website .adva-nav-v4.scrolled{height:70px}
+ .website .adva-nav-v4 .header-inner{width:calc(100% - 34px);max-width:none;gap:10px}
+ .adva-nav-v4 .adva-brand .brand-logo{width:113px;height:58px}
+ .adva-v4-primary,.adva-v4-inquiry-link{display:none}
+ .adva-v4-actions{margin-left:auto}
+ .adva-v4-hamburger{min-width:44px;width:44px;height:44px;border-radius:50%;padding:0}
+ .adva-v4-hamburger-text{display:none}
+ .adva-v4-dialog-header,.adva-v4-dialog-footer{width:calc(100% - 36px)}
+ .adva-v4-dialog-header{height:70px}
+ .adva-v4-dialog-header img{width:113px;height:58px}
+ .adva-v4-dialog-body{width:calc(100% - 36px);display:flex;flex-direction:column}
+ .adva-v4-menu-main{padding:24px 0 30px}
+ .adva-v4-menu-main h2{font-size:clamp(43px,10.3vw,67px);margin-bottom:22px}
+ .adva-v4-path{padding:14px 0;gap:14px}
+ .adva-v4-path-content strong{font-size:clamp(21px,5.2vw,28px)}
+ .adva-v4-path-content small{font-size:10px}
+ .adva-v4-path>svg{width:19px;height:19px}
+ .adva-v4-menu-secondary{padding:25px 0 34px;border:0;border-top:1px solid #ffffff24}
+ .adva-v4-secondary-links{margin-top:7px}
+ .adva-v4-secondary-links a{font-size:21px;padding:12px 0}
+ .adva-v4-menu-mark{display:none}
+ .adva-v4-dialog-footer{height:47px;min-height:47px}
+ .adva-v4-dialog-footer>span{font-size:9px}
+}
+@media(max-width:400px){.adva-v4-menu-main h2{font-size:43px}.adva-v4-path-content small{font-size:10px}.adva-v4-expanded-services{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.adva-v4-dialog,.adva-v4-overlay,.adva-v4-path,.adva-v4-services-dropdown{transition:none!important}.adva-v4-menu-mark i{animation:none}}

@@ -23,7 +23,7 @@ export default function Privacy(){
     <h1>Your information.<br/><em>Handled with care.</em></h1>
     <div className="adva-privacy-v2-intro"><p>Creativity works better when the people behind it can trust the process. This notice describes how ADVA's staging website and private workspaces handle information.</p><span>PRE-LAUNCH NOTICE<br/>OCTOBER 2026</span></div>
     <div className="adva-privacy-v2-sections">{sections.map(([id,title,body])=><section key={id}><span>{id}</span><div><h2>{title}</h2><p>{body}</p></div></section>)}</div>
-    <div className="adva-privacy-v2-contact"><span>QUESTIONS ABOUT YOUR INFORMATION?</span><h2>Talk to ADVA.</h2><a href="mailto:inquiries@advaae.com">inquiries@advaae.com ↗</a><p>This notice is a working pre-launch disclosure and is subject to legal review. It is not a substitute for a compliant final privacy policy appropriate to the registered legal entity and all active processing activities.</p></div>
+    <div className="adva-privacy-v2-contact"><span>QUESTIONS ABOUT YOUR INFORMATION?</span><h2>Talk to ADVA.</h2><a href="mailto:inquiries@advaae.com">inquiries@advaae.com →</a><p>This notice is a working pre-launch disclosure and is subject to legal review. It is not a substitute for a compliant final privacy policy appropriate to the registered legal entity and all active processing activities.</p></div>
   </div>
  </main><SiteFooter/></div>;
 }

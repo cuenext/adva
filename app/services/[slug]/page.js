@@ -2,6 +2,7 @@ import {notFound} from "next/navigation";
 import SiteNav from "../../../components/SiteNav";
 import SiteFooter from "../../../components/SiteFooter";
 import {SERVICES,SERVICE_GROUPS,serviceBySlug} from "../../../lib/services";
+import {AdvaMark} from "../../../components/AdvaIcon";
 
 export function generateStaticParams(){return SERVICES.map(s=>({slug:s.slug}));}
 export async function generateMetadata({params}){
@@ -24,16 +25,16 @@ export default async function ServicePage({params}){
       <div className="adva-services-breadcrumb"><a href="/">ADVA</a><span>/</span><a href="/services">SERVICES</a><span>/</span><span>{service.name.toUpperCase()}</span></div>
       <div className="adva-service-hero-grid">
        <div className="adva-service-hero-copy">
-        <span className="adva-small-eyebrow"><i/> {service.eyebrow} / {service.number} — 09</span>
+        <span className="adva-small-eyebrow"><i/> {service.eyebrow}</span>
         <h1>{service.name}<span>.</span></h1>
         <p className="adva-service-statement">{service.statement}</p>
         <p className="adva-service-lead">{service.introduction}</p>
-        <div className="adva-service-hero-actions"><a href={"/brief?service="+service.slug}>Let's discuss your project <Up/></a><a href="#details">Explore the service ↓</a></div>
+        <div className="adva-service-hero-actions"><a href={"/brief?service="+service.slug}>Let's discuss your project <Up/></a><a href="#details">Explore the service</a></div>
        </div>
        <div className={"adva-service-art adva-service-art-"+service.group} aria-hidden="true">
         <div className="adva-service-art-grid"/><div className="adva-service-art-orbit one"/><div className="adva-service-art-orbit two"/><div className="adva-service-art-orb"><span>{service.number}</span></div>
         <span className="adva-service-art-caption">CRAFT / {group.label.toUpperCase()}</span>
-        <span className="adva-service-art-corner">ADVA <b>✳</b></span>
+        <span className="adva-service-art-corner">ADVA</span>
        </div>
       </div>
      </div>
@@ -43,13 +44,13 @@ export default async function ServicePage({params}){
       <div className="adva-service-sticky"><span className="adva-small-eyebrow"><i/> THE DETAILS</span><h2>Thoughtful work.<br/>No guesswork.</h2><p>{service.audience}</p><a href={"/brief?service="+service.slug}>Tell us what you need <Up/></a></div>
       <div className="adva-service-deliverables">
        <div className="adva-service-title-row"><span>01 / WHAT WE DO</span><h3>What goes into it.</h3></div>
-       <div className="adva-deliverable-list">{service.deliverables.map((d,i)=><div key={d}><span>{String(i+1).padStart(2,"0")}</span><strong>{d}</strong><span aria-hidden="true">↗</span></div>)}</div>
+       <div className="adva-deliverable-list">{service.deliverables.map((d,i)=><div key={d}><span>{String(i+1).padStart(2,"0")}</span><strong>{d}</strong><span aria-hidden="true">→</span></div>)}</div>
       </div>
      </div>
     </section>
     <section className="adva-service-process">
      <div className="container"><div className="adva-service-process-head"><span className="adva-small-eyebrow"><i/> 02 / THE PROCESS</span><h2>Good ideas need<br/><em>good execution.</em></h2></div>
-       <div className="adva-service-steps">{service.process.map(([title,desc],i)=><article key={title}><div className="adva-step-counter">0{i+1}<span>✳</span></div><h3>{title}</h3><p>{desc}</p></article>)}</div>
+       <div className="adva-service-steps">{service.process.map(([title,desc],i)=><article key={title}><div className="adva-step-counter">0{i+1}<AdvaMark size={21}/></div><h3>{title}</h3><p>{desc}</p></article>)}</div>
      </div>
     </section>
     <section className="adva-service-questions">

@@ -1,0 +1,113 @@
+/* ADVA / editorial motion refinement. All brand marks are SVG, not emoji. */
+:root{font-synthesis:none}
+.website{--adva-stroke:#ffffff1c;--adva-ink:#eaf2fa;color:#eaf2fa}
+.website .adva-site-nav .adva-v4-hamburger:focus-visible,
+.website .adva-site-nav a:focus-visible{outline:2px solid #9cd3ff;outline-offset:4px}
+.cinema{background:#080b11}
+.cinema-backdrop{background:radial-gradient(ellipse at var(--hover-x,75%) var(--hover-y,42%),rgba(27,91,186,.18),transparent 37%),radial-gradient(ellipse at 80% 55%,rgba(16,39,86,.2),transparent 60%),linear-gradient(130deg,#090d14,#0a111b 75%,#080c15)}
+.cinema-grid{opacity:.22;background-size:112px 112px;mask-image:linear-gradient(90deg,transparent 20%,black 90%)}
+.cinema-light{opacity:.7;filter:blur(80px);animation-duration:22s}
+.cinema-top{color:#6f88a5;font-size:9px;letter-spacing:.16em}
+.cinema-top-right{color:#7896b9}
+.cinema-kicker{font-size:10px;letter-spacing:.16em;color:#9cbbd9;margin-bottom:24px}
+.cinema-kicker>span{width:26px;background:#5a9acb}
+.cinema-title{font-weight:800;letter-spacing:-.086em}
+.cinema-intro{max-width:570px;font-size:clamp(14px,1.45vw,17px);line-height:1.72;margin:26px 0 30px;color:#9eb0c8}
+.cinema-search{border-radius:12px;background:#111b2a;border:1px solid #6189b552;box-shadow:0 19px 60px #0006,inset 0 1px #ffffff12;transition:border-color .35s,box-shadow .35s,transform .35s}
+.cinema-search:hover{border-color:#73a9e28a}
+.cinema-search:focus-within{transform:translateY(-2px);border-color:#92cbf4;box-shadow:0 21px 75px #0006,0 0 0 3px #4b98ed21}
+.cinema-search-mark{border:0;background:transparent;color:#8fbdef;width:35px;height:35px;padding:0;display:grid;place-items:center}
+.cinema-search-mark svg{width:22px;height:22px;color:#8ebde9;filter:drop-shadow(0 0 12px #448fe450)}
+.cinema-search button{border-radius:9px}
+.cinema-search input{font-size:13px}
+.cinema-search input::placeholder{color:#798da9}
+.cinema-examples{margin-top:13px;gap:8px}
+.cinema-examples button{border-color:#ffffff1c;color:#9dabc0;font-size:10px;background:#ffffff04}
+.cinema-examples button:hover{border-color:#6fa9ec70;background:#1e487d42}
+.cinema-ai-nudge{color:#8294ad;margin-top:22px}
+.cinema-ai-nudge button{color:#98cafa}
+.cinema-ai-nudge button:hover{color:#d8f1ff}
+.cinema-scene{min-height:490px}
+.cinema-outline{font-size:clamp(280px,35vw,520px);opacity:.55}
+.cinema-ring.outer{border:1px solid #83acee26;animation:advaOrbit 68s linear infinite}
+.cinema-ring.outer:after{content:"";position:absolute;top:8%;left:16%;width:7px;height:7px;border-radius:50%;background:#a7dfff;box-shadow:0 0 18px #8dc6ff88}
+.cinema-ring.inner{border-color:#a1c4f521}
+.cinema-orb{box-shadow:inset 20px 22px 50px #ffffff24,inset -36px -28px 55px #000b,0 36px 110px #144ea82e,0 0 105px #0e6ff824}
+.cinema-orb-inner:before{content:"";position:absolute;width:74%;height:74%;border:1px solid #c5eafa17;border-radius:50%;animation:adva-v4-glassbreath 11s ease-in-out infinite}
+.cinema-orb-inner b{position:relative;z-index:2;letter-spacing:-.085em;font-weight:800}
+.cinema-cross-h,.cinema-cross-v{opacity:.1}
+.cinema-sticker{display:none!important}
+.cinema-foot{border-color:#ffffff17;justify-content:flex-start;padding-top:17px}
+.cinema-foot a{font-size:10px;letter-spacing:.12em;text-transform:none;font-weight:750;color:#9bb4d3}
+.cinema-foot-rule{background:#5c89b7;width:36px}
+.cinema-foot-rule:after{background:#8cc8f5}
+.ai-window-icon{display:grid;place-items:center;border:1px solid #90c2ff2d;color:#9fd8ff;background:#1f42692d}
+.ai-window-icon svg{width:22px;height:22px}
+.ai-window-top h2{letter-spacing:-.045em;font-size:20px}
+.ai-window-close{width:auto!important;padding:7px 11px;font-size:10px!important;font-weight:750}
+.ai-orb-button{border-color:#729cbd5e;background:#0c1829ed}
+.ai-orb-mini{background:radial-gradient(circle at 27% 23%,#c8f5ff 1%,#57aeeb 26%,#1553a7 66%,#07152a)}
+.adva-exp-art-vector{position:absolute;left:50%;top:47%;width:82%;height:82%;max-width:320px;max-height:320px;color:#b7dcff;transform:translate(-50%,-50%) rotate(-8deg);filter:drop-shadow(0 0 25px #539be533);animation:adva-v4-vectorfloat 9s ease-in-out infinite}
+.adva-exp-art.exp-art-digital .adva-exp-art-vector{color:#b7b6f1}
+.adva-exp-art.exp-art-experiences .adva-exp-art-vector{color:#a5e7de}
+.adva-exp-art-orbit{opacity:.65}
+.adva-exp-panel-header{letter-spacing:.16em}
+.adva-exp-panel-header>span:first-child{color:#8fb8e5}
+.adva-exp-intro h2{font-size:clamp(49px,6.2vw,82px)}
+.adva-exp-blurb p{max-width:340px}
+.adva-home-about-star{color:#8bcbff;fill:none;right:16%;top:18%;height:65px;width:65px;filter:drop-shadow(0 0 18px #64a8e342)}
+.adva-services-intro-glow>svg{color:#6398e040;transform:rotate(-13deg);animation:adva-v4-vectorfloat 17s ease-in-out infinite}
+.adva-service-art-corner{font-size:10px}
+.adva-service-steps article .adva-step-counter svg{color:#8fc9f2}
+.adva-entry-card-art>strong{display:grid;place-items:center;color:#cdeaff;font-size:0}
+.adva-entry-card-art>strong svg{width:84px;height:84px;transition:transform .6s cubic-bezier(.2,1,.25,1),filter .5s;filter:drop-shadow(0 8px 35px #639eea50)}
+.adva-entry-card:hover .adva-entry-card-art>strong svg{transform:scale(1.14) rotate(5deg);filter:drop-shadow(0 8px 32px #8fc8fb80)}
+.adva-entry-card-arrow svg{color:#93c8f5}
+.adva-entry-hero h1{margin:65px 0 35px}
+.adva-entry-card{border-radius:11px}
+.adva-entry-link svg{color:#abd8f8}
+.website .adva-home-process h3{margin-top:38px}
+.website .adva-creative-output{padding:105px 0 115px}
+.website .adva-home-approach{padding:110px 0}
+@keyframes adva-v4-glassbreath{0%,100%{transform:scale(.95);opacity:.27}50%{transform:scale(1.045);opacity:.72}}
+@keyframes adva-v4-vectorfloat{0%,100%{transform:translate(-50%,-50%) rotate(-8deg)}50%{transform:translate(-50%,-54%) rotate(8deg)}}
+@media(max-width:760px){
+ .cinema-inner{padding-top:20px;padding-bottom:21px;gap:12px}
+ .cinema-story{padding:5px 0 8px}
+ .cinema-top{font-size:8px}
+ .cinema-top-right{display:none}
+ .cinema-kicker{font-size:8px;letter-spacing:.14em;margin-bottom:17px}
+ .cinema-title{font-size:clamp(50px,10.8vw,76px)}
+ .cinema-intro{margin:17px 0 22px;max-width:570px;line-height:1.6;font-size:14px}
+ .cinema-search-group{max-width:100%}
+ .cinema-search{min-height:66px;padding:7px 8px 7px 12px}
+ .cinema-search-mark{width:25px;height:30px}
+ .cinema-search-mark svg{width:20px;height:20px}
+ .cinema-search input{font-size:12px}
+ .cinema-examples{margin-top:10px;gap:6px}
+ .cinema-examples button{font-size:9px;padding:8px 10px}
+ .cinema-examples button:nth-child(3){display:none}
+ .cinema-ai-nudge{margin-top:16px}
+ .cinema-scene{min-height:277px}
+ .cinema-orb{width:200px;height:200px;left:50%;top:49%}
+ .cinema-ring.outer{width:270px;height:270px;left:50%;top:49%}
+ .cinema-ring.inner{width:224px;height:224px;left:50%;top:49%}
+ .cinema-orb-inner b{font-size:49px}
+ .cinema-outline{font-size:250px;left:calc(50% - 85px)}
+ .cinema-cross-h{top:49%}
+ .cinema-foot{padding-top:15px}
+ .website .adva-creative-output,.website .adva-home-approach{padding:73px 0}
+ .adva-exp-art-vector{width:71%;height:71%}
+ .adva-entry-hero h1{margin:40px 0 26px}
+}
+@media(max-width:395px){
+ .cinema-title{font-size:45px}
+ .cinema-intro{font-size:13px}
+ .cinema-examples button{font-size:8.5px}
+ .cinema-scene{min-height:250px}
+ .cinema-orb{width:181px;height:181px}
+ .cinema-ring.outer{width:240px;height:240px}
+ .cinema-ring.inner{width:203px;height:203px}
+ .cinema-outline{font-size:225px}
+}
+@media(prefers-reduced-motion:reduce){.cinema-orb-inner:before,.adva-exp-art-vector,.adva-services-intro-glow>svg{animation:none!important}}

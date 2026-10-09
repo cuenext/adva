@@ -1,0 +1,162 @@
+/* ADVA Workspaces / 04
+   A disciplined operational interface: typographic alignment over decorative UI. */
+.adva-hq-shell{
+ --ws-bg:#0b0e13;--ws-panel:#12161e;--ws-panel-2:#181e28;
+ --ws-stroke:rgba(221,232,246,.12);--ws-muted:#94a5ba;--ws-blue:#8ac8f6;
+ background:#0b0e13;color:#e9f0f7;
+}
+.aws-console{grid-template-columns:248px minmax(0,1fr);background:#0b0e13}
+.aws-sidebar{background:#0d1117;border-right:1px solid #ffffff14;padding:22px 12px;box-shadow:none}
+.aws-sidebar-logo{padding:0 14px 21px;border-color:#ffffff17}
+.aws-sidebar-logo img{width:118px;height:53px}
+.aws-sidebar-logo>span{color:#7b8b9f;font-size:9px;letter-spacing:.075em;margin-top:6px}
+.aws-sidebar-eyebrow{margin:26px 14px 13px;color:#75889d;text-transform:uppercase;font-size:9px}
+.aws-sidebar nav{gap:3px}
+.aws-sidebar nav button{
+ min-height:46px;padding:10px 13px;display:flex;align-items:center;gap:12px;
+ color:#99aabd;background:transparent;border:1px solid transparent;
+ border-radius:7px;font-size:12px;font-weight:670;letter-spacing:-.008em;
+ transition:color .2s,background .2s,border-color .2s;
+}
+.aws-sidebar nav button:hover{background:#ffffff08;color:#e4edf7;border-color:transparent}
+.aws-sidebar nav button.active{background:#a0caff12;border-color:#89bef72a;color:#f4f9ff}
+.aws-sidebar nav button>.aws-nav-icon{
+ display:flex;justify-content:center;align-items:center;width:20px;min-width:20px;
+ color:#8da3bc;font-size:0;
+}
+.aws-sidebar nav button>.aws-nav-icon svg{width:18px;height:18px;stroke-width:1.55;flex:none}
+.aws-sidebar nav button.active>.aws-nav-icon{color:#9cd2ff}
+.aws-sidebar nav button>.aws-nav-label{flex:1;white-space:nowrap}
+.aws-sidebar nav button>b{font-size:0;opacity:0;display:flex;color:#8dbfe9;flex:none}
+.aws-sidebar nav button.active>b{opacity:.9}
+.aws-sidebar nav button>b svg{width:12px;height:12px}
+.aws-sidebar-bottom{padding:19px 13px 0;border-color:#ffffff18}
+.aws-sidebar-status{font-size:9px;color:#849aae}
+.aws-sidebar-bottom strong{color:#bbcddd;font-size:11px;white-space:nowrap}
+.aws-sidebar-bottom small{color:#788da5;font-size:9px;letter-spacing:0}
+.aws-sidebar-bottom>button{font-size:11px;color:#a5cdec}
+.aws-main{background:radial-gradient(circle at 90% -20%,#2e507b12,transparent 32%),#0b0e13}
+.aws-topbar{
+ height:70px;padding:0 clamp(24px,3.2vw,50px);border-bottom:1px solid #ffffff15;
+ background:#0c1118ed;backdrop-filter:blur(14px);
+}
+.aws-topbar-path{font:650 12px Manrope,Arial,sans-serif;color:#d3e1ef;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+.aws-topbar-path::first-letter{color:#8ebfe5}
+.aws-topbar-divider{color:#4a5d72;font-weight:400}
+.aws-topbar-role{color:#849bb5;font-size:9px}
+.aws-topbar>div{gap:11px}
+.aws-topbar .aws-topbar-refresh{padding:8px;display:grid;place-items:center;border:1px solid #ffffff26;border-radius:7px;color:#a8bfd5}
+.aws-topbar .aws-topbar-refresh:hover{background:#ffffff0e}
+.aws-topbar-site{display:flex;align-items:center;gap:7px;padding:8px 10px;color:#cad9e8!important;font-size:11px!important;font-weight:650!important}
+.aws-topbar-site svg{color:#8cbee4}
+.aws-body{padding:clamp(28px,3vw,44px);max-width:1510px}
+.aws-body .aws-module{animation:adva-workspace-enter .38s cubic-bezier(.2,1,.27,1) both}
+.aws-page-heading{align-items:end;margin-bottom:31px;gap:25px}
+.aws-page-heading h1{font:790 clamp(35px,3.4vw,49px)/1.1 Manrope,Arial,sans-serif;letter-spacing:-.068em;margin:13px 0 11px}
+.aws-page-heading p{font-size:12px;line-height:1.8;color:#97a8bc;max-width:570px}
+.aws-page-heading .aws-eyebrow{color:#84a8cc;letter-spacing:.12em;font-size:9px}
+.aws-eyebrow{letter-spacing:.12em;color:#8baccb;font-size:9px}
+.aws-eyebrow i{height:5px;width:5px;background:#87bff0;box-shadow:none}
+.aws-primary{border-radius:8px;background:#d7ebfc;color:#0d2744!important;border-color:#d7ebfc;box-shadow:none}
+.aws-primary:hover{background:#a7d5fb}
+.aws-outline{border:1px solid #ffffff2e;background:#ffffff06;border-radius:8px;color:#b8d3e9!important}
+.aws-outline:hover{background:#ffffff0f}
+.aws-compact{font-size:11px;padding:11px 14px}
+.aws-overview-stats,.aws-mini-stats,.aws-finance-kpis,.aws-client-stats{
+ gap:0;margin:16px 0 28px;display:grid;border-top:1px solid #ffffff21;border-bottom:1px solid #ffffff21;
+}
+.aws-overview-stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.aws-mini-stats,.aws-client-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.aws-finance-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+.aws-overview-stats article,.aws-mini-stats article,.aws-finance-kpis article,.aws-client-stats article{
+ padding:21px 20px;min-height:110px;background:transparent!important;border:0!important;border-right:1px solid #ffffff19!important;border-radius:0!important;box-shadow:none;
+}
+.aws-overview-stats article:first-child,.aws-mini-stats article:first-child,.aws-finance-kpis article:first-child,.aws-client-stats article:first-child{padding-left:1px}
+.aws-overview-stats article:last-child,.aws-mini-stats article:last-child,.aws-finance-kpis article:last-child,.aws-client-stats article:last-child{border-right:0!important}
+.aws-overview-stats article:after,.aws-mini-stats article:after,.aws-finance-kpis article:after{display:none}
+.aws-overview-stats article>span,.aws-mini-stats article>span,.aws-finance-kpis article>span,.aws-client-stats article>span{font-size:9px;letter-spacing:.09em;color:#8597ac}
+.aws-overview-stats article strong,.aws-mini-stats article strong,.aws-client-stats article strong{font:780 clamp(30px,3.4vw,43px)/1.06 Manrope,Arial,sans-serif;color:#e4edf7;margin:10px 0 7px;letter-spacing:-.05em}
+.aws-finance-kpis article strong{font-size:clamp(18px,2vw,27px);margin:16px 0 9px;color:#edf4fa}
+.aws-overview-stats article small,.aws-mini-stats article small,.aws-finance-kpis article small,.aws-client-stats article small{color:#71869e;font-size:10px}
+.aws-panel{background:#111720;border:1px solid #ffffff17;border-radius:10px;box-shadow:none;overflow:hidden;margin-bottom:18px}
+.aws-panel-title{padding:22px 23px;border-color:#ffffff16}
+.aws-panel-title>div>span{font-size:9px;letter-spacing:.105em;color:#7897b8}
+.aws-panel-title h2{font:750 19px Manrope,Arial,sans-serif;letter-spacing:-.04em;margin:7px 0 0}
+.aws-panel-title>span{font-size:9px;letter-spacing:.1em;color:#7b90a9}
+.aws-overview-layout,.aws-project-grid{gap:17px;grid-template-columns:minmax(0,1.33fr) minmax(330px,.87fr)}
+.aws-upcoming-list article,.aws-overview-project{padding:15px 22px}
+.aws-upcoming-list strong,.aws-overview-project strong{font-size:12px}
+.aws-upcoming-list small,.aws-overview-project small{font-size:10px;color:#8a9fb7}
+.aws-avatar{background:#263f5c;color:#cee6f9}
+.aws-toolbar{gap:15px}
+.aws-toolbar label{color:#8da5be;letter-spacing:.1em}
+.aws-toolbar select,.aws-toolbar input{background:#181f2a;border:1px solid #ffffff28;border-radius:7px;color:#e3ecf7;padding:10px 13px;min-width:170px}
+.aws-subtabs{background:#171e28;border-radius:7px;padding:4px}
+.aws-subtabs button{border-radius:5px;font-size:11px;font-weight:670}
+.aws-subtabs button.active{background:#335d8a;color:#f1f9ff}
+.aws-post-row{padding:17px 21px;gap:13px;border-color:#ffffff14}
+.aws-post-platform>span{font-size:11px;color:#9fbcd8}
+.aws-post-description strong{color:#e4effb}
+.aws-post-description p{font-size:11px;color:#8397ae}
+.aws-post-actions button{background:transparent;border-color:#638fbe53;color:#a8d4f6;border-radius:6px}
+.aws-strategy-grid article,.aws-strategy-details article{background:#111a24}
+.aws-project-hero{border-radius:10px;background:linear-gradient(115deg,#102032,#0e1a28);padding:30px}
+.aws-project-hero h2{font:760 clamp(30px,3.4vw,48px) Manrope,Arial,sans-serif;letter-spacing:-.06em}
+.aws-network-profile,.aws-network-lock,.aws-nda-card,.aws-portfolio-media{border-radius:10px;background:#111a24}
+.aws-modal-card{background:#121a25;border:1px solid #ffffff2a;border-radius:12px}
+.aws-login-card{background:#101823;border:1px solid #ffffff22;box-shadow:0 35px 100px #0009;border-radius:12px}
+.aws-login-card h1{font-size:clamp(31px,4vw,43px);letter-spacing:-.055em}
+.aws-login-card>p{font-size:13px;color:#97a9bd}
+.aws-login-ambient-mark{position:absolute;right:12%;top:12%;opacity:.15;color:#8fc4ee;filter:drop-shadow(0 0 30px #4d91c954)}
+.aws-login-ambient-mark svg{height:94px;width:94px;animation:adva-glyph-rotate 45s linear infinite}
+.aws-login-top img{height:58px;width:130px}
+.aws-login-card .aws-primary{border-radius:8px}
+.aws-inquiry-item{background:#111821;border-color:#ffffff1b;border-radius:9px}
+.aws-inquiry-detail{background:#111a26;border-radius:9px;top:88px}
+.aws-join-page{background:radial-gradient(ellipse at 85% 0%,#234c7d2b,transparent 52%),#0b0e14}
+.aws-join-choice-grid button{border-radius:7px;background:#121a25}
+.aws-join-choice-grid button:hover,.aws-join-choice-grid button.active{background:#192b40}
+.aws-network-lock,.aws-nda-card{box-shadow:none}
+.aws-talent-board article{background:#131d28;border-radius:9px}
+.aws-portfolio-media{background:#101822}
+.aws-portfolio-empty>span{font-size:0;display:grid;place-items:center;color:#93c9ed}
+.aws-portfolio-empty>span svg{width:30px;height:30px}
+.aws-media-video-icon svg{width:33px;height:33px}
+.aws-strategy-pillar-dot{height:7px;width:7px;border-radius:50%;background:#8cbfe6;box-shadow:0 0 0 5px #7fb6e714}
+.aws-lock-orb svg{color:#e0f4ff}
+@keyframes adva-workspace-enter{from{opacity:0;transform:translateY(13px)}to{opacity:1;transform:translateY(0)}}
+@keyframes adva-glyph-rotate{to{transform:rotate(360deg)}}
+@media(max-width:1140px){
+ .aws-overview-layout,.aws-project-grid{grid-template-columns:1fr}
+}
+@media(max-width:960px){
+ .aws-console{display:block;grid-template-columns:none}
+ .aws-sidebar{width:min(270px,82vw);z-index:94}
+ .aws-body{padding:28px clamp(18px,3.4vw,34px)}
+}
+@media(max-width:670px){
+ .aws-topbar{height:66px;padding:0 17px}
+ .aws-mobile-toggle{background:#ffffff09;border-color:#ffffff2b;border-radius:7px;height:38px;width:38px}
+ .aws-topbar-path{font-size:11px;gap:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .aws-topbar .aws-topbar-refresh{padding:8px}
+ .aws-topbar-site{padding:8px 0!important;font-size:11px!important}
+ .aws-topbar-role{display:none}
+ .aws-body{padding:24px 16px 65px}
+ .aws-page-heading{margin-bottom:22px;align-items:flex-start}
+ .aws-page-heading h1{font-size:clamp(31px,8.6vw,43px)}
+ .aws-page-heading p{font-size:12px}
+ .aws-overview-stats,.aws-mini-stats,.aws-finance-kpis,.aws-client-stats{grid-template-columns:repeat(2,minmax(0,1fr));margin:15px 0 23px}
+ .aws-overview-stats article,.aws-mini-stats article,.aws-finance-kpis article,.aws-client-stats article{padding:17px 12px 17px 0;min-height:106px;border-bottom:1px solid #ffffff15!important}
+ .aws-overview-stats article:nth-child(2n),.aws-mini-stats article:nth-child(2n),.aws-finance-kpis article:nth-child(2n),.aws-client-stats article:nth-child(2n){padding-left:14px;border-right:0!important}
+ .aws-overview-stats article:nth-last-child(-n+2),.aws-mini-stats article:nth-last-child(-n+2),.aws-finance-kpis article:nth-last-child(-n+2),.aws-client-stats article:nth-last-child(-n+2){border-bottom:0!important}
+ .aws-panel-title{padding:19px 17px}
+ .aws-post-row{padding:17px}
+ .aws-project-hero{padding:22px}
+ .aws-overview-project,.aws-upcoming-list article{padding:14px 17px}
+ .aws-modal-card{padding:20px 16px}
+ .aws-join-page .aws-join-top{padding:13px 18px}
+ .aws-login-card{padding:28px 24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .aws-body .aws-module,.aws-login-ambient-mark svg{animation:none!important}
+}
