@@ -17,7 +17,7 @@ export default function Home(){
    <section className="adva-about-teaser" id="about">
     <div className="container adva-about-teaser-grid">
       <div className="adva-about-teaser-head"><span className="adva-about-section-name">About ADVA</span><h2>Creative work is<br/>about the people<br/><em>behind it.</em></h2></div>
-      <div className="adva-about-teaser-body"><p>Founded in Abu Dhabi in January 2026 by Abdullah Avadoglu, ADVA works across media production, marketing, design and events.</p><p>We build each project around its brief and the people best suited to deliver it.</p><a href="/about">Get to know ADVA <span aria-hidden="true">↗</span></a></div>
+      <div className="adva-about-teaser-body"><p>Founded in Abu Dhabi by Abdullah Avadoglu in January 2026, ADVA works across film, photography, marketing, design and events.</p><p>From a focused shoot to a bigger production, we put the people and plan in place for the job.</p><a href="/about">Get to know ADVA <span aria-hidden="true">↗</span></a></div>
     </div>
    </section>
    <section className="adva-home-contact" id="contact"><div className="container">

@@ -30,9 +30,9 @@
 @keyframes adva-about-copy-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .adva-about-page #our-story,.adva-about-page #what-we-do,.adva-about-page #our-people{scroll-margin-top:80px}
 .adva-about-page .adva-about2-origin{background:#0d151e;padding:clamp(105px,11vw,176px) 0}
-.adva-about-page .adva-about2-origin-grid{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.18fr);gap:clamp(70px,12vw,205px)}
-.adva-about-page .adva-about2-origin-left{display:flex;flex-direction:column;justify-content:space-between;gap:80px}
-.adva-about-page .adva-about2-year{font:800 clamp(135px,17.3vw,280px)/.87 Manrope,Arial,sans-serif;letter-spacing:-.115em;color:#dce9f5;white-space:nowrap}
+.adva-about-page .adva-about2-origin-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(48px,7vw,112px)}
+.adva-about-page .adva-about2-origin-left{display:flex;flex-direction:column;justify-content:space-between;gap:80px;min-width:0;overflow:clip}
+.adva-about-page .adva-about2-year{display:block;max-width:100%;font:800 clamp(76px,8.8vw,132px)/.94 Manrope,Arial,sans-serif;letter-spacing:-.105em;font-variant-numeric:tabular-nums;color:#dce9f5;white-space:nowrap}
 .adva-about-page .adva-about2-year-dot{color:#73b1e8}
 .adva-about-page .adva-about2-origin-copy{border-top:1px solid #65809b65;padding-top:34px}
 .adva-about-page .adva-about2-origin h2{font:800 clamp(43px,4.4vw,71px)/1.07 Manrope,Arial,sans-serif;letter-spacing:-.074em;color:var(--about-white);margin:0 0 46px}
@@ -76,7 +76,7 @@
  .adva-about-page .adva-about2-hero-grid{grid-template-columns:minmax(0,1.4fr) minmax(240px,.55fr);gap:35px}
  .adva-about-page .adva-about2-hero h1{font-size:clamp(58px,7.7vw,104px)}
  .adva-about-page .adva-about2-origin-grid{gap:55px}
- .adva-about-page .adva-about2-year{font-size:clamp(120px,16vw,200px)}
+ .adva-about-page .adva-about2-year{font-size:clamp(76px,8.8vw,110px)}
  .adva-about-page .adva-about2-service{grid-template-columns:35px minmax(0,1fr) minmax(190px,.8fr) 24px;gap:16px}
 }
 @media(max-width:760px){
@@ -92,7 +92,7 @@
  .adva-about-page .adva-about2-origin,.adva-about-page .adva-about2-services,.adva-about-page .adva-about2-team{padding:86px 0}
  .adva-about-page .adva-about2-origin-grid,.adva-about-page .adva-about2-team-grid{grid-template-columns:1fr;gap:35px}
  .adva-about-page .adva-about2-origin-left{gap:24px}
- .adva-about-page .adva-about2-year{font-size:clamp(105px,24vw,176px)}
+ .adva-about-page .adva-about2-year{font-size:clamp(78px,17vw,114px)}
  .adva-about-page .adva-about2-origin-copy{padding-top:27px}
  .adva-about-page .adva-about2-origin h2{font-size:clamp(46px,9vw,68px);margin-bottom:30px}
  .adva-about-page .adva-about2-services-heading{grid-template-columns:1fr;gap:24px;margin-bottom:38px}

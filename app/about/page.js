@@ -4,23 +4,23 @@ import "./about.css";
 
 export const metadata = {
   title: "About ADVA | Creative Production, Digital & Events in Abu Dhabi",
-  description: "Meet ADVA, the independent creative agency founded in January 2026 by Abdullah Avadoglu. Film, photography, marketing, design and events in Abu Dhabi."
+  description: "ADVA is an independent creative agency in Abu Dhabi, founded by Abdullah Avadoglu in January 2026. Explore our story, people and work across media, digital and events."
 };
 
 const disciplines = [
   {
     title: "Film & photography",
-    detail: "Videography, photography, interviews, editing and event films.",
+    detail: "Video production, photography, interviews, event highlights and editing.",
     href: "/services/videography"
   },
   {
     title: "Brand & digital",
-    detail: "Branding, website design, social content and marketing.",
+    detail: "Brand identities, websites, campaign creative and social content.",
     href: "/services/website-design"
   },
   {
     title: "Events & people",
-    detail: "Exhibition coverage, on-site production and event staffing.",
+    detail: "Photography, film and on-site teams for exhibitions and live events.",
     href: "/services/event-coverage"
   }
 ];
@@ -50,12 +50,12 @@ export default function About(){
               <span className="adva-about2-line adva-about2-blue">people.</span>
             </h1>
             <div className="adva-about2-hero-aside">
-              <p>ADVA brings creative thinking and production together—across media, digital and events.</p>
+              <p>Based in Abu Dhabi, ADVA works across film, photography, design, marketing and events. We build the team around the brief.</p>
               <div className="adva-about2-facts">
                 <div><span>Based in</span><strong>Abu Dhabi, UAE</strong></div>
-                <div><span>Established</span><strong>January 2026</strong></div>
+                <div><span>Founded</span><strong>January 2026</strong></div>
               </div>
-              <a href="#our-story" className="adva-about2-read">Get to know us <Arrow diagonal/></a>
+              <a href="#our-story" className="adva-about2-read">Discover our story <Arrow diagonal/></a>
             </div>
           </div>
           <div className="adva-about2-hero-foot" aria-hidden="true"><span>Independent creative agency</span><span>Abu Dhabi</span></div>
@@ -69,10 +69,10 @@ export default function About(){
             <div className="adva-about2-year" aria-label="Founded in 2026">2026<span className="adva-about2-year-dot">.</span></div>
           </div>
           <div className="adva-about2-origin-copy">
-            <h2 id="about-origin-title">A new company.<br/><em>Our own way of working.</em></h2>
-            <p>ADVA was founded by <strong>Abdullah Avadoglu</strong> in <strong>January 2026</strong>, with its home in Abu Dhabi.</p>
-            <p>We started ADVA to bring creative direction, hands-on production and dependable delivery closer together. From the first conversation to the final export, the details matter.</p>
-            <p>Today, the work can mean a film crew on location, a new brand identity, a digital campaign or the people running an event. We bring the right capabilities together around the project—not the other way around.</p>
+            <h2 id="about-origin-title">The story<br/><em>so far.</em></h2>
+            <p>ADVA was founded in Abu Dhabi in <strong>January 2026</strong> by <strong>Abdullah Avadoglu</strong>.</p>
+            <p>We started ADVA to bring media production, design, marketing and event services closer together. Our aim is to make working with a creative team straightforward, from the first conversation to the finished work.</p>
+            <p>Some projects need a photographer or film crew. Others need a website, a content plan or people on the exhibition floor. We take the time to understand what each brief calls for, then put the right team and plan in place.</p>
           </div>
         </div>
       </section>
@@ -80,8 +80,8 @@ export default function About(){
       <section className="adva-about2-services" id="what-we-do" aria-labelledby="about-services-title">
         <div className="container">
           <div className="adva-about2-services-heading">
-            <div><span className="adva-about2-section-label">Our capabilities</span><h2 id="about-services-title">Different disciplines.<br/><em>One clear brief.</em></h2></div>
-            <p>We work across production, brand, digital and live events. Every project begins with what actually needs to be done.</p>
+            <div><span className="adva-about2-section-label">Our capabilities</span><h2 id="about-services-title">Film, digital<br/><em>and events.</em></h2></div>
+            <p>From a single shoot to a long-term content partnership or a multi-day event, we bring together the skills each project needs.</p>
           </div>
           <div className="adva-about2-service-list">
             {disciplines.map((s,i)=><a className="adva-about2-service" href={s.href} key={s.title}>
@@ -99,13 +99,13 @@ export default function About(){
         <div className="container adva-about2-team-grid">
           <div className="adva-about2-team-label"><span className="adva-about2-section-label">The people</span><span className="adva-about2-team-rule"/></div>
           <div className="adva-about2-team-copy">
-            <h2 id="about-people-title">The team depends<br/>on the <em>work.</em></h2>
-            <p>ADVA is built around talented individuals who genuinely enjoy what they do. Filmmakers, photographers, editors, designers, marketers and event professionals each bring something different to the table.</p>
-            <p>We believe in clear communication, thoughtful planning and the kind of attention to detail that shows in the finished result. No unnecessary layers—just good people doing their best work together.</p>
+            <h2 id="about-people-title">People who care<br/>about the <em>details.</em></h2>
+            <p>ADVA brings together filmmakers, photographers, editors, designers, marketers and event professionals. Different backgrounds and skills, brought together by the work.</p>
+            <p>We value people who take pride in their craft, ask good questions and follow through. For us, how a project is handled matters just as much as how it looks when it is finished.</p>
             <div className="adva-about2-expertise" aria-label="Creative disciplines">
               <span>Production</span><span>Post-production</span><span>Design</span><span>Digital</span><span>Events</span>
             </div>
-            <a href="/join" className="adva-about2-join">Work with ADVA <Arrow diagonal/></a>
+            <a href="/join" className="adva-about2-join">Join our creative network <Arrow diagonal/></a>
           </div>
         </div>
       </section>
