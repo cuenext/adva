@@ -8,7 +8,7 @@ const destinations=[
  {href:"/brief",label:"Client inquiries",desc:"Tell us what you're building.",number:"01"},
  {href:"/portal",label:"Client portal",desc:"Your projects, plans and content.",number:"02"},
  {href:"/join",label:"Join our team",desc:"For creative people and collaborators.",number:"03"},
- {href:"/network",label:"Freelancer login",desc:"Already part of the network?",number:"04"}
+ {href:"/network",label:"Freelancer sign in",desc:"Already part of the team?",number:"04"}
 ];
 function ServiceLinks({close,expanded}){
  return <div className="adva-v4-services-inner">
@@ -63,9 +63,11 @@ export default function SiteNav(){
         </div>
         <a href="/#approach" onClick={shut}>How we work</a>
         <a href="/#about" onClick={shut}>About</a>
+        <a href="/#contact" onClick={shut}>Contact</a>
       </nav>
       <div className="adva-v4-actions">
-        <a className="adva-v4-inquiry-link" href="/brief">Start a project <AdvaIcon name="up" size={16}/></a>
+        <a className="adva-v4-mobile-services" href="/services">Services</a>
+        <a className="adva-v4-inquiry-link adva-v4-project-action" href="/brief" aria-label="Start a project with ADVA"><span className="adva-v4-action-long">Start a project</span><span className="adva-v4-action-short">Let's talk</span><AdvaIcon name="up" size={15}/></a>
         <button ref={triggerRef} type="button" className="adva-v4-hamburger" aria-label="Open ADVA menu" aria-expanded={menu} aria-controls="adva-v4-menu" onClick={()=>setMenu(true)}>
           <span className="adva-v4-hamburger-lines" aria-hidden="true"><i/><i/><i/></span>
           <span className="adva-v4-hamburger-text">Menu</span>

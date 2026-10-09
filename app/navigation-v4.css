@@ -100,3 +100,69 @@
 }
 @media(max-width:400px){.adva-v4-menu-main h2{font-size:43px}.adva-v4-path-content small{font-size:10px}.adva-v4-expanded-services{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.adva-v4-dialog,.adva-v4-overlay,.adva-v4-path,.adva-v4-services-dropdown{transition:none!important}.adva-v4-menu-mark i{animation:none}}
+
+
+/* ADVA header refinement — public links in the header, account access in the menu. */
+.adva-v4-mobile-services{display:none}
+.adva-v4-action-short{display:none}
+.adva-v4-actions{align-items:center;gap:13px}
+.adva-v4-primary{gap:clamp(20px,2.4vw,35px)}
+.adva-v4-primary>a{position:relative;transition:color .22s ease}
+.adva-v4-primary>a::after{
+  content:"";position:absolute;left:0;right:100%;bottom:7px;height:1px;
+  background:#8fc7f4;transition:right .25s cubic-bezier(.2,1,.25,1)
+}
+.adva-v4-primary>a:hover::after,.adva-v4-primary>a:focus-visible::after{right:0}
+.adva-v4-project-action{
+  display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  color:#e8f3ff!important;border:1px solid #81ace14b;border-radius:100px;
+  padding:12px 16px;background:#18283a;white-space:nowrap;
+  font:750 11px/1 Manrope,Arial,sans-serif;
+  transition:background .25s,color .25s,border-color .25s,transform .25s
+}
+.adva-v4-project-action svg{color:#aad8ff;flex:none;transition:transform .25s}
+.adva-v4-project-action:hover{
+  border-color:#9bc7f4b8;background:#22466b;color:#fff!important;
+  transform:translateY(-1px)
+}
+.adva-v4-project-action:hover svg{transform:translate(2px,-2px)}
+.adva-v4-mobile-services{color:#a9c5df;font:750 12px Manrope,Arial,sans-serif;white-space:nowrap}
+.adva-v4-mobile-services:hover,.adva-v4-mobile-services:focus-visible{color:#eef8ff}
+@media(max-width:1060px){
+  .adva-v4-primary{gap:20px}
+  .adva-v4-actions{gap:10px}
+  .adva-v4-project-action{padding:11px 13px}
+}
+@media(max-width:990px){
+  /* Restore the project action hidden in the older navigation stylesheet. */
+  .adva-v4-actions .adva-v4-project-action{display:inline-flex}
+}
+@media(max-width:920px){
+  /* Tablet and mobile keep public quick actions without revealing portal links. */
+  .adva-nav-v4 .adva-v4-primary{display:none}
+  .adva-v4-actions .adva-v4-mobile-services{display:inline-flex}
+  .adva-v4-actions .adva-v4-project-action{display:inline-flex}
+  .adva-v4-actions{margin-left:auto;gap:16px}
+}
+@media(max-width:760px){
+  .website .adva-nav-v4 .header-inner{gap:9px}
+  .adva-v4-actions{gap:10px}
+  .adva-v4-actions .adva-v4-project-action{
+    display:inline-flex;min-height:37px;border:1px solid #bbdbf6;
+    background:#e5f3ff;color:#0e2a49!important;padding:0 11px;
+    border-radius:100px;font-size:11px;gap:7px;
+  }
+  .adva-v4-project-action svg{color:#1c5284}
+  .adva-v4-project-action:hover{background:#bbdfff;color:#0e2a49!important}
+  .adva-v4-action-long{display:none}
+  .adva-v4-action-short{display:inline}
+  .adva-v4-actions .adva-v4-mobile-services{font-size:11px;color:#acbdd0}
+  .adva-v4-hamburger{flex:none}
+}
+@media(max-width:385px){
+  /* Preserve touch targets and breathing room on narrow iPhones. */
+  .adva-v4-actions .adva-v4-mobile-services{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .adva-v4-primary>a::after,.adva-v4-project-action,.adva-v4-project-action svg{transition:none!important;transform:none!important}
+}
