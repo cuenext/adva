@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+/* Montserrat is loaded once by globals.css. */
 .website{background:#07090d!important;color:#f3f6fa;font-family:Manrope,Arial,sans-serif;position:relative}
 .website .top-strip{display:none}
 .website .main-header,.website .main-header.scrolled{height:82px;background:rgba(7,9,13,.86);border-bottom:1px solid rgba(255,255,255,.09);box-shadow:none;backdrop-filter:blur(26px)}

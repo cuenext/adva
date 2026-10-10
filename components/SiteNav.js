@@ -4,12 +4,18 @@ import {useEffect,useRef,useState} from "react";
 import {SERVICE_GROUPS,servicesInGroup} from "../lib/services";
 import AdvaIcon from "./AdvaIcon";
 
-const destinations=[
- {href:"/brief",label:"Client Inquiries",desc:"Tell us what you're building.",number:"01"},
- {href:"/portal",label:"Client Portal",desc:"Your projects, plans and content.",number:"02"},
- {href:"/join",label:"Join Our Team",desc:"For creative people and collaborators.",number:"03"},
- {href:"/network",label:"Freelancer Sign In",desc:"Already part of the team?",number:"04"}
+const primaryPages=[
+ {href:"/services",label:"Services"},
+ {href:"/work",label:"Work"},
+ {href:"/about",label:"About"},
+ {href:"/#contact",label:"Contact"}
 ];
+const accounts=[
+ {href:"/portal",label:"Client portal"},
+ {href:"/network",label:"Freelancer sign in"},
+ {href:"/join",label:"Join our team"}
+];
+
 function ServiceLinks({close,expanded}){
  return <div className="adva-v4-services-inner">
   {SERVICE_GROUPS.map(group=><div className="adva-v4-service-group" key={group.id}>
@@ -18,113 +24,138 @@ function ServiceLinks({close,expanded}){
   </div>)}
  </div>;
 }
+
 export default function SiteNav(){
  const [services,setServices]=useState(false);
  const [menu,setMenu]=useState(false);
- const [showMenuServices,setShowMenuServices]=useState(false);
- const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null),menuBodyRef=useRef(null),serviceCloseTimer=useRef(null);
+ const serviceRef=useRef(null),triggerRef=useRef(null),closeRef=useRef(null),dialogRef=useRef(null),serviceCloseTimer=useRef(null);
+
  const cancelServiceClose=()=>{
   if(serviceCloseTimer.current!==null){clearTimeout(serviceCloseTimer.current);serviceCloseTimer.current=null}
  };
- const openServiceMenu=()=>{cancelServiceClose();setServices(true)};
+ const openServiceMenu=()=>{cancelServiceClose();if(!menu)setServices(true)};
  const scheduleServiceClose=()=>{
   cancelServiceClose();
   serviceCloseTimer.current=setTimeout(()=>{serviceCloseTimer.current=null;setServices(false)},220);
  };
+ const closeAll=()=>{cancelServiceClose();setMenu(false);setServices(false)};
+
  useEffect(()=>{
-  const esc=e=>{
-    if(e.key==="Escape"){setMenu(false);setServices(false);}
-    if(e.key==="Tab"&&menu&&dialogRef.current){
-      const nodes=[...dialogRef.current.querySelectorAll('a[href],button:not([disabled])')].filter(n=>n.offsetParent!==null);
-      if(!nodes.length)return;
-      if(e.shiftKey&&document.activeElement===nodes[0]){e.preventDefault();nodes[nodes.length-1].focus();}
-      else if(!e.shiftKey&&document.activeElement===nodes[nodes.length-1]){e.preventDefault();nodes[0].focus();}
+  const onKey=e=>{
+   if(e.key==="Escape"){
+    if(menu){e.preventDefault();setMenu(false)}
+    else setServices(false);
+   }
+   if(e.key==="Tab"&&menu&&dialogRef.current){
+    const nodes=[...dialogRef.current.querySelectorAll('a[href],button:not([disabled])')]
+      .filter(node=>node.getClientRects().length>0);
+    if(!nodes.length)return;
+    if(e.shiftKey&&document.activeElement===nodes[0]){
+     e.preventDefault();nodes[nodes.length-1].focus();
+    }else if(!e.shiftKey&&document.activeElement===nodes[nodes.length-1]){
+     e.preventDefault();nodes[0].focus();
     }
+   }
   };
   const outside=e=>{if(serviceRef.current&&!serviceRef.current.contains(e.target))setServices(false)};
-  document.addEventListener("keydown",esc);
+  document.addEventListener("keydown",onKey);
   document.addEventListener("pointerdown",outside);
-  return()=>{document.removeEventListener("keydown",esc);document.removeEventListener("pointerdown",outside);if(serviceCloseTimer.current!==null)clearTimeout(serviceCloseTimer.current)};
+  return()=>{
+   document.removeEventListener("keydown",onKey);
+   document.removeEventListener("pointerdown",outside);
+   if(serviceCloseTimer.current!==null)clearTimeout(serviceCloseTimer.current);
+  };
  },[menu]);
+
  useEffect(()=>{
   if(!menu)return;
-  const before=document.body.style.overflow;
+  const previousOverflow=document.body.style.overflow;
   document.body.style.overflow="hidden";
+  document.body.dataset.advaMenuOpen="true";
   setServices(false);
-  setShowMenuServices(false);
-  if(menuBodyRef.current)menuBodyRef.current.scrollTop=0;
   const focusFrame=requestAnimationFrame(()=>closeRef.current?.focus());
-  return()=>{cancelAnimationFrame(focusFrame);document.body.style.overflow=before;triggerRef.current?.focus()};
+  return()=>{
+   cancelAnimationFrame(focusFrame);
+   document.body.style.overflow=previousOverflow;
+   delete document.body.dataset.advaMenuOpen;
+   triggerRef.current?.focus({preventScroll:true});
+  };
  },[menu]);
- const shut=()=>{cancelServiceClose();setMenu(false);setServices(false)};
+
  return <>
-  <header className="main-header adva-site-nav adva-nav-v4" onMouseLeave={scheduleServiceClose}>
-    <div className="container header-inner">
-      <a href="/" className="brand adva-brand" aria-label="ADVA home" onClick={shut}>
-        <img className="brand-logo" src="/adva-logo.webp" alt="ADVA" width="116" height="65"/>
-      </a>
-      <nav className="adva-desktop-nav adva-v4-primary" aria-label="Main site navigation">
-        <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={openServiceMenu} onBlur={e=>{if(!e.currentTarget.contains(e.relatedTarget)){cancelServiceClose();setServices(false)}}}>
-          <button type="button" aria-expanded={services} aria-controls="adva-v4-services-dropdown" className="adva-v4-service-trigger" onClick={()=>{cancelServiceClose();setServices(v=>!v)}}>Services <AdvaIcon name="chevron" size={14}/></button>
-          <div id="adva-v4-services-dropdown" className={"adva-v4-services-dropdown"+(services?" is-open":"")} onMouseEnter={cancelServiceClose} aria-hidden={!services} inert={!services}>
-            <div className="adva-v4-services-top"><span>What we do</span><a href="/services" onClick={shut} tabIndex={services?0:-1}>All services <AdvaIcon name="up" size={14}/></a></div>
-            <ServiceLinks close={shut} expanded={services}/>
-          </div>
-        </div>
-        <a href="/work" onClick={shut}>Work</a>
-        <a href="/#approach" onClick={shut}>How We Work</a>
-        <a href="/about" onClick={shut}>About</a>
-        <a href="/#contact" onClick={shut}>Contact</a>
-      </nav>
-      <div className="adva-v4-actions">
-        <a className="adva-v4-mobile-services" href="/services">Services</a>
-        <a className="adva-v4-inquiry-link adva-v4-project-action" href="/brief" aria-label="Start a project with ADVA"><span className="adva-v4-action-long">Start a Project</span><span className="adva-v4-action-short">Let's Talk</span><AdvaIcon name="up" size={15}/></a>
-        <button ref={triggerRef} type="button" className="adva-v4-hamburger" aria-label="Open ADVA menu" aria-expanded={menu} aria-controls="adva-v4-menu" onClick={()=>setMenu(true)}>
-          <span className="adva-v4-hamburger-lines" aria-hidden="true"><i/><i/><i/></span>
-          <span className="adva-v4-hamburger-text">Menu</span>
-        </button>
+  <header className="main-header adva-site-nav adva-nav-v4 adva-nav-clean" onMouseLeave={scheduleServiceClose}>
+   <div className="container header-inner">
+    <a href="/" className="brand adva-brand" aria-label="ADVA home" onClick={closeAll}>
+     <img className="brand-logo" src="/adva-logo.webp" alt="ADVA" width="116" height="65"/>
+    </a>
+    <nav className="adva-desktop-nav adva-v4-primary" aria-label="Primary navigation">
+     <div className="adva-menu-holder" ref={serviceRef} onMouseEnter={openServiceMenu} onBlur={e=>{
+      if(!e.currentTarget.contains(e.relatedTarget)){cancelServiceClose();setServices(false)}
+     }}>
+      <button type="button" aria-expanded={services} aria-controls="adva-v4-services-dropdown" className="adva-v4-service-trigger" onClick={()=>{cancelServiceClose();setServices(v=>!v)}}>
+       Services <AdvaIcon name="chevron" size={14}/>
+      </button>
+      <div id="adva-v4-services-dropdown" className={"adva-v4-services-dropdown"+(services?" is-open":"")} onMouseEnter={cancelServiceClose} aria-hidden={!services} inert={!services}>
+       <div className="adva-v4-services-top"><span>Our services</span><a href="/services" onClick={closeAll} tabIndex={services?0:-1}>View all services <AdvaIcon name="up" size={14}/></a></div>
+       <ServiceLinks close={closeAll} expanded={services}/>
       </div>
+     </div>
+     <a href="/work" onClick={closeAll}>Work</a>
+     <a href="/about" onClick={closeAll}>About</a>
+    </nav>
+    <div className="adva-v4-actions">
+     <a className="adva-v4-mobile-services" href="/services" onClick={closeAll}>Services</a>
+     <a className="adva-v4-inquiry-link adva-v4-project-action" href="/brief" onClick={closeAll} aria-label="Start a project with ADVA">
+      <span className="adva-v4-action-long">Start a Project</span><span className="adva-v4-action-short">Let's Talk</span><AdvaIcon name="up" size={15}/>
+     </a>
+     <button ref={triggerRef} type="button" className="adva-v4-hamburger" aria-label="Open navigation menu" aria-expanded={menu} aria-controls="adva-clean-menu" onClick={()=>{cancelServiceClose();setServices(false);setMenu(true)}}>
+      <span className="adva-v4-hamburger-lines" aria-hidden="true"><i/><i/><i/></span>
+      <span className="adva-v4-hamburger-text">Menu</span>
+     </button>
     </div>
+   </div>
   </header>
-  <div className={"adva-v4-overlay"+(menu?" is-open":"")} id="adva-v4-menu" aria-hidden={!menu} inert={!menu}>
-    <button className="adva-v4-overlay-scrim" type="button" onClick={shut} aria-label="Close menu"/>
-    <div className="adva-v4-dialog" ref={dialogRef} role="dialog" aria-modal="true" aria-label="ADVA navigation">
-      <div className="adva-v4-dialog-header">
-        <a href="/" onClick={shut} aria-label="ADVA home"><img src="/adva-logo.webp" alt="ADVA" width="113" height="65"/></a>
-        <button className="adva-v4-dialog-close" ref={closeRef} type="button" onClick={shut}>Close <AdvaIcon name="close" size={18}/></button>
-      </div>
-      <div className="adva-v4-dialog-body" ref={menuBodyRef}>
-        <section className="adva-v4-menu-main">
-          <p className="adva-v4-menu-eyebrow">Work with ADVA</p>
-          <h2>What brings<br/>you here<span>?</span></h2>
-          <div className="adva-v4-paths">
-            {destinations.map((d,i)=><a key={d.href} href={d.href} onClick={shut} className={"adva-v4-path"+(i===0?" featured":"")}>
-              <span className="adva-v4-path-index">{d.number}</span>
-              <span className="adva-v4-path-content"><strong>{d.label}</strong><small>{d.desc}</small></span>
-              <AdvaIcon name="up" size={22}/>
-            </a>)}
-          </div>
-        </section>
-        <aside className="adva-v4-menu-secondary">
-          <div className="adva-v4-menu-secondary-top">
-            <span>Discover</span>
-            <div className="adva-v4-secondary-links">
-              <a href="/services" onClick={shut}>Services <AdvaIcon name="up" size={18}/></a>
-              <a href="/work" onClick={shut}>Selected Work <AdvaIcon name="up" size={18}/></a>
-              <a href="/#approach" onClick={shut}>How We Work <AdvaIcon name="up" size={18}/></a>
-              <a href="/about" onClick={shut}>About ADVA <AdvaIcon name="up" size={18}/></a>
-              <a href="/#contact" onClick={shut}>Contact <AdvaIcon name="up" size={18}/></a>
-            </div>
-            <button type="button" className="adva-v4-expand-services" aria-expanded={showMenuServices} onClick={()=>setShowMenuServices(v=>!v)}>
-              Browse services <AdvaIcon name={showMenuServices?"minus":"plus"} size={17}/>
-            </button>
-            {showMenuServices&&<div className="adva-v4-expanded-services">{SERVICE_GROUPS.map(g=><div key={g.id}><span>{g.label}</span>{servicesInGroup(g.id).map(s=><a key={s.slug} href={"/services/"+s.slug} onClick={shut}>{s.name}</a>)}</div>)}</div>}
-          </div>
-          <div className="adva-v4-menu-mark" aria-hidden="true"><span>A</span><i/></div>
-        </aside>
-      </div>
-      <div className="adva-v4-dialog-footer"><span>ADVA — Creative, media and experiences</span><a href="mailto:inquiries@advaae.com">Email ADVA <AdvaIcon name="up" size={14}/></a></div>
+
+  <div className={"adva-v6-overlay"+(menu?" is-open":"")} id="adva-clean-menu" aria-hidden={!menu} inert={!menu}>
+   <button className="adva-v6-scrim" type="button" onClick={closeAll} aria-label="Close navigation menu"/>
+   <div className="adva-v6-dialog" ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="adva-v6-menu-title">
+    <div className="adva-v6-top">
+     <a href="/" onClick={closeAll} aria-label="ADVA home"><img src="/adva-logo.webp" alt="ADVA" width="119" height="65"/></a>
+     <span className="adva-v6-top-caption" id="adva-v6-menu-title">Navigation</span>
+     <button className="adva-v6-close" ref={closeRef} type="button" onClick={closeAll} aria-label="Close navigation">
+      Close <AdvaIcon name="close" size={16}/>
+     </button>
     </div>
+    <div className="adva-v6-content">
+     <section className="adva-v6-main" aria-label="Explore ADVA">
+      <p className="adva-v6-eyebrow">Explore ADVA</p>
+      <nav className="adva-v6-primary" aria-label="Site pages">
+       {primaryPages.map(({href,label},i)=><a key={href} href={href} onClick={closeAll}>
+        <span className="adva-v6-index">{String(i+1).padStart(2,"0")}</span>
+        <strong>{label}</strong>
+        <AdvaIcon name="up" size={23}/>
+       </a>)}
+      </nav>
+     </section>
+     <aside className="adva-v6-aside">
+      <p className="adva-v6-eyebrow">Let's work together</p>
+      <h2>Something<br/>in mind?</h2>
+      <p className="adva-v6-intro">Tell us what you're planning. We'll help shape the next step.</p>
+      <a href="/brief" className="adva-v6-cta" onClick={closeAll}>Start a project <AdvaIcon name="up" size={19}/></a>
+      <div className="adva-v6-utility">
+       <p className="adva-v6-eyebrow">Your ADVA space</p>
+       <div className="adva-v6-account-links">
+        {accounts.map(({href,label})=><a href={href} key={href} onClick={closeAll}>{label}<AdvaIcon name="up" size={13}/></a>)}
+       </div>
+      </div>
+     </aside>
+    </div>
+    <div className="adva-v6-bottom">
+     <a href="/#approach" onClick={closeAll}>Our approach <AdvaIcon name="up" size={12}/></a>
+     <span>Abu Dhabi · UAE</span>
+     <a href="mailto:inquiries@advaae.com">inquiries@advaae.com</a>
+    </div>
+   </div>
   </div>
  </>;
 }

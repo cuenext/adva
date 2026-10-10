@@ -207,7 +207,7 @@
   const mount=document.createElement('div');mount.id='adva-assistant-mount';document.body.append(mount);
   const shadow=mount.attachShadow({mode:'open'});
   const css=window.ADVAOrb.styles+`
-  :host{all:initial;display:block;position:fixed;right:clamp(12px,2.5vw,34px);bottom:clamp(12px,2.1vw,30px);width:138px;height:146px;z-index:2147483000;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:#eff8ff;pointer-events:none;}
+  :host{all:initial;display:block;position:fixed;right:clamp(12px,2.5vw,34px);bottom:clamp(12px,2.1vw,30px);width:138px;height:146px;z-index:2147483000;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:#eff8ff;pointer-events:none;}
   *,*::before,*::after{box-sizing:border-box}
   button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid #65deee;outline-offset:4px}
   .launcher{position:absolute;right:1px;bottom:0;width:134px;height:134px;background:transparent;border:0;padding:0;pointer-events:auto;transform:translateY(0);transition:filter .22s ease;filter:drop-shadow(0 14px 19px rgba(0,0,0,.36));}
@@ -230,7 +230,7 @@
  :host{right:clamp(10px,1.4vw,22px);bottom:clamp(14px,2vw,26px);width:100px;height:112px;}
  .rail{position:fixed;right:0;bottom:27px;height:96px;width:2px;pointer-events:none;background:linear-gradient(180deg,transparent,#148eea 30%,#63e4e0 62%,transparent);box-shadow:0 0 11px #1f95db55;}
  .launcher{right:0;bottom:7px;width:96px;height:96px;z-index:4;transition:transform .4s cubic-bezier(.2,.8,.2,1),filter .3s;}
- .launcher::after{content:"ASK ADVA  ↗";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);padding:7px 10px;color:#e5f5ff;border:1px solid #6bbddd53;border-radius:7px;background:#091827f0;white-space:nowrap;letter-spacing:.12em;font:800 9px/1 Inter,system-ui,sans-serif;box-shadow:0 8px 20px #0007;}
+ .launcher::after{content:"ASK ADVA  ↗";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);padding:7px 10px;color:#e5f5ff;border:1px solid #6bbddd53;border-radius:7px;background:#091827f0;white-space:nowrap;letter-spacing:.12em;font:800 9px/1 'Montserrat',system-ui,sans-serif;box-shadow:0 8px 20px #0007;}
  .launcher:hover{transform:translateY(-3px);}
  .floor-shadow{right:20px;bottom:7px;width:60px;height:10px;}
  .note{right:93px;bottom:47px;}
