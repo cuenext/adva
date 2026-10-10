@@ -252,14 +252,7 @@
  width:53%;height:53%;border-radius:50%;right:2%;top:18%;
  border-color:rgba(116,214,229,.23);transform:rotate(12deg) scaleY(.34);
 }
-@media(hover:hover){
- .adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.13);}
- .adva-portfolio-card:hover .adva-portfolio-art-geometry i:nth-child(1){transform:translate3d(0,-3px,0);}
- .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(1){transform:rotate(-8deg) translateY(-4px);}
- .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(2){transform:rotate(7deg) translateY(-3px);}
- .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(1),
- .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(2){transform:translateY(-50%) scale(1.035);}
-}
+@media(hover:hover){.adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.035)}}
 .adva-portfolio-card-info{
  display:grid;grid-template-columns:51px minmax(0,1fr);
  column-gap:12px;row-gap:13px;
@@ -443,13 +436,6 @@
 .adva-portfolio-page .adva-portfolio-section-head{margin-bottom:55px}
 .adva-portfolio-page .adva-portfolio-art-identity strong{margin:0;font-weight:550}
 .adva-portfolio-page .adva-portfolio-art:after{background:linear-gradient(0deg,rgba(4,10,18,.45),transparent 40%)}
-.adva-portfolio-page .adva-portfolio-art-geometry i{transition:none}
-.adva-portfolio-page .adva-portfolio-card:hover .adva-portfolio-art-geometry i{transform:none}
-.adva-portfolio-page .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(1){transform:rotate(-7deg)}
-.adva-portfolio-page .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(2){transform:rotate(6deg)}
-.adva-portfolio-page .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(1),
-.adva-portfolio-page .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(2){transform:translateY(-50%)}
-.adva-portfolio-page .adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.035)}
 .adva-portfolio-page .adva-portfolio-card-info{grid-template-columns:34px minmax(0,1fr);padding-top:22px;row-gap:0}
 .adva-portfolio-page .adva-portfolio-card-index{color:#99b3c5;font-size:11px;white-space:nowrap;padding-top:8px}
 .adva-portfolio-page .adva-portfolio-card-copy p{max-width:460px}
