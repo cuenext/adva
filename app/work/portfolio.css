@@ -265,7 +265,7 @@
  column-gap:12px;row-gap:13px;
  padding-top:27px;
 }
-.adva-portfolio-card-index{font-size:10px;letter-spacing:.09em;color:#7899af;font-weight:600;padding-top:10px;}
+.adva-portfolio-card-index{font-size:10px;letter-spacing:.09em;color:#7899af;font-weight:600;padding-top:10px;white-space:nowrap;}
 .adva-portfolio-card-copy{min-width:0;}
 .website.adva-portfolio-page .adva-portfolio-card-copy h3{
  color:#f0f5fa;font-size:clamp(25px,2.58vw,38px);line-height:1.13;
@@ -398,7 +398,7 @@
  .adva-portfolio-art-identity{bottom:28px;left:26px;}
  .adva-portfolio-art-identity strong{font-size:clamp(21px,6.3vw,31px);}
  .adva-portfolio-frame-chrome{left:25px;right:23px;top:20px;font-size:8px;}
- .adva-portfolio-card-info{grid-template-columns:39px minmax(0,1fr);padding-top:19px;gap:8px 12px;}
+ .adva-portfolio-card-info{grid-template-columns:51px minmax(0,1fr);padding-top:19px;gap:8px 12px;}
  .adva-portfolio-card-copy h3{font-size:26px;}
  .adva-portfolio-card-copy p{font-size:12px;line-height:1.72;}
  .adva-portfolio-card-format{font-size:9px;}
