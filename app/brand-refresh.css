@@ -26,7 +26,15 @@ html body .website :is(code,pre,kbd,samp){font-family:ui-monospace,SFMono-Regula
 }
 .website .adva-nav-clean .adva-v4-primary>a:hover,
 .website .adva-nav-clean .adva-v4-service-trigger:hover{color:#fff;}
-.adva-nav-clean .adva-v4-primary{gap:clamp(28px,3.2vw,48px);}
+.adva-nav-clean .adva-v4-primary{gap:clamp(27px,3.1vw,43px);}
+/* Four useful destinations rather than decorative filler. */
+.website .adva-nav-clean .adva-v4-primary>a,
+.website .adva-nav-clean .adva-v4-service-trigger{font-size:13px;line-height:1.4;letter-spacing:.005em;}
+@media(min-width:921px) and (max-width:1100px){
+ .adva-nav-clean .adva-v4-primary{gap:clamp(18px,2.15vw,27px);}
+ .website .adva-nav-clean .adva-v4-primary>a,
+ .website .adva-nav-clean .adva-v4-service-trigger{font-size:12px;}
+}
 .adva-nav-clean .adva-v4-actions{gap:13px;}
 .adva-nav-clean .adva-v4-project-action{
  background:transparent;border:1px solid rgba(185,212,238,.48);color:#eff6fe!important;
