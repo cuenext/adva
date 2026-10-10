@@ -102,6 +102,7 @@ export default function SiteNav(){
      </div>
      <a href="/work" onClick={closeAll}>Work</a>
      <a href="/about" onClick={closeAll}>About</a>
+     <a href="/#contact" onClick={closeAll}>Contact</a>
     </nav>
     <div className="adva-v4-actions">
      <a className="adva-v4-mobile-services" href="/services" onClick={closeAll}>Services</a>
