@@ -17,13 +17,9 @@ function MediaFrame({item,collection}){
  </video>;
  if(item?.kind==="image")return <img className="adva-portfolio-loaded-media" src={item.src} alt={item.alt||item.title} loading="lazy" decoding="async"/>;
  return <div className={"adva-portfolio-art adva-portfolio-art--"+collection.slug} aria-hidden="true">
-  <div className="adva-portfolio-art-grain"/>
   <div className="adva-portfolio-art-geometry"><i/><i/><i/></div>
-  <span className="adva-portfolio-art-number">{collection.index}</span>
   <div className="adva-portfolio-art-identity">
-   <span>ADVA / {collection.tag}</span>
    <strong>{collection.artText}</strong>
-   <small>FRAME STUDY · MEDIA SLOT</small>
   </div>
  </div>;
 }
@@ -33,18 +29,13 @@ function CollectionCard({collection}){
  return <article id={collection.slug} className={"adva-portfolio-card adva-portfolio-card--"+collection.slug+" adva-portfolio-card--"+collection.layout} aria-labelledby={"collection-"+collection.slug}>
   <div className="adva-portfolio-card-frame">
    <MediaFrame item={featured} collection={collection}/>
-   <div className="adva-portfolio-frame-chrome" aria-hidden="true">
-    <span>ADVA — {collection.index}</span>
-    <span>{featured?"SELECTED FRAME":"ARCHIVE IN PROGRESS"}</span>
-   </div>
   </div>
   <div className="adva-portfolio-card-info">
-   <span className="adva-portfolio-card-index">{collection.index} / 06</span>
+   <span className="adva-portfolio-card-index">{collection.index}</span>
    <div className="adva-portfolio-card-copy">
     <h3 id={"collection-"+collection.slug}>{collection.title}</h3>
     <p>{collection.summary}</p>
    </div>
-   <span className="adva-portfolio-card-format">{collection.descriptor}</span>
   </div>
  </article>;
 }
@@ -58,12 +49,10 @@ export default function WorkIndex(){
    <section className="adva-portfolio-hero" aria-labelledby="adva-portfolio-title">
     <div className="container adva-portfolio-hero-inner">
      <div className="adva-portfolio-hero-top">
-      <span>ADVA / MOTION & IMAGE</span>
-      <span>AN EVOLVING ARCHIVE <i aria-hidden="true"/></span>
+      <span>ADVA / WORK</span>
      </div>
      <div className="adva-portfolio-hero-main">
       <div className="adva-portfolio-headline">
-       <span className="adva-portfolio-overline">PORTFOLIO / 001</span>
        <h1 id="adva-portfolio-title">Our work<span className="adva-portfolio-title-dot">.</span><br/><em>In motion.</em></h1>
       </div>
       <div className="adva-portfolio-hero-aside">
@@ -72,7 +61,6 @@ export default function WorkIndex(){
        <a href="#collections">Explore the formats <span aria-hidden="true">↘</span></a>
       </div>
      </div>
-     <div className="adva-portfolio-hero-foot"><span>06 / CREATIVE FORMATS</span><span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span></div>
     </div>
     <div className="adva-portfolio-hero-ambient" aria-hidden="true"/>
    </section>
@@ -82,19 +70,12 @@ export default function WorkIndex(){
      <div className="adva-portfolio-section-head">
       <span className="adva-portfolio-eyebrow">01 / THE WORK</span>
       <div className="adva-portfolio-section-heading-row">
-       <h2>Six ways<br/>to tell a story.</h2>
-       <p>Our collection is taking shape. These are the formats we create; selected finished work will appear here as approved footage and photography are added.</p>
+       <h2>Our creative<br/>formats.</h2>
+       <p>Six formats, each with its own approach. Finished work will be added as it's cleared for publication.</p>
       </div>
      </div>
-     <nav className="adva-portfolio-format-nav" aria-label="Jump to a work category">
-      {WORK_COLLECTIONS.map(c=><a key={c.slug} href={"#"+c.slug}><span>{c.index}</span>{c.shortTitle}</a>)}
-     </nav>
      <div className="adva-portfolio-mosaic">
       {WORK_COLLECTIONS.map(c=><CollectionCard key={c.slug} collection={c}/>)}
-     </div>
-     <div className="adva-portfolio-archive-foot">
-      <span>01—06 / COLLECTIONS</span>
-      <p>Real projects. Real frames. Added as they’re ready to publish.</p>
      </div>
     </div>
    </section>
@@ -111,7 +92,7 @@ export default function WorkIndex(){
     <div className="container">
      <div className="adva-portfolio-projects-head">
       <div><span className="adva-portfolio-eyebrow">02 / PRODUCTION LOG</span><h2 id="adva-project-log-title">On location<span>.</span></h2></div>
-      <p>Selected event assignments, documented by scope. Finished media will be introduced as the public collection grows.</p>
+      <p>A selection of the exhibitions and productions we've covered.</p>
      </div>
      <div className="adva-portfolio-project-list">
       {SELECTED_WORK.map((project,i)=><a key={project.slug} className="adva-portfolio-project" href={"/work/"+project.slug}>
