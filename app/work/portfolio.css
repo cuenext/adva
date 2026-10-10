@@ -458,3 +458,6 @@ body:has(.adva-portfolio-page) .adva-flashlight{display:none!important}
  .adva-portfolio-page .adva-portfolio-card-info{grid-template-columns:29px minmax(0,1fr);padding-top:19px}
  .adva-portfolio-page .adva-portfolio-project{min-height:94px}
 }
+
+/* Footer legibility on the portfolio's near-black surface. */
+.website.adva-portfolio-page .adva-footer-bottom>span{font-size:11px;color:#a8bbcd;letter-spacing:.06em;}

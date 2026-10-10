@@ -213,3 +213,8 @@ body[data-adva-menu-open="true"] #adva-assistant-mount{visibility:hidden!importa
  .adva-v6-overlay,.adva-v6-dialog,.adva-v6-primary a,.adva-v6-primary svg,
  .adva-v6-cta,.adva-v6-account-links a{transition:none!important;transform:none!important;}
 }
+
+/* Mobile navigation: Services is already first in the menu. Keep the header focused. */
+@media(max-width:760px){
+ .adva-nav-clean .adva-v4-actions .adva-v4-mobile-services{display:none!important;}
+}
