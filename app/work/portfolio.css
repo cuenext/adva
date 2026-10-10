@@ -1,0 +1,433 @@
+/* ADVA / Work Portfolio — an editorial motion-first library.
+   Placeholder treatments are abstract layout artwork, never simulated client work.
+   This stylesheet is intentionally scoped so the existing event case pages remain intact. */
+
+.website.adva-portfolio-page{
+ --work-ink:#eff5fa;--work-blue:#69c0ec;--work-muted:#9baec1;--work-line:rgba(196,219,236,.20);
+ background:#090d13!important;color:var(--work-ink);
+}
+.adva-portfolio-page .container{width:min(calc(100% - 96px),1350px);max-width:1350px;}
+.adva-portfolio-page :where(a,button):focus-visible{outline:2px solid #91dbf3;outline-offset:5px}
+.adva-portfolio-hero{
+ position:relative;isolation:isolate;overflow:hidden;min-height:668px;
+ background:linear-gradient(140deg,#080b11 15%,#0c1420 64%,#0a1420 100%);
+ border-bottom:1px solid var(--work-line);
+}
+.adva-portfolio-hero:before{
+ content:"";position:absolute;top:-59%;right:-21%;width:79%;height:155%;border-radius:50%;
+ background:radial-gradient(ellipse at center,rgba(37,131,190,.16) 0%,rgba(22,73,115,.08) 35%,transparent 69%);
+ pointer-events:none;z-index:-1;
+}
+.adva-portfolio-hero:after{
+ content:"";position:absolute;left:40%;right:2%;top:31%;height:1px;
+ transform:rotate(-24deg);transform-origin:center;background:linear-gradient(90deg,transparent,rgba(92,178,227,.22),transparent);
+ pointer-events:none;z-index:-1;
+}
+.adva-portfolio-hero-ambient{
+ position:absolute;pointer-events:none;z-index:-1;
+ width:min(49vw,690px);height:min(49vw,690px);border:1px solid rgba(104,174,207,.11);
+ border-radius:50%;top:6%;right:6%;transform:rotate(-17deg) scaleY(.71);
+}
+.adva-portfolio-hero-ambient:after{
+ content:"";position:absolute;inset:14%;border:1px solid rgba(120,186,227,.055);border-radius:50%;
+}
+.adva-portfolio-hero-inner{position:relative;z-index:1;min-height:668px;display:flex;flex-direction:column;}
+.adva-portfolio-hero-top,
+.adva-portfolio-hero-foot{
+ display:flex;justify-content:space-between;align-items:center;gap:22px;
+ color:#a5bbcd;font-size:10px;font-weight:600;letter-spacing:.135em;
+}
+.adva-portfolio-hero-top{padding-top:38px;}
+.adva-portfolio-hero-top>span:last-child{display:flex;align-items:center;gap:12px;}
+.adva-portfolio-hero-top i{width:6px;height:6px;border-radius:50%;background:#6ddada;box-shadow:0 0 11px rgba(92,220,225,.27)}
+.adva-portfolio-hero-main{
+ display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.55fr);
+ align-items:end;gap:clamp(44px,6vw,96px);flex:1;padding:80px 0 86px;
+}
+.adva-portfolio-overline,.adva-portfolio-eyebrow{
+ display:inline-flex;align-items:center;gap:11px;color:#8ca8be;
+ font-size:10px;font-weight:650;letter-spacing:.135em;text-transform:uppercase;
+}
+.adva-portfolio-overline:before{content:"";width:27px;height:1px;background:#78c2e1;}
+.website.adva-portfolio-page .adva-portfolio-headline h1{
+ margin:31px 0 0;color:#f2f7fb;font-size:clamp(77px,9.1vw,141px);
+ line-height:.98;letter-spacing:-.066em!important;font-weight:650!important;
+}
+.website.adva-portfolio-page .adva-portfolio-headline h1 em{
+ font-style:normal;font-weight:500;color:#80bbdf;
+}
+.adva-portfolio-title-dot{color:#67d7e7;}
+.adva-portfolio-hero-aside{max-width:345px;padding:0 0 10px;}
+.adva-portfolio-hero-rule{height:1px;background:linear-gradient(90deg,#c4dbea,transparent);opacity:.65;margin-bottom:28px;}
+.adva-portfolio-hero-aside p{margin:0;color:#bbccda;font-size:clamp(14px,1.14vw,17px);line-height:1.9;max-width:335px;}
+.adva-portfolio-hero-aside a{
+ display:inline-flex;align-items:center;gap:22px;margin-top:31px;color:#e7f2fa;
+ font-size:12px;font-weight:650;text-decoration:none;border-bottom:1px solid rgba(161,205,234,.49);
+ padding-bottom:12px;transition:gap .25s,color .25s;
+}
+.adva-portfolio-hero-aside a:hover{gap:29px;color:#9ce7e8;}
+.adva-portfolio-hero-foot{border-top:1px solid rgba(196,219,236,.15);padding:24px 0 28px;}
+.adva-portfolio-hero-foot>span:last-child{display:flex;gap:16px;align-items:center;}
+.adva-portfolio-hero-foot>span:last-child span{color:#9cdef0;font-size:18px;}
+
+/* Collection index */
+.adva-portfolio-sections{background:#0b1018;padding:clamp(94px,8vw,136px) 0 114px;}
+.adva-portfolio-section-head{margin-bottom:32px;}
+.adva-portfolio-section-heading-row{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.55fr);
+ gap:72px;align-items:end;margin-top:27px;
+}
+.website.adva-portfolio-page .adva-portfolio-section-heading-row h2{
+ font-size:clamp(48px,6.3vw,92px);line-height:1.07;
+ letter-spacing:-.054em!important;font-weight:630!important;margin:0;color:#edf4fa;
+}
+.adva-portfolio-section-heading-row p{
+ max-width:435px;color:#a6b9ca;font-size:14px;line-height:1.95;
+ margin:0 0 5px;font-weight:400;
+}
+.adva-portfolio-format-nav{
+ display:flex;gap:0;justify-content:space-between;align-items:center;
+ border-top:1px solid var(--work-line);border-bottom:1px solid var(--work-line);
+ margin:49px 0 57px;padding:0;min-width:0;
+}
+.adva-portfolio-format-nav a{
+ display:flex;align-items:center;gap:9px;min-height:66px;
+ padding:10px 12px;color:#b7c9d7;font-size:11px;font-weight:600;
+ text-decoration:none;white-space:nowrap;transition:color .22s;
+}
+.adva-portfolio-format-nav a:first-child{padding-left:0;}
+.adva-portfolio-format-nav a:last-child{padding-right:0;}
+.adva-portfolio-format-nav a span{color:#6f8aa1;font-size:9px;font-weight:600;}
+.adva-portfolio-format-nav a:hover,.adva-portfolio-format-nav a:focus-visible{color:#75d7ed;}
+.adva-portfolio-mosaic{
+ display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+ column-gap:clamp(16px,2vw,27px);row-gap:clamp(53px,6vw,91px);
+ align-items:start;
+}
+.adva-portfolio-card{min-width:0;scroll-margin-top:10px;}
+.adva-portfolio-card--wide{grid-column:span 7;}
+.adva-portfolio-card--narrow{grid-column:span 5;}
+.adva-portfolio-card:nth-child(3),
+.adva-portfolio-card:nth-child(6){grid-column:span 5;}
+.adva-portfolio-card:nth-child(4),
+.adva-portfolio-card:nth-child(5){grid-column:span 7;}
+.adva-portfolio-card-frame{
+ position:relative;overflow:hidden;isolation:isolate;
+ background:#101923;border:1px solid rgba(125,167,199,.22);
+ aspect-ratio:1.65;
+ box-shadow:0 10px 36px rgba(0,0,0,.12);
+}
+.adva-portfolio-card:nth-child(2) .adva-portfolio-card-frame,
+.adva-portfolio-card:nth-child(3) .adva-portfolio-card-frame,
+.adva-portfolio-card:nth-child(6) .adva-portfolio-card-frame{aspect-ratio:1.13;}
+.adva-portfolio-card:nth-child(4) .adva-portfolio-card-frame,
+.adva-portfolio-card:nth-child(5) .adva-portfolio-card-frame{aspect-ratio:1.65;}
+.adva-portfolio-loaded-media{
+ position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;
+ background:#0f1821;
+}
+.adva-portfolio-art{
+ position:absolute;inset:0;overflow:hidden;isolation:isolate;background:#101923;
+ transition:filter .4s ease;
+}
+.adva-portfolio-art:before{
+ content:"";position:absolute;inset:0;z-index:-1;
+ background:linear-gradient(137deg,rgba(164,210,236,.07),transparent 37%,rgba(20,68,107,.12) 100%);
+}
+.adva-portfolio-art:after{
+ content:"";position:absolute;inset:0;z-index:4;pointer-events:none;
+ background:linear-gradient(0deg,rgba(4,10,18,.53),transparent 35%,rgba(6,12,20,.17));
+}
+.adva-portfolio-art-grain{
+ position:absolute;inset:0;pointer-events:none;
+ background:repeating-linear-gradient(to bottom,transparent 0,transparent 5px,rgba(181,216,231,.016) 6px,transparent 7px);
+ opacity:.62;
+}
+.adva-portfolio-art-number{
+ position:absolute;z-index:0;left:1.5%;top:50%;transform:translateY(-52%);
+ color:rgba(190,221,234,.085);font-size:clamp(150px,19.6vw,344px);
+ font-weight:500;line-height:1;letter-spacing:-.15em;pointer-events:none;
+}
+.adva-portfolio-art-geometry{position:absolute;inset:0;pointer-events:none;opacity:.93}
+.adva-portfolio-art-geometry i{display:block;position:absolute;border:1px solid rgba(157,209,238,.30);transition:transform .6s cubic-bezier(.18,1,.25,1);}
+.adva-portfolio-art-identity{
+ position:absolute;z-index:5;bottom:clamp(26px,3.7vw,52px);left:clamp(26px,3.5vw,48px);
+ right:20px;display:flex;align-items:flex-start;flex-direction:column;
+}
+.adva-portfolio-art-identity>span{
+ font-size:10px;letter-spacing:.16em;font-weight:600;color:#99c9e1;
+}
+.adva-portfolio-art-identity strong{
+ display:block;color:#f2f7fc;font-size:clamp(21px,2.3vw,35px);
+ font-weight:550;line-height:1.22;letter-spacing:-.045em;margin:11px 0 17px;
+}
+.adva-portfolio-art-identity small{
+ display:block;color:rgba(197,218,234,.71);font-size:9px;font-weight:500;letter-spacing:.13em;
+}
+.adva-portfolio-frame-chrome{
+ position:absolute;z-index:6;top:clamp(18px,2.5vw,34px);left:clamp(23px,3.1vw,42px);
+ right:clamp(21px,3vw,41px);
+ display:flex;justify-content:space-between;gap:10px;align-items:center;
+ font-size:9px;font-weight:600;letter-spacing:.13em;color:#c9dce9;
+}
+.adva-portfolio-frame-chrome span:last-child{color:#a0c6d9;}
+.adva-portfolio-art--interviews{background:radial-gradient(ellipse at 74% 32%,#23415c 0%,#142637 31%,#0b151e 74%);}
+.adva-portfolio-art--interviews .adva-portfolio-art-geometry i:nth-child(1){
+ width:37%;height:81%;right:13%;top:10%;border-radius:190px 190px 12px 12px;
+ border-color:rgba(138,191,222,.36);background:linear-gradient(90deg,rgba(40,100,146,.11),transparent);
+}
+.adva-portfolio-art--interviews .adva-portfolio-art-geometry i:nth-child(2){
+ width:29%;height:66%;right:17%;top:18%;border-radius:170px 170px 7px 7px;
+ border-color:rgba(143,214,239,.10);
+}
+.adva-portfolio-art--interviews .adva-portfolio-art-geometry i:nth-child(3){
+ width:1px;height:69%;left:56%;top:16%;border:0;background:linear-gradient(transparent,#79bddb,transparent);opacity:.24;
+}
+.adva-portfolio-art--social-videos{background:linear-gradient(142deg,#102233,#12293a 45%,#07141f);}
+.adva-portfolio-art--social-videos .adva-portfolio-art-geometry i:nth-child(1){
+ width:26%;height:58%;top:15%;left:35%;border-radius:8px;
+ background:linear-gradient(130deg,#214968a8,#091624);
+ transform:rotate(-7deg);
+}
+.adva-portfolio-art--social-videos .adva-portfolio-art-geometry i:nth-child(2){
+ width:26%;height:58%;top:20%;left:55%;border-radius:8px;
+ border-color:#83c3e86a;background:linear-gradient(154deg,#3383aa30,#0d1e2a);
+ transform:rotate(6deg);
+}
+.adva-portfolio-art--social-videos .adva-portfolio-art-geometry i:nth-child(3){
+ width:26%;height:58%;top:12%;left:46%;border-radius:8px;
+ border-color:#99ddf482;background:linear-gradient(153deg,#2b78a43e,#0b1b29);
+}
+.adva-portfolio-art--event-highlights{background:linear-gradient(133deg,#111922,#1a2935 54%,#09131b);}
+.adva-portfolio-art--event-highlights .adva-portfolio-art-geometry i:nth-child(1){
+ width:79%;height:105%;right:-26%;top:-35%;border-radius:50%;
+ border-color:rgba(152,215,241,.19);transform:rotate(-14deg);
+}
+.adva-portfolio-art--event-highlights .adva-portfolio-art-geometry i:nth-child(2){
+ width:90%;height:1px;border:0;right:-12%;top:38%;
+ background:linear-gradient(90deg,transparent,#a6dce8,transparent);opacity:.3;transform:rotate(-17deg);
+}
+.adva-portfolio-art--event-highlights .adva-portfolio-art-geometry i:nth-child(3){
+ width:97%;height:1px;border:0;right:-10%;top:51%;
+ background:linear-gradient(90deg,transparent,#65bee5,transparent);opacity:.2;transform:rotate(-17deg);
+}
+.adva-portfolio-art--marketing{background:linear-gradient(122deg,#152a37,#163b4a 48%,#0b1824);}
+.adva-portfolio-art--marketing .adva-portfolio-art-geometry i:nth-child(1){
+ width:55%;height:140%;right:1%;top:-19%;transform:rotate(22deg);
+ background:linear-gradient(120deg,rgba(99,193,221,.17),transparent);
+ border-color:rgba(168,229,239,.12);
+}
+.adva-portfolio-art--marketing .adva-portfolio-art-geometry i:nth-child(2){
+ width:26%;height:120%;right:28%;top:-9%;transform:rotate(22deg);
+ border-color:rgba(168,229,239,.18);
+}
+.adva-portfolio-art--marketing .adva-portfolio-art-geometry i:nth-child(3){
+ width:12%;height:120%;right:19%;top:-9%;transform:rotate(22deg);
+ border-color:rgba(168,229,239,.12);
+}
+.adva-portfolio-art--commercials{background:radial-gradient(ellipse at 65% 44%,#263f50,#101d2b 42%,#0b131b 80%);}
+.adva-portfolio-art--commercials .adva-portfolio-art-geometry i:nth-child(1){
+ width:52%;aspect-ratio:1;right:11%;top:50%;transform:translateY(-50%);
+ border-radius:50%;border-color:rgba(180,224,246,.35);
+ box-shadow:0 0 0 27px rgba(79,153,190,.035),0 0 0 58px rgba(79,153,190,.028);
+}
+.adva-portfolio-art--commercials .adva-portfolio-art-geometry i:nth-child(2){
+ width:37%;aspect-ratio:1;right:18.5%;top:50%;transform:translateY(-50%);
+ border-radius:50%;border-color:rgba(174,218,242,.17);
+}
+.adva-portfolio-art--commercials .adva-portfolio-art-geometry i:nth-child(3){
+ width:1px;height:98%;right:37%;top:1%;border:0;background:linear-gradient(transparent,#d2f1ff,transparent);opacity:.18;
+}
+.adva-portfolio-art--cinematic-social{background:radial-gradient(ellipse at 57% 55%,#174a5d 0%,#102c3d 36%,#0a1a25 68%);}
+.adva-portfolio-art--cinematic-social .adva-portfolio-art-geometry i:nth-child(1){
+ width:84%;height:41%;top:27%;left:8%;
+ background:linear-gradient(180deg,rgba(97,200,227,.09),rgba(6,16,26,.45));
+ border-color:rgba(142,225,244,.28);
+}
+.adva-portfolio-art--cinematic-social .adva-portfolio-art-geometry i:nth-child(2){
+ width:100%;height:1px;top:49%;left:0;border:0;
+ background:linear-gradient(90deg,transparent,rgba(146,229,241,.6),transparent);
+}
+.adva-portfolio-art--cinematic-social .adva-portfolio-art-geometry i:nth-child(3){
+ width:53%;height:53%;border-radius:50%;right:2%;top:18%;
+ border-color:rgba(116,214,229,.23);transform:rotate(12deg) scaleY(.34);
+}
+@media(hover:hover){
+ .adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.13);}
+ .adva-portfolio-card:hover .adva-portfolio-art-geometry i:nth-child(1){transform:translate3d(0,-3px,0);}
+ .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(1){transform:rotate(-8deg) translateY(-4px);}
+ .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(2){transform:rotate(7deg) translateY(-3px);}
+ .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(1),
+ .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(2){transform:translateY(-50%) scale(1.035);}
+}
+.adva-portfolio-card-info{
+ display:grid;grid-template-columns:51px minmax(0,1fr);
+ column-gap:12px;row-gap:13px;
+ padding-top:27px;
+}
+.adva-portfolio-card-index{font-size:10px;letter-spacing:.09em;color:#7899af;font-weight:600;padding-top:10px;white-space:nowrap;}
+.adva-portfolio-card-copy{min-width:0;}
+.website.adva-portfolio-page .adva-portfolio-card-copy h3{
+ color:#f0f5fa;font-size:clamp(25px,2.58vw,38px);line-height:1.13;
+ letter-spacing:-.038em!important;font-weight:600!important;margin:0 0 11px;
+}
+.adva-portfolio-card-copy p{font-size:13px;line-height:1.8;color:#a4bacb;margin:0;max-width:550px;font-weight:400;}
+.adva-portfolio-card-format{grid-column:2;font-size:10px;letter-spacing:.10em;color:#7896ac;font-weight:600;margin-top:1px;}
+.adva-portfolio-archive-foot{
+ margin-top:75px;display:flex;align-items:start;justify-content:space-between;gap:25px;
+ padding-top:22px;border-top:1px solid var(--work-line);color:#819ab0;
+ font-size:10px;letter-spacing:.10em;font-weight:550;
+}
+.adva-portfolio-archive-foot p{max-width:380px;text-align:right;margin:0;font-size:11px;letter-spacing:normal;line-height:1.7;color:#8eabba;}
+
+/* Documented events — an understated factual index, not pretend case-study images. */
+.adva-portfolio-projects{background:#0a0e14;padding:clamp(90px,8vw,131px) 0 120px;border-top:1px solid rgba(198,215,235,.09);}
+.adva-portfolio-projects-head{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.52fr);
+ gap:70px;align-items:end;margin-bottom:50px;
+}
+.website.adva-portfolio-page .adva-portfolio-projects-head h2{
+ color:#edf4fb;font-size:clamp(52px,6.2vw,87px);font-weight:650!important;
+ line-height:1.08;letter-spacing:-.054em!important;margin:20px 0 0;
+}
+.adva-portfolio-projects-head h2 span{color:#6bcce0;}
+.adva-portfolio-projects-head p{font-size:14px;color:#9eafc0;line-height:1.85;margin:0 0 5px;}
+.adva-portfolio-project-list{border-top:1px solid rgba(188,213,230,.31);}
+.adva-portfolio-project{
+ display:grid;grid-template-columns:55px minmax(0,1fr) 165px 20px;
+ gap:16px;align-items:center;min-height:123px;
+ border-bottom:1px solid rgba(185,207,224,.18);
+ padding:18px 7px 18px 0;
+ transition:padding-left .25s ease,background .25s ease;
+}
+.adva-portfolio-project:hover{padding-left:12px;background:linear-gradient(90deg,rgba(84,173,217,.075),transparent 71%)}
+.adva-portfolio-project-index{font-size:10px;color:#6e94ab;letter-spacing:.09em;}
+.adva-portfolio-project-main{display:flex;flex-direction:column;gap:10px;}
+.adva-portfolio-project-main strong{
+ color:#f1f6fb;font-size:clamp(26px,3.5vw,46px);font-weight:600;
+ letter-spacing:-.05em;line-height:1.08;
+}
+.adva-portfolio-project-main small{color:#89a4b7;font-size:11px;letter-spacing:.02em;}
+.adva-portfolio-project-location{font-size:12px;color:#a4baca;text-align:right;}
+.adva-portfolio-project-location>span{color:#557b95;padding:0 2px;}
+.adva-portfolio-project-arrow{font-size:20px;color:#99d7ec;text-align:right;transition:transform .25s;}
+.adva-portfolio-project:hover .adva-portfolio-project-arrow{transform:translate(3px,-3px)}
+
+/* Future media additions */
+.adva-portfolio-expanded{padding:100px 0;background:#0d151e;}
+.adva-portfolio-expanded-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:34px;}
+.adva-portfolio-expanded-head h2{font-size:clamp(39px,5vw,68px);margin:0;color:#edf5fb;}
+.adva-portfolio-expanded-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;}
+.adva-portfolio-expanded figure{margin:0;min-width:0;}
+.adva-portfolio-expanded figure>div{position:relative;aspect-ratio:16/10;background:#101923;overflow:hidden;}
+.adva-portfolio-expanded figcaption{display:flex;justify-content:space-between;gap:15px;padding-top:15px;color:#cbdfe9;font-size:12px;}
+.adva-portfolio-expanded figcaption strong{font-weight:650;}
+.adva-portfolio-expanded figcaption span{color:#809eaf;}
+
+/* Clear conversion endcap */
+.adva-portfolio-end{
+ background:linear-gradient(116deg,#152c3c,#101f2d 49%,#0c1824);
+ border-top:1px solid rgba(137,196,219,.24);padding:95px 0 114px;
+}
+.adva-portfolio-end-row{
+ display:grid;grid-template-columns:minmax(0,1.2fr) minmax(230px,.55fr);
+ gap:60px;align-items:end;margin-top:25px;
+}
+.website.adva-portfolio-page .adva-portfolio-end h2{
+ font-size:clamp(55px,7.9vw,112px);line-height:1.025;color:#f0f7fb;
+ letter-spacing:-.057em!important;font-weight:650!important;margin:0;
+}
+.adva-portfolio-end h2 span{color:#79d5e6;}
+.adva-portfolio-end-row>div{padding-bottom:7px;}
+.adva-portfolio-end-row p{font-size:14px;line-height:1.8;color:#acc3d1;max-width:300px;margin:0 0 26px;}
+.adva-portfolio-end-row a{
+ display:flex;align-items:center;justify-content:space-between;
+ width:min(100%,283px);padding:17px 19px;
+ border-radius:3px;background:#e7f1f8;color:#0a2130;
+ font-size:12px;font-weight:650;transition:background .25s;
+}
+.adva-portfolio-end-row a:hover{background:#9cdae9}
+.adva-portfolio-end-row a span{font-size:17px;}
+
+@media(max-width:1160px){
+ .adva-portfolio-page .container{width:calc(100% - 66px);}
+ .adva-portfolio-hero-main{gap:48px;grid-template-columns:minmax(0,1.28fr) minmax(250px,.7fr);}
+ .website.adva-portfolio-page .adva-portfolio-headline h1{font-size:clamp(71px,9vw,118px);}
+ .adva-portfolio-format-nav{overflow-x:auto;justify-content:flex-start;gap:17px;scrollbar-width:thin;scrollbar-color:#3d5e78 transparent;}
+ .adva-portfolio-format-nav a{flex:none;}
+ .adva-portfolio-frame-chrome{font-size:8px;}
+}
+@media(max-width:850px){
+ .adva-portfolio-hero,.adva-portfolio-hero-inner{min-height:610px;}
+ .adva-portfolio-hero-main{grid-template-columns:1fr;align-items:start;gap:42px;padding:88px 0 56px;}
+ .adva-portfolio-hero-aside{max-width:560px;padding:0;}
+ .adva-portfolio-hero-aside p{max-width:510px;}
+ .website.adva-portfolio-page .adva-portfolio-headline h1{font-size:clamp(72px,10.3vw,110px);}
+ .adva-portfolio-section-heading-row{grid-template-columns:1fr;gap:20px;}
+ .adva-portfolio-section-heading-row p{max-width:520px;}
+ .adva-portfolio-projects-head{grid-template-columns:1fr;gap:20px;}
+ .adva-portfolio-end-row{grid-template-columns:1fr;gap:35px;}
+ .adva-portfolio-end-row>div{display:flex;align-items:center;justify-content:space-between;gap:24px;}
+ .adva-portfolio-end-row p{max-width:370px;margin:0;}
+}
+@media(max-width:670px){
+ .adva-portfolio-page .container{width:calc(100% - 38px);}
+ .adva-portfolio-hero,.adva-portfolio-hero-inner{min-height:0;}
+ .adva-portfolio-hero-top{padding-top:24px;font-size:8px;letter-spacing:.095em;}
+ .adva-portfolio-hero-main{padding:88px 0 79px;gap:53px;}
+ .website.adva-portfolio-page .adva-portfolio-headline h1{font-size:clamp(61px,13.9vw,89px);line-height:1.05;}
+ .adva-portfolio-overline,.adva-portfolio-eyebrow{font-size:9px;}
+ .adva-portfolio-hero-aside{max-width:380px;}
+ .adva-portfolio-hero-aside p{font-size:14px;line-height:1.78;}
+ .adva-portfolio-hero-foot{font-size:8px;padding:20px 0 22px;}
+ .adva-portfolio-hero-foot>span:last-child{gap:9px;}
+ .adva-portfolio-sections{padding:77px 0 84px;}
+ .website.adva-portfolio-page .adva-portfolio-section-heading-row h2{font-size:clamp(45px,10.6vw,70px);}
+ .adva-portfolio-section-heading-row p{font-size:13px;line-height:1.8;}
+ .adva-portfolio-format-nav{margin:29px 0 39px;gap:9px;}
+ .adva-portfolio-format-nav a{font-size:10px;min-height:58px;padding-inline:8px;}
+ .adva-portfolio-mosaic{display:flex;flex-direction:column;row-gap:56px;}
+ .adva-portfolio-card{width:100%;}
+ .adva-portfolio-card-frame,
+ .adva-portfolio-card:nth-child(2) .adva-portfolio-card-frame,
+ .adva-portfolio-card:nth-child(3) .adva-portfolio-card-frame,
+ .adva-portfolio-card:nth-child(4) .adva-portfolio-card-frame,
+ .adva-portfolio-card:nth-child(5) .adva-portfolio-card-frame,
+ .adva-portfolio-card:nth-child(6) .adva-portfolio-card-frame{aspect-ratio:1.18;}
+ .adva-portfolio-art-number{font-size:clamp(170px,52vw,300px);}
+ .adva-portfolio-art-identity{bottom:28px;left:26px;}
+ .adva-portfolio-art-identity strong{font-size:clamp(21px,6.3vw,31px);}
+ .adva-portfolio-frame-chrome{left:25px;right:23px;top:20px;font-size:8px;}
+ .adva-portfolio-card-info{grid-template-columns:51px minmax(0,1fr);padding-top:19px;gap:8px 12px;}
+ .adva-portfolio-card-copy h3{font-size:26px;}
+ .adva-portfolio-card-copy p{font-size:12px;line-height:1.72;}
+ .adva-portfolio-card-format{font-size:9px;}
+ .adva-portfolio-archive-foot{margin-top:63px;gap:12px;flex-direction:column;}
+ .adva-portfolio-archive-foot p{text-align:left;}
+ .adva-portfolio-projects{padding:78px 0 82px;}
+ .website.adva-portfolio-page .adva-portfolio-projects-head h2{font-size:clamp(46px,10vw,63px);}
+ .adva-portfolio-projects-head{margin-bottom:31px;}
+ .adva-portfolio-projects-head p{font-size:13px;}
+ .adva-portfolio-project{grid-template-columns:25px minmax(0,1fr) 18px;gap:11px;min-height:98px;padding-block:20px;}
+ .adva-portfolio-project-main strong{font-size:clamp(22px,6.5vw,30px);}
+ .adva-portfolio-project-main small{font-size:10px;}
+ .adva-portfolio-project-location{grid-column:2;grid-row:2;text-align:left;font-size:10px;}
+ .adva-portfolio-project-arrow{grid-column:3;grid-row:1;}
+ .adva-portfolio-end{padding:77px 0 90px;}
+ .website.adva-portfolio-page .adva-portfolio-end h2{font-size:clamp(51px,11.5vw,76px);}
+ .adva-portfolio-end-row>div{display:block;}
+ .adva-portfolio-end-row p{font-size:13px;margin:0 0 21px;}
+ .adva-portfolio-expanded{padding:75px 0;}
+ .adva-portfolio-expanded-grid{grid-template-columns:1fr;}
+}
+@media(max-width:380px){
+ .adva-portfolio-hero-top span:last-child{max-width:128px;white-space:nowrap;}
+ .adva-portfolio-art-identity strong{font-size:21px;}
+ .adva-portfolio-art-identity>span,.adva-portfolio-art-identity small{font-size:8px;}
+ .adva-portfolio-hero-foot{letter-spacing:.04em;}
+}
+@media(prefers-reduced-motion:reduce){
+ .adva-portfolio-page *, .adva-portfolio-page *:before, .adva-portfolio-page *:after{
+  transition:none!important;animation:none!important;scroll-behavior:auto!important;
+ }
+}
