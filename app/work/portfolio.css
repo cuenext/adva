@@ -252,14 +252,7 @@
  width:53%;height:53%;border-radius:50%;right:2%;top:18%;
  border-color:rgba(116,214,229,.23);transform:rotate(12deg) scaleY(.34);
 }
-@media(hover:hover){
- .adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.13);}
- .adva-portfolio-card:hover .adva-portfolio-art-geometry i:nth-child(1){transform:translate3d(0,-3px,0);}
- .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(1){transform:rotate(-8deg) translateY(-4px);}
- .adva-portfolio-card--social-videos:hover .adva-portfolio-art-geometry i:nth-child(2){transform:rotate(7deg) translateY(-3px);}
- .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(1),
- .adva-portfolio-card--commercials:hover .adva-portfolio-art-geometry i:nth-child(2){transform:translateY(-50%) scale(1.035);}
-}
+@media(hover:hover){.adva-portfolio-card:hover .adva-portfolio-art{filter:brightness(1.035)}}
 .adva-portfolio-card-info{
  display:grid;grid-template-columns:51px minmax(0,1fr);
  column-gap:12px;row-gap:13px;
@@ -431,3 +424,40 @@
   transition:none!important;animation:none!important;scroll-behavior:auto!important;
  }
 }
+
+
+/* Reduced visual noise: preserve the cinematic surfaces, not the repetitive labels. */
+.website.adva-portfolio-page .adva-portfolio-hero,
+.website.adva-portfolio-page .adva-portfolio-hero-inner{min-height:580px}
+.adva-portfolio-page .adva-portfolio-hero-top{padding-top:31px}
+.adva-portfolio-page .adva-portfolio-hero-main{padding:85px 0 75px}
+.website.adva-portfolio-page .adva-portfolio-headline h1{margin:0}
+.adva-portfolio-page .adva-portfolio-sections{padding:91px 0 93px}
+.adva-portfolio-page .adva-portfolio-section-head{margin-bottom:55px}
+.adva-portfolio-page .adva-portfolio-art-identity strong{margin:0;font-weight:550}
+.adva-portfolio-page .adva-portfolio-art:after{background:linear-gradient(0deg,rgba(4,10,18,.45),transparent 40%)}
+.adva-portfolio-page .adva-portfolio-card-info{grid-template-columns:34px minmax(0,1fr);padding-top:22px;row-gap:0}
+.adva-portfolio-page .adva-portfolio-card-index{color:#99b3c5;font-size:11px;white-space:nowrap;padding-top:8px}
+.adva-portfolio-page .adva-portfolio-card-copy p{max-width:460px}
+.adva-portfolio-page .adva-portfolio-mosaic{row-gap:clamp(52px,5.5vw,77px)}
+.adva-portfolio-page .adva-portfolio-projects{padding:88px 0 95px}
+.adva-portfolio-page .adva-portfolio-project{min-height:104px}
+.adva-portfolio-page .adva-portfolio-project-main strong{font-size:clamp(26px,3vw,40px)}
+body:has(.adva-portfolio-page) .adva-flashlight{display:none!important}
+@media(max-width:850px){
+ .website.adva-portfolio-page .adva-portfolio-hero,
+ .website.adva-portfolio-page .adva-portfolio-hero-inner{min-height:570px}
+ .adva-portfolio-page .adva-portfolio-hero-main{padding:76px 0 55px}
+}
+@media(max-width:670px){
+ .website.adva-portfolio-page .adva-portfolio-hero,
+ .website.adva-portfolio-page .adva-portfolio-hero-inner{min-height:0}
+ .adva-portfolio-page .adva-portfolio-hero-main{padding:79px 0 84px}
+ .adva-portfolio-page .adva-portfolio-sections{padding:75px 0 82px}
+ .adva-portfolio-page .adva-portfolio-section-head{margin-bottom:37px}
+ .adva-portfolio-page .adva-portfolio-card-info{grid-template-columns:29px minmax(0,1fr);padding-top:19px}
+ .adva-portfolio-page .adva-portfolio-project{min-height:94px}
+}
+
+/* Footer legibility on the portfolio's near-black surface. */
+.website.adva-portfolio-page .adva-footer-bottom>span{font-size:11px;color:#a8bbcd;letter-spacing:.06em;}
